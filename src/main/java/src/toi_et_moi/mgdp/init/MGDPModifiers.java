@@ -417,7 +417,7 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 
 			MINER = reg("mine", MinerModifier::new,
 				"Mining",
-				"Holding a pickaxe, the golem automatically mines ores within 6/12/18 blocks. Requires Pickup. Level 3 unlocks chain mining.");
+				"Holding a pickaxe, the golem automatically mines ores within the Pickup range. Requires Pickup. Chain-mines up to 8 adjacent same-type ores for free; chain drops land at the chain origin.");
 
 			SCAV_BOX = reg("scav_box", ScavBoxModifier::new,
 				"Scav Box",
@@ -425,7 +425,7 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 
 			LUMBERJACK = reg("lumberjack", LumberjackModifier::new,
 				"Lumberjack",
-				"Holding an axe, the golem automatically fells trees within 4/8/12 blocks (clears leaves from level 2; Auto Smelt applies).");
+				"Holding an axe, the golem automatically fells trees within the Pickup range and clears leaves. Requires Pickup. Replants a matching sapling at the tree base unless dual-wielding axes; Auto Smelt applies.");
 
 			UNDYING = reg("hostility_undying", UndyingModifier::new,
 				"Hostility Upgrade: Undying",

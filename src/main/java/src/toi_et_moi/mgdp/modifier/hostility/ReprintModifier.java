@@ -1,6 +1,5 @@
 package src.toi_et_moi.mgdp.modifier.hostility;
 
-import dev.xkmc.l2complements.init.registrate.LCEnchantments;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -21,6 +20,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
+import src.toi_et_moi.mgdp.compat.L2Compat;
 
 import java.util.List;
 import java.util.Map;
@@ -75,12 +75,15 @@ public class ReprintModifier extends GolemModifier {
 	 * 给攻方主手加虚空之触（VOID_TOUCH），与 L2Hostility 原著的 bypass 机制一致，
 	 * 但移除 VANISHING_CURSE——消失诅咒大多数情况对玩家方是负面。
 	 * 写入 level 用 20 沿用 L2 习惯值（vanilla setEnchantments 不限制写入数值）。
+	 * 附魔经 L2Compat 反射获取：l2complements 是可选依赖，直接引用会让未安装它的
+	 * 整合包在模组构建阶段抛 NoClassDefFoundError 而无法启动。
 	 */
 	private static void tryAddVoidTouch(AbstractGolemEntity<?, ?> golem) {
+		Enchantment voidTouch = L2Compat.getEnchantment("VOID_TOUCH");
+		if (voidTouch == null) return;
 		ItemStack weapon = golem.getMainHandItem();
 		if (weapon.isEmpty()) return;
 		if (!weapon.isEnchanted() && !weapon.isEnchantable()) return;
-		var voidTouch = LCEnchantments.VOID_TOUCH.get();
 		if (!weapon.canApplyAtEnchantingTable(voidTouch)) return;
 
 		var map = weapon.getAllEnchantments();

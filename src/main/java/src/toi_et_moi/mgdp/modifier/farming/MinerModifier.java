@@ -4,6 +4,7 @@ import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import dev.xkmc.modulargolems.content.modifier.special.PickupModifier;
+import dev.xkmc.modulargolems.init.data.MGConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -38,14 +39,15 @@ import java.util.WeakHashMap;
 /**
  * 挖矿升级（蓝色升级）
  * <p>
- * 最高三级，以傀儡自身为中心、每级三维半径 6 格（6/12/18 的立方体范围）。
- * 需要拾取升级才工作。
+ * 一级解锁全部功能。范围与拾取升级一致：以傀儡自身为中心、三维半径 = 拾取等级 × 6 格。
+ * 需要拾取升级才工作；连锁挖矿：同种矿石相邻最多 8 块，连锁块不消耗工作点
+ * （只有触发块扣费），每块仅消耗 0.25 耐久；连锁产物与经验统一落到连锁起点，
+ * 方便拾取升级回收。
  * 主手持镐（isCorrectToolForDrops）时自动开采 #forge:ores 标签内的矿石与
  * Config 自定义方块，掉落按手持镐计算（效率/时运/精准采集全部生效），
  * 镐耐久正常消耗。效率附魔提高挖掘吞吐：工作预算制下每挖一块消耗
  * max(1, 4-效率等级) 点工作点（每 tick +1，上限 4），无效率约 5 块/秒，
- * 效率 V 约 20 块/秒。三级解锁连锁挖矿（同种矿石相邻最多 8 块，
- * 每块仅消耗 0.25 耐久）。
+ * 效率 V 约 20 块/秒。
  * <p>
  * 安全阀：战斗中有目标时停挖；只挖已加载区块；名单外方块不碰。
  * 扫描采用滚动列模式（同 HarvestCropModifier），把全量扫描摊平到每个 tick；
@@ -55,8 +57,7 @@ import java.util.WeakHashMap;
 public class MinerModifier extends GolemModifier {
 
 	private static final int CYCLE = 100;                // 全周期目标长度：约 5 秒扫完整个范围
-	private static final int RANGE_PER_LEVEL = 6;        // 每级三维半径（矿洞上下都可能有矿）
-	private static final int CHAIN_MAX = 8;              // 三级连锁最大块数
+	private static final int CHAIN_MAX = 8;              // 连锁最大块数
 	private static final float CHAIN_DURABILITY = 0.25F; // 连锁每块耐久消耗（增强：只消耗一点）
 	private static final int MAX_WORK = 4;               // 工作点上限（= 无效率附魔时每块消耗的工作点）
 	private static final int DISPLAY_WINDOW = 20;        // 动作栏累加窗口：1 秒（20 tick）
@@ -66,12 +67,12 @@ public class MinerModifier extends GolemModifier {
 	private static final Map<UUID, Integer> WORK_BUDGET = new WeakHashMap<>();
 
 	public MinerModifier() {
-		super(StatFilterType.MASS, 3);
+		super(StatFilterType.MASS, 1);
 	}
 
 	@Override
 	public List<MutableComponent> getDetail(int v) {
-		int range = v * RANGE_PER_LEVEL;
+		int range = MGConfig.COMMON.basePickupRange.get();
 		return List.of(Component.translatable(getDescriptionId() + ".desc", range).withStyle(ChatFormatting.GREEN));
 	}
 
@@ -84,11 +85,18 @@ public class MinerModifier extends GolemModifier {
 		// 工具门槛：主手必须持有工具
 		ItemStack tool = golem.getMainHandItem();
 		if (tool.isEmpty()) return;
-		// 前置：需要拾取升级
-		if (!hasPickup(golem)) return;
+		// 前置：需要拾取升级；作用范围与拾取范围一致（每级拾取 × basePickupRange）
+		int pickupLevel = 0;
+		for (var entry : golem.getModifiers().entrySet()) {
+			if (entry.getKey() instanceof PickupModifier) {
+				pickupLevel = entry.getValue();
+				break;
+			}
+		}
+		if (pickupLevel <= 0) return;
 		if (!(golem.level() instanceof ServerLevel sl)) return;
 
-		int range = level * RANGE_PER_LEVEL;
+		int range = pickupLevel * MGConfig.COMMON.basePickupRange.get();
 		int side = range * 2 + 1;
 		int totalColumns = side * side;
 		int columnsPerTick = Math.max(1, (totalColumns + CYCLE - 1) / CYCLE);
@@ -98,7 +106,8 @@ public class MinerModifier extends GolemModifier {
 		Set<String> extra = Config.minerExtraBlocks;
 
 		UUID id = golem.getUUID();
-		// 工作预算制：每 tick +1 工作点（上限 MAX_WORK）；每挖一块消耗
+		// 工作预算制：每 tick +1 工作点（上限 MAX_WORK），只对"触发挖掘"计费
+		// （连锁块免预算，一次触发可带走整条矿脉）；每挖一块消耗
 		// max(1, 4-效率等级) 点。效率 V 一块一点（≈20 块/秒），无效率四点一块（≈5 块/秒）。
 		int[] budget = { Math.min(MAX_WORK, WORK_BUDGET.getOrDefault(id, 0) + 1) };
 		int cost = Math.max(1, MAX_WORK - getEfficiency(tool));
@@ -106,7 +115,7 @@ public class MinerModifier extends GolemModifier {
 		int cursor = COLUMN_CURSORS.getOrDefault(id, 0);
 		int mined = 0;
 		for (int i = 0; i < columnsPerTick && budget[0] >= cost; i++) {
-			mined += scanColumn(golem, sl, levelW, center, range, level, (cursor + i) % totalColumns, extra, budget, cost);
+			mined += scanColumn(golem, sl, levelW, center, range, (cursor + i) % totalColumns, extra, budget, cost);
 		}
 		int next = (cursor + columnsPerTick) % totalColumns;
 		COLUMN_CURSORS.put(id, next);
@@ -124,15 +133,8 @@ public class MinerModifier extends GolemModifier {
 		}
 	}
 
-	private boolean hasPickup(AbstractGolemEntity<?, ?> golem) {
-		for (var entry : golem.getModifiers().entrySet()) {
-			if (entry.getKey() instanceof PickupModifier) return entry.getValue() > 0;
-		}
-		return false;
-	}
-
 	private int scanColumn(AbstractGolemEntity<?, ?> golem, ServerLevel sl, Level level, BlockPos center,
-			int range, int modifierLevel, int col, Set<String> extra, int[] budget, int cost) {
+			int range, int col, Set<String> extra, int[] budget, int cost) {
 		int side = range * 2 + 1;
 		int dx = col % side - range;
 		int dz = col / side - range;
@@ -150,12 +152,10 @@ public class MinerModifier extends GolemModifier {
 			Block block = state.getBlock();
 			if (budget[0] < cost) return mined; // 工作点不足，本列停工
 			budget[0] -= cost;
-			mineBlock(golem, sl, level, pos, state, tool, 1.0F);
+			mineBlock(golem, sl, level, pos, state, tool, 1.0F, pos);
 			mined++;
-			// 三级：连锁同种矿石，每块只消耗一点耐久
-			if (modifierLevel >= 3) {
-				mined += chainMine(golem, sl, level, pos, block, tool, budget, cost);
-			}
+			// 连锁同种矿石：不额外消耗工作点（只有触发块扣费），每块只消耗少量耐久
+			mined += chainMine(golem, sl, level, pos, block, tool);
 		}
 		return mined;
 	}
@@ -169,15 +169,16 @@ public class MinerModifier extends GolemModifier {
 		return false;
 	}
 
+	/** @param dropAt 产物与经验的落点：普通挖掘为方块自身位置，连锁挖掘统一为连锁起点 */
 	private boolean mineBlock(AbstractGolemEntity<?, ?> golem, ServerLevel sl, Level level,
-			BlockPos pos, BlockState state, ItemStack tool, float durabilityCost) {
+			BlockPos pos, BlockState state, ItemStack tool, float durabilityCost, BlockPos dropAt) {
 		BlockEntity be = level.getBlockEntity(pos);
 		List<ItemStack> drops = Block.getDrops(state, sl, pos, be, golem, tool);
 		L2Compat.tryAutoSmelt(sl, tool, drops); // 自动冶炼（莱特兰扩充附魔）
 		for (ItemStack drop : drops) {
-			Block.popResource(level, pos, drop);
+			Block.popResource(level, dropAt, drop);
 		}
-		state.spawnAfterBreak(sl, pos, tool, true);
+		state.spawnAfterBreak(sl, dropAt, tool, true);
 		level.levelEvent(2001, pos, Block.getId(state));
 		level.removeBlock(pos, false);
 		if (durabilityCost >= 1.0F) {
@@ -187,19 +188,19 @@ public class MinerModifier extends GolemModifier {
 	}
 
 	private int chainMine(AbstractGolemEntity<?, ?> golem, ServerLevel sl, Level level,
-			BlockPos start, Block block, ItemStack tool, int[] budget, int cost) {
+			BlockPos start, Block block, ItemStack tool) {
 		Set<BlockPos> visited = new HashSet<>();
 		Queue<BlockPos> queue = new ArrayDeque<>();
 		queue.add(start);
 		visited.add(start);
 		int mined = 0;
 		float durability = 0.0F;
-		while (!queue.isEmpty() && mined < CHAIN_MAX && budget[0] >= cost) {
+		// 连锁块不消耗工作点，只受 CHAIN_MAX 与矿脉规模限制
+		while (!queue.isEmpty() && mined < CHAIN_MAX) {
 			BlockPos pos = queue.poll();
 			BlockState state = level.getBlockState(pos);
 			if (state.isAir() || !state.is(block)) continue; // 起点已被挖掉，跳过
-			budget[0] -= cost;
-			mineBlock(golem, sl, level, pos, state, tool, 0.0F); // 耐久单独累计
+			mineBlock(golem, sl, level, pos, state, tool, 0.0F, start); // 耐久单独累计；产物落到连锁起点
 			durability += CHAIN_DURABILITY;
 			mined++;
 			for (Direction dir : Direction.values()) {
