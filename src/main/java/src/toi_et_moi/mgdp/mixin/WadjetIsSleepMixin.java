@@ -81,21 +81,21 @@ import org.spongepowered.asm.mixin.Pseudo;
  *
  * @author mgdp
  */
-@Pseudo
-@Mixin(value = Wadjet_Entity.class, remap = false)
-public abstract class WadjetIsSleepMixin {
-
-    /**
-     * @author mgdp
-     * @reason See class javadoc. Replace the slim-jar override
-     *         (either {@code !isSleep() && super.m_142066_()}
-     *         on 3.16 or {@code isAwaken() && super.m_142066_()}
-     *         on 3.31) with a passthrough to vanilla
-     *         canBeSeenAsEnemy so the boss is always a valid
-     *         target for modular golems.
-     */
-    @Overwrite(remap = false)
-    public boolean m_142066_() {
-        return true;
-    }
-}
+//@Pseudo
+//@Mixin(value = Wadjet_Entity.class, remap = false)
+//public abstract class WadjetIsSleepMixin {
+//
+//    /**
+//     * @author mgdp
+//     * @reason See class javadoc. Replace the slim-jar override
+//     *         (either {@code !isSleep() && super.m_142066_()}
+//     *         on 3.16 or {@code isAwaken() && super.m_142066_()}
+//     *         on 3.31) with a passthrough to vanilla
+//     *         canBeSeenAsEnemy so the boss is always a valid
+//     *         target for modular golems.
+//     */
+//    @Overwrite(remap = false)
+//    public boolean m_142066_() {
+//        return true;
+//    }
+//}

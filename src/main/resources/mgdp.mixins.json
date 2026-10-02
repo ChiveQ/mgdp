@@ -44,8 +44,7 @@
     "L2BowQuickStrikeMixin",
     "IndomitableArrowMixin",
     "EnderTeleportModifierMixin",
-    "RangedGoalFlightMixin",
-    "WadjetIsSleepMixin"
+    "RangedGoalFlightMixin"
   ],
   "client": [
     "EntityRendererAccessor",
