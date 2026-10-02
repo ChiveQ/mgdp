@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.util;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
@@ -91,7 +92,7 @@ public class MGDPEasterEggs {
         if (!(event.getSource().getEntity() instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity golem)) return;
         ItemStack weapon = golem.getMainHandItem();
         if (weapon.isEmpty()) return;
-        if (!weapon.is(Mgdp.SIMPLE_GOLEM_SPEAR.get())) return;
+        if (!weapon.is(MGDPItems.SIMPLE_GOLEM_SPEAR.get())) return;
 
         String name = event.getEntity().getName().getString().trim();
         if ("balloon".equalsIgnoreCase(name) || "气球".equals(name)) {

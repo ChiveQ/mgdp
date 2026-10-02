@@ -1,6 +1,8 @@
 package dev.toi_et_moi.mgdp.init;
 
+import dev.toi_et_moi.mgdp.init.advancement.MGDPTriggers;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPItems;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPMiscEntities;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.serial.config.PacketHandlerWithConfig;
@@ -21,8 +23,8 @@ public class MGDP {
      * */
     public static final L2Registrate REGISTRATE = new L2Registrate(MODID);
 
-    public static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(
-            ResourceLocation.fromNamespaceAndPath(MODID,"main"),5,null);
+//    public static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(
+//            ResourceLocation.fromNamespaceAndPath(MODID,"main"),5,null);
 
     public MGDP(){
         registerRegistrates();
@@ -31,6 +33,12 @@ public class MGDP {
     private static void registerRegistrates(){
         MGDPItems.register();
         MGDPModifiers.register();
+        MGDPMiscEntities.register();
+        MGDPTriggers.register();
+    }
+
+    public static ResourceLocation loc(String id) {
+        return ResourceLocation.fromNamespaceAndPath(MODID, id);
     }
 
 }

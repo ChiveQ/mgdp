@@ -37,7 +37,7 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> DRAGON_BREATH;
 	public static final RegistryObject<SimpleUpgradeItem> WITHER_EXTINCTION;
 	public static final RegistryObject<SimpleUpgradeItem> CHARGED_SHIELD;
-	public static final RegistryObject<SimpleUpgradeItem> VERSATILITY;
+	public static final RegistryObject<SimpleUpgradeItem> VERSATILITY; // 未移
 	public static final RegistryObject<SimpleUpgradeItem> CONDUIT;
 	public static final RegistryObject<SimpleUpgradeItem> OVERWORLD;
 	public static final RegistryObject<SimpleUpgradeItem> NETHER;
@@ -52,34 +52,34 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> INDOMITABLE;
 	public static final RegistryObject<SimpleUpgradeItem> FROST_BURST;
 	public static final RegistryObject<SimpleUpgradeItem> TRUE_INVISIBILITY;
-	public static final RegistryObject<SimpleUpgradeItem> ARMOR_PIERCE;
+	public static final RegistryObject<SimpleUpgradeItem> ARMOR_PIERCE; // 已移
 	public static final RegistryObject<SimpleUpgradeItem> MAGIC_RESISTANCE;
 	public static final RegistryObject<SimpleUpgradeItem> DAMAGE_CAP;
 	public static final RegistryObject<SimpleUpgradeItem> TOTEMIC;
-	public static final RegistryObject<SimpleUpgradeItem> ENCHANT;
+	public static final RegistryObject<SimpleUpgradeItem> ENCHANT; // 未移
 	public static final RegistryObject<SimpleUpgradeItem> HERO;
 	public static final RegistryObject<SimpleUpgradeItem> FLARE;
-	public static final RegistryObject<SimpleUpgradeItem> UNDYING;
+	public static final RegistryObject<SimpleUpgradeItem> UNDYING; // 未移
 	public static final RegistryObject<SimpleUpgradeItem> GRENADE;
-	public static final RegistryObject<SimpleUpgradeItem> KILLER_AURA;
+	public static final RegistryObject<SimpleUpgradeItem> KILLER_AURA; // 未移植
 	public static final RegistryObject<SimpleUpgradeItem> UNBREAKABLE;
 	public static final RegistryObject<SimpleUpgradeItem> INFINITE_AMMO;
 	public static final RegistryObject<SimpleUpgradeItem> PROSPERITY;
-	public static final RegistryObject<SimpleUpgradeItem> LIQUID_CLEAR;
-	public static final RegistryObject<SimpleUpgradeItem> MAGIC_IMMUNE;
-	public static final RegistryObject<SimpleUpgradeItem> IRONWOOD;
-	public static final RegistryObject<SimpleUpgradeItem> STEELEAF;
-	public static final RegistryObject<SimpleUpgradeItem> FIERY;
-	public static final RegistryObject<SimpleUpgradeItem> KNIGHTMETAL;
-	public static final RegistryObject<SimpleUpgradeItem> CARMINITE;
-	public static final RegistryObject<SimpleUpgradeItem> COATING;
-	public static final RegistryObject<SimpleUpgradeItem> LORD;
-	public static final RegistryObject<SimpleUpgradeItem> SNOW_TRAIL;
-	public static final RegistryObject<SimpleUpgradeItem> SWAP;
-	public static final RegistryObject<SimpleUpgradeItem> LUNA;
-	public static final RegistryObject<SimpleUpgradeItem> BACKFLIP;
-	public static final RegistryObject<SimpleUpgradeItem> WINDMILL;
-	public static final RegistryObject<SimpleUpgradeItem> WITCH;
+	public static final RegistryObject<SimpleUpgradeItem> LIQUID_CLEAR;// 未移植
+	public static final RegistryObject<SimpleUpgradeItem> MAGIC_IMMUNE;// 未移植
+	public static final RegistryObject<SimpleUpgradeItem> IRONWOOD;// 未移植
+	public static final RegistryObject<SimpleUpgradeItem> STEELEAF;// 未移植
+	public static final RegistryObject<SimpleUpgradeItem> FIERY;// 未移植
+	public static final RegistryObject<SimpleUpgradeItem> KNIGHTMETAL;// 未移植
+	public static final RegistryObject<SimpleUpgradeItem> CARMINITE;// 未移植
+	public static final RegistryObject<SimpleUpgradeItem> COATING;// 未移植
+	public static final RegistryObject<SimpleUpgradeItem> LORD;// 已移植
+	public static final RegistryObject<SimpleUpgradeItem> SNOW_TRAIL;// 未移植
+	public static final RegistryObject<SimpleUpgradeItem> SWAP;// 已移植
+	public static final RegistryObject<SimpleUpgradeItem> LUNA;// 已移植
+	public static final RegistryObject<SimpleUpgradeItem> BACKFLIP;// 已移植
+	public static final RegistryObject<SimpleUpgradeItem> WINDMILL;// 已移植
+	public static final RegistryObject<SimpleUpgradeItem> WITCH;// 已移植
 	public static final RegistryObject<SimpleUpgradeItem> CRONE;
 	public static final RegistryObject<SimpleUpgradeItem> BOTTLING;
 	public static final RegistryObject<SimpleUpgradeItem> PENGUIN;
@@ -89,10 +89,10 @@ public class MGDPItems {
 	public static final RegistryObject<SimpleUpgradeItem> ECHO_TRIO;
 	public static final RegistryObject<SimpleUpgradeItem> MIND_CONTROL;
 	public static final RegistryObject<SimpleUpgradeItem> NECROMANCER;
-	public static final RegistryObject<SimpleUpgradeItem> PHANTOM;
+//	public static final RegistryObject<SimpleUpgradeItem> PHANTOM; // youkai
 	public static final RegistryObject<SimpleUpgradeItem> LAST_LINE;
-	public static final RegistryObject<SimpleUpgradeItem> REALITY_SUPPRESSION;
-	public static final RegistryObject<SimpleUpgradeItem> MANA_OVERLOAD;
+//	public static final RegistryObject<SimpleUpgradeItem> REALITY_SUPPRESSION; // pandora
+//	public static final RegistryObject<SimpleUpgradeItem> MANA_OVERLOAD; // golemmagicka
 	public static final RegistryObject<SimpleUpgradeItem> THE_PYRE_LORD;
 	public static final RegistryObject<SimpleUpgradeItem> THE_WITCH_KING;
 	public static final RegistryObject<SimpleUpgradeItem> CREATIVE_SLOT_100;
@@ -599,10 +599,10 @@ public class MGDPItems {
 		MIND_CONTROL = Mgdp.ITEMS.register("mind_control",
 			() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.MIND_CONTROL.get(), 1, false));
 
-		PHANTOM = net.minecraftforge.fml.ModList.get().isLoaded("youkaishomecoming")
-			? Mgdp.ITEMS.register("phantom",
-				() -> new SimpleUpgradeItem(new Item.Properties(), MGDPModifiers.PHANTOM::get, 1, false))
-			: null;
+//		PHANTOM = net.minecraftforge.fml.ModList.get().isLoaded("youkaishomecoming")
+//			? Mgdp.ITEMS.register("phantom",
+//				() -> new SimpleUpgradeItem(new Item.Properties(), MGDPModifiers.PHANTOM::get, 1, false))
+//			: null;
 
 		NECROMANCER = net.minecraftforge.fml.ModList.get().isLoaded("goety")
 			? Mgdp.ITEMS.register("necromancer",
@@ -614,15 +614,15 @@ public class MGDPItems {
 				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.LAST_LINE.get(), 1, false))
 			: null;
 
-		REALITY_SUPPRESSION = net.minecraftforge.fml.ModList.get().isLoaded("curseofpandora")
-			? Mgdp.ITEMS.register("reality_suppression",
-				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.REALITY_SUPPRESSION.get(), 1, false))
-			: null;
+//		REALITY_SUPPRESSION = net.minecraftforge.fml.ModList.get().isLoaded("curseofpandora")
+//			? Mgdp.ITEMS.register("reality_suppression",
+//				() -> new SimpleUpgradeItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC), () -> MGDPModifiers.REALITY_SUPPRESSION.get(), 1, false))
+//			: null;
 
-		MANA_OVERLOAD = net.minecraftforge.fml.ModList.get().isLoaded("golemmagicka")
-			? Mgdp.ITEMS.register("mana_overload",
-				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.MANA_OVERLOAD.get(), 1, false))
-			: null;
+//		MANA_OVERLOAD = net.minecraftforge.fml.ModList.get().isLoaded("golemmagicka")
+//			? Mgdp.ITEMS.register("mana_overload",
+//				() -> new SimpleUpgradeItem(new Item.Properties(), () -> MGDPModifiers.MANA_OVERLOAD.get(), 1, false))
+//			: null;
 
 
 		THE_PYRE_LORD = net.minecraftforge.fml.ModList.get().isLoaded("goety_revelation")

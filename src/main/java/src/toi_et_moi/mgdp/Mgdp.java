@@ -1,22 +1,17 @@
 package src.toi_et_moi.mgdp;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.Minecraft;
+import dev.toi_et_moi.mgdp.init.MGDP;
 import net.minecraft.core.registries.Registries;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.Item;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import src.toi_et_moi.mgdp.item.IronCurtainItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -24,8 +19,6 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.network.simple.SimpleChannel;
@@ -33,33 +26,27 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 import src.toi_et_moi.mgdp.init.MGDPItems;
-import src.toi_et_moi.mgdp.advancement.InitTrigger;
+//import dev.toi_et_moi.mgdp.init.advancement.InitTrigger;
 import src.toi_et_moi.mgdp.init.MGDPKeyMappings;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
-import src.toi_et_moi.mgdp.init.MGDPStats;
 import src.toi_et_moi.mgdp.modifier.defense.ChargedShieldModifier;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
 import net.minecraft.world.damagesource.DamageTypes;
 import dev.xkmc.modulargolems.content.item.equipments.MetalGolemWeaponItem;
-import src.toi_et_moi.mgdp.init.BlackMourningItem;
-import src.toi_et_moi.mgdp.entity.MourningBeamEntity;
-import src.toi_et_moi.mgdp.entity.GuardianLaserTargetEntity;
 
-@Mod(Mgdp.MODID)
+//@Mod(Mgdp.MODID)
 public class Mgdp {
 
-	public static final String MODID = "mgdp";
+	public static final String MODID = MGDP.MODID;
 	public static final Logger LOGGER = LogUtils.getLogger();
 
-	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
-	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MODID);
+//	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
+//	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MODID);
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
 	public static SimpleChannel PACKET_HANDLER;
-
-
 
 	public static final RegistryObject<MetalGolemWeaponItem> SIMPLE_GOLEM_SPEAR = ITEMS.register("simple_golem_spear",
 			() -> new MetalGolemWeaponItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC), 10, 0, 10.0F, 2.0F));
@@ -70,19 +57,19 @@ public class Mgdp {
 	public static final RegistryObject<MetalGolemWeaponItem> SIMPLE_NETHERITE_GOLEM_SPEAR = ITEMS.register("simple_netherite_golem_spear",
 			() -> new MetalGolemWeaponItem(new Item.Properties().stacksTo(1), 10, 0.5, 4.0F, 2.0F));
 
-		public static final RegistryObject<IronCurtainItem> IRON_CURTAIN = ITEMS.register("iron_curtain",
-				() -> new IronCurtainItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+//		public static final RegistryObject<IronCurtainItem> IRON_CURTAIN = ITEMS.register("iron_curtain",
+//				() -> new IronCurtainItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+//
+//		public static final RegistryObject<BlackMourningItem> BLACK_MOURNING = ITEMS.register("black_mourning",
+//				() -> new BlackMourningItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
-		public static final RegistryObject<BlackMourningItem> BLACK_MOURNING = ITEMS.register("black_mourning",
-				() -> new BlackMourningItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+//		public static final RegistryObject<EntityType<MourningBeamEntity>> MOURNING_BEAM = ENTITIES.register("mourning_beam",
+//				() -> EntityType.Builder.<MourningBeamEntity>of(MourningBeamEntity::new, MobCategory.MISC)
+//						.fireImmune().noSave().noSummon().sized(0, 0).build("mourning_beam"));
 
-		public static final RegistryObject<EntityType<MourningBeamEntity>> MOURNING_BEAM = ENTITIES.register("mourning_beam",
-				() -> EntityType.Builder.<MourningBeamEntity>of(MourningBeamEntity::new, MobCategory.MISC)
-						.fireImmune().noSave().noSummon().sized(0, 0).build("mourning_beam"));
-
-	public static final RegistryObject<EntityType<GuardianLaserTargetEntity>> GUARDIAN_LASER_TARGET = ENTITIES.register("guardian_laser_target",
-			() -> EntityType.Builder.<GuardianLaserTargetEntity>of(GuardianLaserTargetEntity::new, MobCategory.MISC)
-					.fireImmune().noSave().noSummon().sized(0, 0).build("guardian_laser_target"));
+//	public static final RegistryObject<EntityType<GuardianLaserTargetEntity>> GUARDIAN_LASER_TARGET = ENTITIES.register("guardian_laser_target",
+//			() -> EntityType.Builder.<GuardianLaserTargetEntity>of(GuardianLaserTargetEntity::new, MobCategory.MISC)
+//					.fireImmune().noSave().noSummon().sized(0, 0).build("guardian_laser_target"));
 
 	public static final RegistryObject<CreativeModeTab> MGDP_TAB = CREATIVE_MODE_TABS.register("mgdp_tab",
 			() -> CreativeModeTab.builder()
@@ -107,11 +94,11 @@ public class Mgdp {
 						output.accept(MGDPItems.DRAGON_BREATH.get());
 						output.accept(MGDPItems.WITHER_EXTINCTION.get());
 						output.accept(MGDPItems.CHARGED_SHIELD.get());
-						output.accept(SIMPLE_GOLEM_SPEAR.get());
-						output.accept(SIMPLE_IRON_GOLEM_SPEAR.get());
-						output.accept(SIMPLE_NETHERITE_GOLEM_SPEAR.get());
-						output.accept(SIMPLE_DIAMOND_GOLEM_SPEAR.get());
-						output.accept(IRON_CURTAIN.get());
+						output.accept(dev.toi_et_moi.mgdp.init.registrate.MGDPItems.SIMPLE_GOLEM_SPEAR.get());
+						output.accept(dev.toi_et_moi.mgdp.init.registrate.MGDPItems.SIMPLE_IRON_GOLEM_SPEAR.get());
+						output.accept(dev.toi_et_moi.mgdp.init.registrate.MGDPItems.SIMPLE_NETHERITE_GOLEM_SPEAR.get());
+						output.accept(dev.toi_et_moi.mgdp.init.registrate.MGDPItems.SIMPLE_DIAMOND_GOLEM_SPEAR.get());
+						output.accept(dev.toi_et_moi.mgdp.init.registrate.MGDPItems.IRON_CURTAIN.get());
 						output.accept(MGDPItems.HYPOTHERMIA.get());
 						output.accept(MGDPItems.CONDUIT.get());
 						output.accept(MGDPItems.OVERWORLD.get());
@@ -120,7 +107,7 @@ public class Mgdp {
 						output.accept(MGDPItems.CORONA.get());
 						output.accept(MGDPItems.MOON_SHADOW.get());
 						output.accept(MGDPItems.TIME_AXIS.get());
-						output.accept(Mgdp.BLACK_MOURNING.get());
+						output.accept(dev.toi_et_moi.mgdp.init.registrate.MGDPItems.BLACK_MOURNING.get());
 						output.accept(MGDPItems.UPSIDE_DOWN.get());
 						output.accept(MGDPItems.REVERSE.get());
 						output.accept(MGDPItems.GHOST.get());
@@ -265,8 +252,8 @@ public class Mgdp {
 
 		modEventBus.addListener(this::commonSetup);
 
-		BLOCKS.register(modEventBus);
-		ENTITIES.register(modEventBus);
+//		BLOCKS.register(modEventBus);
+//		ENTITIES.register(modEventBus);
 		ITEMS.register(modEventBus);
 		CREATIVE_MODE_TABS.register(modEventBus);
 			src.toi_et_moi.mgdp.init.MgdpMenus.MENUS.register(modEventBus);
@@ -275,7 +262,7 @@ public class Mgdp {
 
 		MGDPModifiers.register();
 		MGDPItems.register();
-		InitTrigger.init();
+//		InitTrigger.init();
 		src.toi_et_moi.mgdp.network.MGDPNetwork.register();
 			PACKET_HANDLER = src.toi_et_moi.mgdp.network.MGDPNetwork.CHANNEL;
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
@@ -350,37 +337,6 @@ public class Mgdp {
         }
     }
 
-	@SubscribeEvent
-	public void onServerStarting(ServerStartingEvent event) {
-		LOGGER.info("MGDP server starting");
-	}
-
-	@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-	public static class ClientModEvents {
-
-		@SubscribeEvent
-		public static void onClientSetup(FMLClientSetupEvent event) {
-			event.enqueueWork(() -> {
-			src.toi_et_moi.mgdp.jukebox.JukeboxClientRegister.register();
-			net.minecraft.client.gui.screens.MenuScreens.register(
-				src.toi_et_moi.mgdp.init.MgdpMenus.JUKEBOX.get(),
-				src.toi_et_moi.mgdp.jukebox.JukeboxScreen::new);
-			net.minecraft.client.renderer.entity.EntityRenderers.register(
-					Mgdp.MOURNING_BEAM.get(),
-					src.toi_et_moi.mgdp.entity.MourningBeamRenderer::new);
-			net.minecraft.client.renderer.entity.EntityRenderers.register(
-					Mgdp.GUARDIAN_LASER_TARGET.get(),
-					src.toi_et_moi.mgdp.entity.GuardianLaserTargetRenderer::new);
-		});
-		}
-
-		@SubscribeEvent
-		public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
-			event.register(MGDPKeyMappings.FLIGHT_DESCEND);
-				event.register(MGDPKeyMappings.FLIGHT_SPRINT);
-				event.register(MGDPKeyMappings.SWAP);
-		}
-	}
 
 	@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 	public static class ClientTickHandler {

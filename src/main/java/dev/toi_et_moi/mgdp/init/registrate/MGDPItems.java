@@ -3,8 +3,10 @@ package dev.toi_et_moi.mgdp.init.registrate;
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.toi_et_moi.mgdp.compat.CompatManager;
 import dev.toi_et_moi.mgdp.init.MGDP;
 import dev.xkmc.l2library.base.L2Registrate;
+import dev.xkmc.modulargolems.content.item.equipments.MetalGolemWeaponItem;
 import dev.xkmc.modulargolems.content.item.upgrade.SimpleUpgradeItem;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import dev.xkmc.modulargolems.init.data.MGTagGen;
@@ -12,8 +14,12 @@ import dev.xkmc.modulargolems.init.registrate.GolemItems;
 import dev.xkmc.modulargolems.init.registrate.GolemModifiers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.client.model.generators.ModelFile;
+import src.toi_et_moi.mgdp.init.BlackMourningItem;
+import src.toi_et_moi.mgdp.item.IronCurtainItem;
 
 import java.util.function.Supplier;
 
@@ -55,6 +61,12 @@ public class MGDPItems {
             SONIC_BOOM, SELF_REPAIR, SUNLIGHT, OVERWORLD, NETHER, CONDUIT, HYPOTHERMIA,
             VERSATILITY, DISARM, END_OF_BEGINNING, CORONA, MOON_SHADOW, TIME_AXIS,
             UPSIDE_DOWN, REVERSE, GHOST, SPYGLASS, SHRINK, ENCHANT, SHIELD_BLOCK;
+
+    // 独立物品（不依赖其它模组）
+    public static final ItemEntry<IronCurtainItem> IRON_CURTAIN;
+    public static final ItemEntry<BlackMourningItem> BLACK_MOURNING;
+    public static final ItemEntry<MetalGolemWeaponItem>
+            SIMPLE_GOLEM_SPEAR, SIMPLE_IRON_GOLEM_SPEAR, SIMPLE_DIAMOND_GOLEM_SPEAR, SIMPLE_NETHERITE_GOLEM_SPEAR;
 
     static {
         MGDP_TAB = MGDP.REGISTRATE.buildL2CreativeTab("mgdp_tab", "MG: Decisive Plan - Main",
@@ -180,6 +192,22 @@ public class MGDPItems {
         SHRINK = regUpgrade("shrink", () -> src.toi_et_moi.mgdp.init.MGDPModifiers.SHRINK).register();
         ENCHANT = regUpgrade("enchant", () -> src.toi_et_moi.mgdp.init.MGDPModifiers.ENCHANT).register();
         SHIELD_BLOCK = regUpgrade("shield_block", () -> src.toi_et_moi.mgdp.init.MGDPModifiers.SHIELD_BLOCK).register();
+
+        IRON_CURTAIN = MGDP.REGISTRATE.item("iron_curtain", p -> new IronCurtainItem(p.stacksTo(1).rarity(Rarity.EPIC)))
+                .model((ctx, pvd) -> pvd.handheld(ctx, MGDP.loc("item/iron_curtain")))
+                .defaultLang()
+                .tab(MGDP_TAB.getKey())
+                .register();
+        BLACK_MOURNING = MGDP.REGISTRATE.item("black_mourning", p -> new BlackMourningItem(p.stacksTo(1).rarity(Rarity.EPIC)))
+                .model((ctx, pvd) -> pvd.generated(ctx, MGDP.loc("item/equipments/black_mourning")))
+                .defaultLang()
+                .tab(MGDP_TAB.getKey())
+                .register();
+
+        SIMPLE_GOLEM_SPEAR = regSpear("simple_golem_spear", 10, 0, 10.0F, 2.0F, Rarity.EPIC, false).register();
+        SIMPLE_IRON_GOLEM_SPEAR = regSpear("simple_iron_golem_spear", 6, 0.3, 4.0F, 2.0F, Rarity.COMMON, false).register();
+        SIMPLE_DIAMOND_GOLEM_SPEAR = regSpear("simple_diamond_golem_spear", 8, 0.4, 4.0F, 2.0F, Rarity.COMMON, false).register();
+        SIMPLE_NETHERITE_GOLEM_SPEAR = regSpear("simple_netherite_golem_spear", 10, 0.5, 4.0F, 2.0F, Rarity.COMMON, true).register();
     }
 
     /** 空方法，仅用于唤起本类加载（对齐 {@link GolemItems#register()} 的结构）。 */
@@ -205,21 +233,50 @@ public class MGDPItems {
      */
     private static ItemBuilder<SimpleUpgradeItem, L2Registrate> regUpgradeImpl(String id, Supplier<RegistryEntry<? extends GolemModifier>> mod, int level, boolean foil) {
         return MGDP.REGISTRATE.item(id, p -> new SimpleUpgradeItem(p, mod.get()::get, level, foil))
-                .model((ctx, pvd) -> pvd.generated(ctx, new ResourceLocation(MGDP.MODID, "item/upgrades/" + id))
-                        .override().predicate(new ResourceLocation("modulargolems", "blue_arrow"), 0.5f)
+                .model((ctx, pvd) -> pvd.generated(ctx, MGDP.loc("item/upgrades/" + id))
+                        .override().predicate(ResourceLocation.fromNamespaceAndPath("modulargolems", "blue_arrow"), 0.5f)
                         .model(pvd.getBuilder(pvd.name(ctx) + "_purple")
                                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
-                                .texture("layer0", new ResourceLocation(MGDP.MODID, "item/upgrades/" + id))
-                                .texture("layer1", new ResourceLocation("modulargolems", "item/purple_arrow")))
+                                .texture("layer0", MGDP.loc("item/upgrades/" + id))
+                                .texture("layer1", ResourceLocation.fromNamespaceAndPath("modulargolems", "item/purple_arrow")))
                         .end()
-                        .override().predicate(new ResourceLocation("modulargolems", "blue_arrow"), 1)
+                        .override().predicate(ResourceLocation.fromNamespaceAndPath("modulargolems", "blue_arrow"), 1)
                         .model(pvd.getBuilder(pvd.name(ctx) + "_blue")
                                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
-                                .texture("layer0", new ResourceLocation(MGDP.MODID, "item/upgrades/" + id))
-                                .texture("layer1", new ResourceLocation("modulargolems", "item/blue_arrow")))
+                                .texture("layer0", MGDP.loc("item/upgrades/" + id))
+                                .texture("layer1", ResourceLocation.fromNamespaceAndPath("modulargolems", "item/blue_arrow")))
                         .end())
                 .removeTab(GolemItems.ITEMS.getKey())
                 .tab(GolemItems.UPGRADES.getKey())
+                .tab(MGDP_TAB.getKey());
+    }
+
+    /**
+     * 注册简易傀儡长矛（{@link MetalGolemWeaponItem}）。
+     * 对齐本体 {@code GolemWeaponType.SPEAR} 的注册方式：以 {@code long_weapon} 为底座模型，
+     * GUI 视角使用扁平图标贴图，并复用原手写模型的第三/第一人称缩放（scale ×2）。
+     */
+    private static ItemBuilder<MetalGolemWeaponItem, L2Registrate> regSpear(String id, int attackDamage,
+                                                                            double percentAttack, float range, float sweep,
+                                                                            Rarity rarity, boolean fireResistant) {
+        return MGDP.REGISTRATE.item(id, p -> {
+                    Item.Properties props = p.stacksTo(1).rarity(rarity);
+                    if (fireResistant) props = props.fireResistant();
+                    return new MetalGolemWeaponItem(props, attackDamage, percentAttack, range, sweep);
+                })
+                .model((ctx, pvd) -> {
+                    var base = pvd.getBuilder(ctx.getName())
+                            .parent(new ModelFile.UncheckedModelFile("modulargolems:item/long_weapon"))
+                            .texture("layer0", MGDP.loc("item/equipments/" + ctx.getName()));
+                    // 复刻 src 手写模型的第三/第一人称显示缩放（相对 long_weapon 底座放大 ×2）
+                    base.transforms()
+                            .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).scale(2.0F).end()
+                            .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).scale(2.0F).end()
+                            .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND).scale(2.0F).end()
+                            .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).scale(2.0F).end();
+                    //return base;
+                })
+                .defaultLang()
                 .tab(MGDP_TAB.getKey());
     }
 

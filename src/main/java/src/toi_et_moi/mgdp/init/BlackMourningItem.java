@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.init;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPMiscEntities;
 import dev.xkmc.modulargolems.content.client.armor.GolemModelPaths;
 import dev.xkmc.modulargolems.content.entity.metalgolem.MetalGolemEntity;
 import dev.xkmc.modulargolems.content.item.ranged.CannonPoseUtil;
@@ -35,7 +36,7 @@ public class BlackMourningItem extends ShouldWeaponItem implements IShoulderCann
 				!e.level().isClientSide() && e.getTarget() != null && e.getTarget().isAlive()) {
 			if (CannonPoseUtil.BEACON.isOutOfRange(e, hand)) return;
 
-			var laser = new MourningBeamEntity(Mgdp.MOURNING_BEAM.get(), e.level(), e, 10, hand == InteractionHand.MAIN_HAND);
+			var laser = new MourningBeamEntity(MGDPMiscEntities.MOURNING_BEAM.get(), e.level(), e, 10, hand == InteractionHand.MAIN_HAND);
 			e.level().addFreshEntity(laser);
 			if (!e.isSilent())
 				e.level().playSound(null, e.blockPosition(), SoundEvents.BEACON_DEACTIVATE, SoundSource.NEUTRAL, 2, 0.5f);

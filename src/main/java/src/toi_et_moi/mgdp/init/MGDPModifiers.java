@@ -97,13 +97,12 @@ import src.toi_et_moi.mgdp.modifier.common.SpyglassModifier;
 import src.toi_et_moi.mgdp.modifier.goety.CroneModifier;
 import src.toi_et_moi.mgdp.modifier.goety.BottlingModifier;
 import src.toi_et_moi.mgdp.modifier.goety.VoidEchoModifier;
-import src.toi_et_moi.mgdp.modifier.buff.PhantomModifier;
+//import dev.toi_et_moi.mgdp.compat.youkai.PhantomModifier;
 import src.toi_et_moi.mgdp.modifier.goety.NecromancerModifier;
-import src.toi_et_moi.mgdp.modifier.buff.RealitySuppressionModifier;
 import src.toi_et_moi.mgdp.modifier.defense.LastLineModifier;
 import src.toi_et_moi.mgdp.modifier.goety_revelation.PyreLordModifier;
 import src.toi_et_moi.mgdp.modifier.goety_revelation.WitchKingModifier;
-import src.toi_et_moi.mgdp.modifier.buff.ManaOverloadModifier;
+//import dev.toi_et_moi.mgdp.compat.golemmagicka.ManaOverloadModifier;
 import src.toi_et_moi.mgdp.modifier.buff.FrostBurstModifier;
 import src.toi_et_moi.mgdp.modifier.combat.GuardianLaserModifier;
 import src.toi_et_moi.mgdp.modifier.combat.IndomitableModifier;
@@ -113,6 +112,7 @@ import dev.xkmc.modulargolems.content.modifier.common.AddSlotModifier;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
 
+@Deprecated
 public class MGDPModifiers {
 
 	public static final RegistryEntry<HarvestCropModifier> HARVEST_CROP;
@@ -125,7 +125,7 @@ public class MGDPModifiers {
 	public static final RegistryEntry<EnchantedNetheriteGoldModifier> ENCHANTED_NETHERITE_GOLD;
 	public static final RegistryEntry<BellOfAviciModifier> BELL_OF_AVICI;
 	public static final RegistryEntry<DiamondAttackModifier> DIAMOND_ATTACK;
-public static final RegistryEntry<CruelModifier> THE_CRUEL;
+	public static final RegistryEntry<CruelModifier> THE_CRUEL;
 	public static final RegistryEntry<EnchantedDiamondAttackModifier> ENCHANTED_DIAMOND_ATTACK;
 	public static final RegistryEntry<CrimsonAttackModifier> CRIMSON_ATTACK;
 	public static final RegistryEntry<EnchantedCrimsonAttackModifier> ENCHANTED_CRIMSON_ATTACK;
@@ -194,7 +194,7 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 	public static final RegistryEntry<CroneModifier> CRONE;
 	public static final RegistryEntry<BottlingModifier> BOTTLING;
 	public static final RegistryEntry<VoidEchoModifier> VOID_ECHO;
-	public static final RegistryEntry<PhantomModifier> PHANTOM;
+//	public static final RegistryEntry<PhantomModifier> PHANTOM; // youkai
 	public static final RegistryEntry<NecromancerModifier> NECROMANCER;
 	public static final RegistryEntry<PenguinModifier> PENGUIN;
 	public static final RegistryEntry<EndOfBeginningModifier> END_OF_BEGINNING;
@@ -207,8 +207,8 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 	public static final RegistryEntry<MoonShadowModifier> MOON_SHADOW;
 	public static final RegistryEntry<TimeAxisModifier> TIME_AXIS;
 	public static final RegistryEntry<LastLineModifier> LAST_LINE;
-	public static final RegistryEntry<RealitySuppressionModifier> REALITY_SUPPRESSION;
-	public static final RegistryEntry<ManaOverloadModifier> MANA_OVERLOAD;
+//	public static final RegistryEntry<RealitySuppressionModifier> REALITY_SUPPRESSION; // pandora
+//	public static final RegistryEntry<ManaOverloadModifier> MANA_OVERLOAD; // golemmagicka
 	public static final RegistryEntry<PyreLordModifier> THE_PYRE_LORD;
 	public static final RegistryEntry<WitchKingModifier> THE_WITCH_KING;
 	public static final RegistryEntry<GreatShadowModifier> THE_GREAT_SHADOW;
@@ -575,9 +575,9 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 				"Necromancer",
 				"Golem periodically summons zombie/skeleton minions to fight alongside it.");
 
-			PHANTOM = reg("phantom", PhantomModifier::new,
-				"Phantom",
-				"Golem gains Phantom effect every second. Level = effect level.");
+//			PHANTOM = reg("phantom", PhantomModifier::new,
+//				"Phantom",
+//				"Golem gains Phantom effect every second. Level = effect level.");
 
 			VOID_ECHO = reg("void_echo", VoidEchoModifier::new,
 				"Void Echo",
@@ -624,13 +624,13 @@ public static final RegistryEntry<CruelModifier> THE_CRUEL;
 				"Last Line of Defence",
 				"In the Final Plateau, reduces damage from non-golem, non-Twilight-Forest entities by 99%%.");
 
-			REALITY_SUPPRESSION = reg("reality_suppression", RealitySuppressionModifier::new,
-				"Reality Suppression",
-				"Each level provides 1 point of Reality Index. Max level 7.");
+//			REALITY_SUPPRESSION = reg("reality_suppression", RealitySuppressionModifier::new,
+//				"Reality Suppression",
+//				"Each level provides 1 point of Reality Index. Max level 7.");
 
-			MANA_OVERLOAD = reg("mana_overload", ManaOverloadModifier::new,
-				"Mana Overload",
-				"Massively boosts mana regen rate. Level 1 = 50x, Level 2 = 100x.");
+//			MANA_OVERLOAD = reg("mana_overload", ManaOverloadModifier::new,
+//				"Mana Overload",
+//				"Massively boosts mana regen rate. Level 1 = 50x, Level 2 = 100x.");
 			THE_PYRE_LORD = reg("the_pyre_lord", PyreLordModifier::new,
 				"Blast Lord",
 				"Apostle title: summons nether meteors, 4x fire/explosion damage.");

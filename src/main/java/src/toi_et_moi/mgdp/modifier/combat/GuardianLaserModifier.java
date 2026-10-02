@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.combat;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPMiscEntities;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -58,7 +59,7 @@ public class GuardianLaserModifier extends GolemModifier {
 							SoundEvents.NOTE_BLOCK_PLING.value(), SoundSource.NEUTRAL, 2.0F, 1.0F);
 				}
 				// 重新生成瞄准实体（与本体同步走最后5刻，白光与激光同时出现）
-				var laser = new GuardianLaserTargetEntity(Mgdp.GUARDIAN_LASER_TARGET.get(), golem.level(), golem);
+				var laser = new GuardianLaserTargetEntity(MGDPMiscEntities.GUARDIAN_LASER_TARGET.get(), golem.level(), golem);
 				laser.setCharge(CHARGE_TICKS - 5);
 				golem.level().addFreshEntity(laser);
 			}
@@ -71,7 +72,7 @@ public class GuardianLaserModifier extends GolemModifier {
 		// 蓄力开始：生成瞄准实体（渲染红线/红圈，发射阶段白光），重置音效节拍；
 		// setCharge(1) 与本体蓄力进度同步，避免实体滞后导致目标死亡时光束丢失/跳转
 		if (charge == 1) {
-			var laser = new GuardianLaserTargetEntity(Mgdp.GUARDIAN_LASER_TARGET.get(), golem.level(), golem);
+			var laser = new GuardianLaserTargetEntity(MGDPMiscEntities.GUARDIAN_LASER_TARGET.get(), golem.level(), golem);
 			laser.setCharge(1);
 			golem.level().addFreshEntity(laser);
 			data.putInt(TAG_BEAT, 1);
