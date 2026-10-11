@@ -1,13 +1,21 @@
 package dev.toi_et_moi.mgdp.init;
 
+import com.tterrag.registrate.providers.ProviderType;
+import dev.toi_et_moi.mgdp.compat.CompatManager;
 import dev.toi_et_moi.mgdp.init.advancement.MGDPTriggers;
+import dev.toi_et_moi.mgdp.init.data.MGDPLangData;
+import dev.toi_et_moi.mgdp.init.data.MGDPRecipeGen;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPItems;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPMiscEntities;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.serial.config.PacketHandlerWithConfig;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,6 +38,11 @@ public class MGDP {
         registerRegistrates();
     }
 
+    @SubscribeEvent
+    public static void setup(final FMLCommonSetupEvent event) {
+        CompatManager.commonSetup();
+    }
+
     private static void registerRegistrates(){
         MGDPItems.register();
         MGDPModifiers.register();
@@ -39,6 +52,12 @@ public class MGDP {
 
     public static ResourceLocation loc(String id) {
         return ResourceLocation.fromNamespaceAndPath(MODID, id);
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void gatherData(GatherDataEvent event) {
+        REGISTRATE.addDataGenerator(ProviderType.LANG, MGDPLangData::genLang);
+        REGISTRATE.addDataGenerator(ProviderType.RECIPE, MGDPRecipeGen::genRecipe);
     }
 
 }

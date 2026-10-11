@@ -1,11 +1,18 @@
 package dev.toi_et_moi.mgdp.init.registrate;
 
+import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 //import dev.toi_et_moi.mgdp.compat.golemmagicka.ManaOverloadModifier;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.toi_et_moi.mgdp.compat.pandora.RealitySuppressionModifier;
+import dev.xkmc.l2library.base.NamedEntry;
+import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import dev.xkmc.modulargolems.content.modifier.base.PotionDefenseModifier;
 import dev.xkmc.modulargolems.content.modifier.common.AddSlotModifier;
+import dev.xkmc.modulargolems.init.registrate.GolemTypes;
 import net.minecraft.world.effect.MobEffects;
+import org.apache.commons.lang3.mutable.Mutable;
+import org.apache.commons.lang3.mutable.MutableObject;
 import src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier;
 import src.toi_et_moi.mgdp.modifier.buff.*;
 import src.toi_et_moi.mgdp.modifier.combat.*;
@@ -13,19 +20,15 @@ import src.toi_et_moi.mgdp.modifier.common.*;
 import src.toi_et_moi.mgdp.modifier.conqueror.ConquerorModifier;
 import src.toi_et_moi.mgdp.modifier.defense.*;
 import src.toi_et_moi.mgdp.modifier.farming.*;
-import src.toi_et_moi.mgdp.modifier.goety.BottlingModifier;
-import src.toi_et_moi.mgdp.modifier.goety.CroneModifier;
-import src.toi_et_moi.mgdp.modifier.goety.NecromancerModifier;
-import src.toi_et_moi.mgdp.modifier.goety.VoidEchoModifier;
-import src.toi_et_moi.mgdp.modifier.goety_revelation.*;
-import src.toi_et_moi.mgdp.modifier.hostility.*;
 import src.toi_et_moi.mgdp.modifier.movement.FlightModifier;
 import src.toi_et_moi.mgdp.modifier.movement.RocketFlightModifier;
 import src.toi_et_moi.mgdp.modifier.movement.SpiritModifier;
 import src.toi_et_moi.mgdp.modifier.movement.UnstoppableModifier;
 import src.toi_et_moi.mgdp.modifier.special.*;
 
-import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
+import javax.annotation.Nullable;
+
+import static dev.toi_et_moi.mgdp.init.MGDP.REGISTRATE;
 
 public class MGDPModifiers {
     public static void register() {}
@@ -40,7 +43,7 @@ public class MGDPModifiers {
     public static final RegistryEntry<EnchantedNetheriteGoldModifier> ENCHANTED_NETHERITE_GOLD;
     public static final RegistryEntry<BellOfAviciModifier> BELL_OF_AVICI;
     public static final RegistryEntry<DiamondAttackModifier> DIAMOND_ATTACK;
-    public static final RegistryEntry<CruelModifier> THE_CRUEL;
+//    public static final RegistryEntry<CruelModifier> THE_CRUEL; // revelation
     public static final RegistryEntry<EnchantedDiamondAttackModifier> ENCHANTED_DIAMOND_ATTACK;
     public static final RegistryEntry<CrimsonAttackModifier> CRIMSON_ATTACK;
     public static final RegistryEntry<EnchantedCrimsonAttackModifier> ENCHANTED_CRIMSON_ATTACK;
@@ -56,7 +59,7 @@ public class MGDPModifiers {
     public static final RegistryEntry<SunlightModifier> SUNLIGHT;
     public static final RegistryEntry<HypothermiaModifier> HYPOTHERMIA;
     public static final RegistryEntry<SelfRepairModifier> SELF_REPAIR;
-    public static final RegistryEntry<PotionDefenseModifier> TRUE_INVISIBILITY;
+//    public static final RegistryEntry<PotionDefenseModifier> TRUE_INVISIBILITY; // iss
     public static final RegistryEntry<PotionDefenseModifier> INVISIBILITY;
     public static final RegistryEntry<ExecutionerModifier> EXECUTIONER;
     public static final RegistryEntry<FocusedDefenseModifier> FOCUSED_DEFENSE;
@@ -65,9 +68,9 @@ public class MGDPModifiers {
     public static final RegistryEntry<ShieldBlockModifier> SHIELD_BLOCK;
     public static final RegistryEntry<BackstepModifier> BACKSTEP;
     public static final RegistryEntry<SelfDestructModifier> SELF_DESTRUCT;
-    public static final RegistryEntry<DementorModifier> DEMENTOR;
-    public static final RegistryEntry<DrainModifier> DRAIN;
-    public static final RegistryEntry<ReprintModifier> REPRINT;
+//    public static final RegistryEntry<DementorModifier> DEMENTOR; // l2hostility
+//    public static final RegistryEntry<DrainModifier> DRAIN;
+//    public static final RegistryEntry<ReprintModifier> REPRINT;
     public static final RegistryEntry<BrushModifier> BRUSH;
     public static final RegistryEntry<BombDisposalModifier> BOMB_DISPOSAL;
     public static final RegistryEntry<FireballModifier> FIREBALL;
@@ -81,11 +84,11 @@ public class MGDPModifiers {
     public static final RegistryEntry<MinerModifier> MINER;
     public static final RegistryEntry<ScavBoxModifier> SCAV_BOX;
     public static final RegistryEntry<LumberjackModifier> LUMBERJACK;
-    public static final RegistryEntry<UndyingModifier> UNDYING;
-    public static final RegistryEntry<GrenadeModifier> GRENADE;
-    public static final RegistryEntry<KillerAuraModifier> KILLER_AURA;
-    public static final RegistryEntry<PullingModifier> PULLING;
-    public static final RegistryEntry<RepellingModifier> REPELLING;
+//    public static final RegistryEntry<UndyingModifier> UNDYING; // l2hostility
+//    public static final RegistryEntry<GrenadeModifier> GRENADE;
+//    public static final RegistryEntry<KillerAuraModifier> KILLER_AURA;
+//    public static final RegistryEntry<PullingModifier> PULLING;
+//    public static final RegistryEntry<RepellingModifier> REPELLING;
     public static final RegistryEntry<UnbreakableModifier> UNBREAKABLE;
     public static final RegistryEntry<InfiniteAmmoModifier> INFINITE_AMMO;
     public static final RegistryEntry<QuickStrikeModifier> QUICK_STRIKE;
@@ -106,12 +109,12 @@ public class MGDPModifiers {
     public static final RegistryEntry<BackflipModifier> BACKFLIP;
     public static final RegistryEntry<WindmillModifier> WINDMILL;
     public static final RegistryEntry<WitchModifier> WITCH;
-    public static final RegistryEntry<CroneModifier> CRONE;
-    public static final RegistryEntry<BottlingModifier> BOTTLING;
-    public static final RegistryEntry<VoidEchoModifier> VOID_ECHO;
-//    public static final RegistryEntry<PhantomModifier> PHANTOM;
-    public static final RegistryEntry<NecromancerModifier> NECROMANCER;
-    public static final RegistryEntry<PenguinModifier> PENGUIN;
+//    public static final RegistryEntry<CroneModifier> CRONE; // goety
+//    public static final RegistryEntry<BottlingModifier> BOTTLING;
+//    public static final RegistryEntry<VoidEchoModifier> VOID_ECHO;
+//    public static final RegistryEntry<PhantomModifier> PHANTOM; // youkai
+//    public static final RegistryEntry<NecromancerModifier> NECROMANCER; //goety
+//    public static final RegistryEntry<PenguinModifier> PENGUIN; // tf
     public static final RegistryEntry<EndOfBeginningModifier> END_OF_BEGINNING;
     public static final RegistryEntry<DisarmModifier> DISARM;
     public static final RegistryEntry<CoronaModifier> CORONA;
@@ -121,18 +124,18 @@ public class MGDPModifiers {
     public static final RegistryEntry<SpyglassModifier> SPYGLASS;
     public static final RegistryEntry<MoonShadowModifier> MOON_SHADOW;
     public static final RegistryEntry<TimeAxisModifier> TIME_AXIS;
-    public static final RegistryEntry<LastLineModifier> LAST_LINE;
+//    public static final RegistryEntry<LastLineModifier> LAST_LINE; // tf
     public static final RegistryEntry<RealitySuppressionModifier> REALITY_SUPPRESSION;
 //    public static final RegistryEntry<ManaOverloadModifier> MANA_OVERLOAD;
-    public static final RegistryEntry<PyreLordModifier> THE_PYRE_LORD;
-    public static final RegistryEntry<WitchKingModifier> THE_WITCH_KING;
-    public static final RegistryEntry<GreatShadowModifier> THE_GREAT_SHADOW;
-    public static final RegistryEntry<DefilerModifier> THE_DEFILER;
-    public static final RegistryEntry<DarkModifier> THE_DARK;
-    public static final RegistryEntry<GloriousModifier> THE_GLORIOUS;
-    public static final RegistryEntry<GenesisModifier> THE_GENESIS;
-    public static final RegistryEntry<ApocalypseModifier> THE_APOCALYPSE;
-    public static final RegistryEntry<FrostBurstModifier> FROST_BURST;
+//    public static final RegistryEntry<PyreLordModifier> THE_PYRE_LORD; // revelation
+//    public static final RegistryEntry<WitchKingModifier> THE_WITCH_KING;
+//    public static final RegistryEntry<GreatShadowModifier> THE_GREAT_SHADOW;
+//    public static final RegistryEntry<DefilerModifier> THE_DEFILER;
+//    public static final RegistryEntry<DarkModifier> THE_DARK;
+//    public static final RegistryEntry<GloriousModifier> THE_GLORIOUS;
+//    public static final RegistryEntry<GenesisModifier> THE_GENESIS;
+//    public static final RegistryEntry<ApocalypseModifier> THE_APOCALYPSE;
+//    public static final RegistryEntry<FrostBurstModifier> FROST_BURST; // smc
     public static final RegistryEntry<GuardianLaserModifier> GUARDIAN_LASER;
     public static final RegistryEntry<IndomitableModifier> INDOMITABLE;
     public static final RegistryEntry<ConquerorModifier> CONQUEROR;
@@ -215,9 +218,9 @@ public class MGDPModifiers {
                 "Charged Shield",
                 "5 damage-absorbing shields. Each blocks 1 hit. Recharges every 15/10/5 seconds per level.");
 
-        TRUE_INVISIBILITY = reg("true_invisibility", () -> new PotionDefenseModifier(1, src.toi_et_moi.mgdp.modifier.CompatUtil::getTrueInvisibility),
-                "True Invisibility",
-                "Golem becomes truly invisible (Iron's Spells 'n Spellbooks).");
+//        TRUE_INVISIBILITY = reg("true_invisibility", () -> new PotionDefenseModifier(1, src.toi_et_moi.mgdp.modifier.CompatUtil::getTrueInvisibility),
+//                "True Invisibility",
+//                "Golem becomes truly invisible (Iron's Spells 'n Spellbooks).");
 
         INVISIBILITY = reg("invisibility", () -> new PotionDefenseModifier(1, () -> MobEffects.INVISIBILITY),
                 "Invisibility",
@@ -263,13 +266,13 @@ public class MGDPModifiers {
                 "Versatility",
                 "The first 5 non-blue MGDP upgrades don't consume upgrade slots.");
 
-        DEMENTOR = reg("hostility_dementor", DementorModifier::new,
-                "Hostility Upgrade: Dementor",
-                "Reduces incoming damage with a nonlinear formula.");
-
-        DRAIN = reg("hostility_drain", DrainModifier::new,
-                "Hostility Upgrade: Drain",
-                "Deals extra damage per negative effect on target and steals beneficial effects.");
+//        DEMENTOR = reg("hostility_dementor", DementorModifier::new,
+//                "Hostility Upgrade: Dementor",
+//                "Reduces incoming damage with a nonlinear formula.");
+//
+//        DRAIN = reg("hostility_drain", DrainModifier::new,
+//                "Hostility Upgrade: Drain",
+//                "Deals extra damage per negative effect on target and steals beneficial effects.");
 
         FIREBALL = reg("fireball", FireballModifier::new,
                 "Fireball Attack",
@@ -283,9 +286,9 @@ public class MGDPModifiers {
                 "Bomb Disposal Expert",
                 "Nullifies non-friendly explosions and defuses primed TNT.");
 
-        REPRINT = reg("hostility_reprint", ReprintModifier::new,
-                "Hostility Upgrade: Reprint",
-                "Deals bonus damage based on target's total enchantment levels.");
+//        REPRINT = reg("hostility_reprint", ReprintModifier::new,
+//                "Hostility Upgrade: Reprint",
+//                "Deals bonus damage based on target's total enchantment levels.");
 
         SELF_DESTRUCT = reg("self_destruct", SelfDestructModifier::new,
                 "Self Destruct",
@@ -342,25 +345,25 @@ public class MGDPModifiers {
                 "Lumberjack",
                 "Holding an axe, the golem automatically fells trees within the Pickup range and clears leaves. Requires Pickup. Replants a matching sapling at the tree base unless dual-wielding axes; Auto Smelt applies.");
 
-        UNDYING = reg("hostility_undying", UndyingModifier::new,
-                "Hostility Upgrade: Undying",
-                "When the golem would die, it instead revives with full health. Cannot bypass creative/kill damage.");
-
-        GRENADE = reg("hostility_grenade", GrenadeModifier::new,
-                "Hostility Upgrade: Grenade",
-                "Shoots fast homing explosive grenades at targets within 40 blocks.");
-
-        KILLER_AURA = reg("hostility_killer_aura", KillerAuraModifier::new,
-                "Hostility Upgrade: Killer Aura",
-                "+3 range and +3 sweep attack per level. Ranged hits splash the same damage to other enemies within 6/9/12 blocks.");
-
-        PULLING = reg("hostility_pulling", PullingModifier::new,
-                "Hostility Upgrade: Pulling",
-                "Golem pulls nearby enemies toward itself like a magnet.");
-
-        REPELLING = reg("hostility_repelling", RepellingModifier::new,
-                "Hostility Upgrade: Repelling",
-                "Golem pushes nearby enemies away and is immune to projectiles.");
+//        UNDYING = reg("hostility_undying", UndyingModifier::new,
+//                "Hostility Upgrade: Undying",
+//                "When the golem would die, it instead revives with full health. Cannot bypass creative/kill damage.");
+//
+//        GRENADE = reg("hostility_grenade", GrenadeModifier::new,
+//                "Hostility Upgrade: Grenade",
+//                "Shoots fast homing explosive grenades at targets within 40 blocks.");
+//
+//        KILLER_AURA = reg("hostility_killer_aura", KillerAuraModifier::new,
+//                "Hostility Upgrade: Killer Aura",
+//                "+3 range and +3 sweep attack per level. Ranged hits splash the same damage to other enemies within 6/9/12 blocks.");
+//
+//        PULLING = reg("hostility_pulling", PullingModifier::new,
+//                "Hostility Upgrade: Pulling",
+//                "Golem pulls nearby enemies toward itself like a magnet.");
+//
+//        REPELLING = reg("hostility_repelling", RepellingModifier::new,
+//                "Hostility Upgrade: Repelling",
+//                "Golem pushes nearby enemies away and is immune to projectiles.");
 
         UNBREAKABLE = reg("unbreakable", UnbreakableModifier::new,
                 "Unbreakable",
@@ -439,9 +442,9 @@ public class MGDPModifiers {
         WITCH = reg("witch", WitchModifier::new,
                 "Witch",
                 "Golem buffs itself and throws potions at enemies and allies like a witch.");
-        PENGUIN = reg("penguin", PenguinModifier::new,
-                "Penguin",
-                "Golem spawns a penguin at the target death location. Penguin! Penguin!");
+//        PENGUIN = reg("penguin", PenguinModifier::new,
+//                "Penguin",
+//                "Golem spawns a penguin at the target death location. Penguin! Penguin!");
 
         DISARM = reg("disarm", DisarmModifier::new,
                 "Disarm",
@@ -478,25 +481,25 @@ public class MGDPModifiers {
                 "§5Combines Radiance, Corona, and Moon Shadow. Effects ignore light/time restrictions. Accelerates block growth and random ticks nearby.");
 
 
-        CRONE = reg("crone", CroneModifier::new,
-                "Crone",
-                "Golem attacks with Goety brew effects and buffs allies.");
-
-        BOTTLING = reg("bottling", BottlingModifier::new,
-                "Bottling",
-                "Golem applies bottling effect to its owner. Effect level equals upgrade level.");
-
-        NECROMANCER = reg("necromancer", NecromancerModifier::new,
-                "Necromancer",
-                "Golem periodically summons zombie/skeleton minions to fight alongside it.");
+//        CRONE = reg("crone", CroneModifier::new,
+//                "Crone",
+//                "Golem attacks with Goety brew effects and buffs allies.");
+//
+//        BOTTLING = reg("bottling", BottlingModifier::new,
+//                "Bottling",
+//                "Golem applies bottling effect to its owner. Effect level equals upgrade level.");
+//
+//        NECROMANCER = reg("necromancer", NecromancerModifier::new,
+//                "Necromancer",
+//                "Golem periodically summons zombie/skeleton minions to fight alongside it.");
 
 //        PHANTOM = reg("phantom", PhantomModifier::new,
 //                "Phantom",
 //                "Golem gains Phantom effect every second. Level = effect level.");
 
-        VOID_ECHO = reg("void_echo", VoidEchoModifier::new,
-                "Void Echo",
-                "Attacks deal void damage and apply Void Touched. Life steal, teleport dodge, and damage cap.");
+//        VOID_ECHO = reg("void_echo", VoidEchoModifier::new,
+//                "Void Echo",
+//                "Attacks deal void damage and apply Void Touched. Life steal, teleport dodge, and damage cap.");
 
 
         CATACLYSMFARMER_ADD = reg("add_slot_cataclysmfarer", () -> new src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier(1, 4),
@@ -535,9 +538,9 @@ public class MGDPModifiers {
                 "Liquid Clear",
                 "Clear range +%s/level (current %s).");
 
-        LAST_LINE = reg("last_line", LastLineModifier::new,
-                "Last Line of Defence",
-                "In the Final Plateau, reduces damage from non-golem, non-Twilight-Forest entities by 99%%.");
+//        LAST_LINE = reg("last_line", LastLineModifier::new,
+//                "Last Line of Defence",
+//                "In the Final Plateau, reduces damage from non-golem, non-Twilight-Forest entities by 99%%.");
 
         REALITY_SUPPRESSION = reg("reality_suppression", RealitySuppressionModifier::new,
                 "Reality Suppression",
@@ -546,37 +549,37 @@ public class MGDPModifiers {
 //        MANA_OVERLOAD = reg("mana_overload", ManaOverloadModifier::new,
 //                "Mana Overload",
 //                "Massively boosts mana regen rate. Level 1 = 50x, Level 2 = 100x.");
-        THE_PYRE_LORD = reg("the_pyre_lord", PyreLordModifier::new,
-                "Blast Lord",
-                "Apostle title: summons nether meteors, 4x fire/explosion damage.");
-        THE_WITCH_KING = reg("the_witch_king", WitchKingModifier::new,
-                "§cThe Witch King",
-                "§5Apostle Title: applies all potion effects to allies/enemies, cleanses allies.");
-        THE_CRUEL = reg("the_cruel", CruelModifier::new,
-                "§cThe Cruel",
-                "Frost aura, ice spear/storm/chunk attacks, +300% frost damage, freeze immunity.");
-        THE_GREAT_SHADOW = reg("the_great_shadow", GreatShadowModifier::new,
-                "§cThe Great Shadow",
-                "Darkness/blindness aura, magic bolt barrages, +300% damage vs magic/undead/debuffed.");
-        THE_DEFILER = reg("the_defiler", DefilerModifier::new,
-                "§cThe Defiler",
-                "Venom aura, acid pools, entangle vines, piercing poison quills, +300% damage vs debuffed/arthropods.");
-        THE_DARK = reg("the_dark", DarkModifier::new,
-                "§cThe Pitch-Black Shadow",
-                "Wane aura, giant scythe slashes, +300% damage vs waned/dark targets, shadow walk in darkness.");
-        THE_GLORIOUS = reg("the_glorious", GloriousModifier::new,
-                "§cThe Glorious",
-                "Resistance aura for allies, +300% damage vs bosses.");
-        THE_GENESIS = reg("the_genesis", GenesisModifier::new,
-                "§cThe Genesis",
-                "Empowers all other apostle titles, x1.5 damage, immune while not targeting.");
-        THE_APOCALYPSE = reg("the_apocalypse", ApocalypseModifier::new,
-                "§cThe Apocalypse",
-                "Void frame damage, doom/erosion/curse aura, strips target buffs, -50% damage taken.");
+//        THE_PYRE_LORD = reg("the_pyre_lord", PyreLordModifier::new,
+//                "Blast Lord",
+//                "Apostle title: summons nether meteors, 4x fire/explosion damage.");
+//        THE_WITCH_KING = reg("the_witch_king", WitchKingModifier::new,
+//                "§cThe Witch King",
+//                "§5Apostle Title: applies all potion effects to allies/enemies, cleanses allies.");
+//        THE_CRUEL = reg("the_cruel", CruelModifier::new,
+//                "§cThe Cruel",
+//                "Frost aura, ice spear/storm/chunk attacks, +300% frost damage, freeze immunity.");
+//        THE_GREAT_SHADOW = reg("the_great_shadow", GreatShadowModifier::new,
+//                "§cThe Great Shadow",
+//                "Darkness/blindness aura, magic bolt barrages, +300% damage vs magic/undead/debuffed.");
+//        THE_DEFILER = reg("the_defiler", DefilerModifier::new,
+//                "§cThe Defiler",
+//                "Venom aura, acid pools, entangle vines, piercing poison quills, +300% damage vs debuffed/arthropods.");
+//        THE_DARK = reg("the_dark", DarkModifier::new,
+//                "§cThe Pitch-Black Shadow",
+//                "Wane aura, giant scythe slashes, +300% damage vs waned/dark targets, shadow walk in darkness.");
+//        THE_GLORIOUS = reg("the_glorious", GloriousModifier::new,
+//                "§cThe Glorious",
+//                "Resistance aura for allies, +300% damage vs bosses.");
+//        THE_GENESIS = reg("the_genesis", GenesisModifier::new,
+//                "§cThe Genesis",
+//                "Empowers all other apostle titles, x1.5 damage, immune while not targeting.");
+//        THE_APOCALYPSE = reg("the_apocalypse", ApocalypseModifier::new,
+//                "§cThe Apocalypse",
+//                "Void frame damage, doom/erosion/curse aura, strips target buffs, -50% damage taken.");
 
-        FROST_BURST = reg("frost_burst", FrostBurstModifier::new,
-                "Frost Burst",
-                "Stack frost on attack. Burst deals AoE damage after 10s.");
+//        FROST_BURST = reg("frost_burst", FrostBurstModifier::new,
+//                "Frost Burst",
+//                "Stack frost on attack. Burst deals AoE damage after 10s.");
 
         GUARDIAN_LASER = reg("guardian_laser", GuardianLaserModifier::new,
                 "Guardian Laser",
@@ -594,6 +597,38 @@ public class MGDPModifiers {
                 "Shrink",
                 "Shrink golem size by 20%% per level. Max level 4.");
 
+    }
+
+    /**
+     * 倣GolemModifiers
+     * */
+    public static <T extends GolemModifier> RegistryEntry<T> reg(String id, NonNullSupplier<T> sup, @Nullable String def) {
+        Mutable<RegistryEntry<T>> holder = new MutableObject<>();
+        var ans = REGISTRATE.generic(GolemTypes.MODIFIERS, id, sup).defaultLang();
+        if (def != null) {
+            ans.addMiscData(ProviderType.LANG, pvd -> pvd.add(holder.getValue().get().getDescriptionId() + ".desc", def));
+        }
+        var result = ans.register();
+        holder.setValue(result);
+        return result;
+    }
+
+    public static <T extends GolemModifier> RegistryEntry<T> reg(String id, NonNullSupplier<T> sup, String name, @Nullable String def) {
+        // 创建一个可变对象来持有注册结果
+        Mutable<RegistryEntry<T>> holder = new MutableObject<>();
+        // 使用REGISTRATE创建并配置一个泛型注册项
+        var ans = REGISTRATE.generic(GolemTypes.MODIFIERS, id, sup).defaultLang();
+        // 设置名称的语言本地化
+        ans.lang(NamedEntry::getDescriptionId, name);
+        // 如果提供了描述文本，则添加描述的语言本地化
+        if (def != null) {
+            ans.addMiscData(ProviderType.LANG, pvd -> pvd.add(holder.getValue().get().getDescriptionId() + ".desc", def));
+        }
+        // 完成注册并获取结果
+        var result = ans.register();
+        // 将注册结果设置到可变对象 holder 中
+        holder.setValue(result);
+        return result;
     }
 
 }

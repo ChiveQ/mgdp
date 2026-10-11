@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.compat.goety_revelation;
 
+import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -14,7 +15,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.init.MGDPItems;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
 /**
@@ -37,7 +37,7 @@ public class ApocalypseConversionHandler {
 	public static void onDoomApplied(MobEffectEvent.Added event) {
 		if (event.getEntity().level().isClientSide()) return;
 		if (!(event.getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
-		if (MGDPItems.THE_APOCALYPSE == null) return; // goety_revelation not installed
+		if (RevelationCompatRegistry.THE_APOCALYPSE == null) return; // goety_revelation not installed
 
 		MobEffect doom = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "doom"));
 		if (doom == null || event.getEffectInstance().getEffect() != doom) return;
@@ -46,7 +46,7 @@ public class ApocalypseConversionHandler {
 		if (!hand.is(Items.COD) && !hand.is(Items.COOKED_COD)) return;
 
 		golem.removeEffect(doom);
-		golem.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(MGDPItems.THE_APOCALYPSE.get()));
+		golem.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(RevelationCompatRegistry.UP_APOCALYPSE));
 		playSound(golem, "doom");
 	}
 
@@ -55,7 +55,7 @@ public class ApocalypseConversionHandler {
 		if (!(event.getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
 		if (golem.level().isClientSide) return;
 		if (golem.tickCount % 40 != 0) return;
-		if (MGDPItems.THE_GENESIS == null) return; // goety_revelation not installed
+		if (RevelationCompatRegistry.THE_GENESIS == null) return; // goety_revelation not installed
 
 		var data = golem.getPersistentData();
 		int convertStart = data.getInt(TAG_GENESIS_CONVERT);
@@ -84,7 +84,7 @@ public class ApocalypseConversionHandler {
 			if (golem.tickCount - convertStart >= GENESIS_CONVERT_TICKS) {
 				// Ritual complete
 				data.remove(TAG_GENESIS_CONVERT);
-				golem.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(MGDPItems.THE_GENESIS.get()));
+				golem.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(RevelationCompatRegistry.UP_GENESIS.get()));
 				playSound(golem, "altar_finish");
 			} else {
 				playSound(golem, "altar_loop");

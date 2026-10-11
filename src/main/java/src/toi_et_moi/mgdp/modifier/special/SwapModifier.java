@@ -17,7 +17,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.init.MGDPItems;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPItems;
 import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
 import java.util.*;

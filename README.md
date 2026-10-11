@@ -1,9 +1,14 @@
-傀儡装配：决战方案（Modular Golems:Decisive Plan）  
-这是一个傀儡装配附属模组        
-作者是咱，也就是威严な大小姐（toi-et-moi），deepseek，minimax     
-咱有一些想法会在这里尝试实现        
-更新比较随缘（看咱精力）  
-只支持1.20.1forge  
+---
+頪: 簡
+立旹: 2026-09-29
+改旹: 2026-10-06
+---
+傀儡装配：决战方案（Modular Golems:Decisive Plan）
+这是一个傀儡装配附属模组
+作者是咱，也就是威严な大小姐（toi-et-moi），deepseek，minimax
+咱有一些想法会在这里尝试实现
+更新比较随缘（看咱精力）
+只支持1.20.1forge
 QQ群号：1106155940
 
 ---

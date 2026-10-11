@@ -21,7 +21,7 @@ group = mod_group_id
 version = mod_version
 
 base {
-    archivesName = mod_id
+    archivesName = "${mod_id}-${minecraft_version}"
 }
 
 java {
@@ -191,6 +191,7 @@ dependencies {
     implementation fg.deobf("dev.xkmc.l2damagetracker:l2damagetracker:0.3.7")
     implementation fg.deobf("dev.xkmc.mob_weapon_api:mob_weapon_api:0.2.22")
     implementation fg.deobf("dev.xkmc.modulargolems:modulargolems:2.7.2-slim")
+    runtimeOnly fg.deobf("dev.xkmc.modulargolems:modulargolems:2.7.2-slim") // 用于runData
 
     compileOnly fg.deobf("maven.modrinth:l2-complements:${l2complements_version}")
     compileOnly files("libs/l2archery-2.5.0.jar")
@@ -204,8 +205,8 @@ dependencies {
     compileOnly fg.deobf("curse.maven:lendercataclysm-551586:8246047")
     runtimeOnly fg.deobf("curse.maven:lendercataclysm-551586:8246047")
     runtimeOnly fg.deobf("curse.maven:goety-586095:8951387")
-    runtimeOnly fg.deobf("curse.maven:goety-revelation-1236817:8311906")
-    runtimeOnly fg.deobf("curse.maven:endinglibrary-1471165:8292038")
+    //runtimeOnly fg.deobf("curse.maven:goety-revelation-1236817:8311906")
+    //runtimeOnly fg.deobf("curse.maven:endinglibrary-1471165:8292038") // runData时去除
     runtimeOnly fg.deobf("curse.maven:star-meow-craft-1154807:8648282")
     runtimeOnly fg.deobf("curse.maven:caelus-308989:5281700")
     runtimeOnly fg.deobf("curse.maven:create-328085:7178761")
@@ -274,6 +275,7 @@ tasks.named('processResources', ProcessResources).configure {
     var replaceProperties = [minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
                              forge_version       : forge_version, forge_version_range: forge_version_range,
                              loader_version_range: loader_version_range,
+                             mg_version_range    : mg_version_range,
                              mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
                              mod_authors         : mod_authors, mod_description: mod_description,]
 
@@ -282,6 +284,11 @@ tasks.named('processResources', ProcessResources).configure {
     filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
         expand replaceProperties + [project: project]
     }
+}
+
+// 资源复制
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

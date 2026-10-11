@@ -12,6 +12,10 @@ public class GolemMagickaDispatch extends ModDispatch {
 
     public static final String MODID = GolemMagicka.MODID;
 
+    public GolemMagickaDispatch(){
+        GolemMagickaCompatRegistry.register();
+    }
+
     @Override
     protected void genLang(RegistrateLangProvider registrateLangProvider) {
 

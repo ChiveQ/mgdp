@@ -2,9 +2,6 @@ package dev.toi_et_moi.mgdp.compat.pandora;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.modulargolems.content.item.upgrade.SimpleUpgradeItem;
-import net.minecraft.world.item.Item;
-import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
 import static dev.xkmc.modulargolems.init.registrate.GolemItems.regModUpgrade;
 import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
