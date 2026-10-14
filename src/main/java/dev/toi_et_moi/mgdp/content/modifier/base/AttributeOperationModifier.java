@@ -3,7 +3,11 @@ package dev.toi_et_moi.mgdp.content.modifier.base;
 import dev.xkmc.l2library.util.math.MathHelper;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
+import dev.xkmc.modulargolems.content.modifier.base.AttributeGolemModifier;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -14,8 +18,10 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Supplier;
 
+import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
+
 /**
- * 用于承载比 {@link dev.xkmc.modulargolems.content.modifier.base.AttributeGolemModifier}
+ * 用于承载比 {@link AttributeGolemModifier}
  * 更灵活的 vanilla 属性修改（可显式指定 {@link AttributeModifier.Operation}，
  * 即能区分 MULTIPLY_BASE 与 MULTIPLY_TOTAL）。
  *
@@ -60,6 +66,29 @@ public class AttributeOperationModifier extends GolemModifier {
 
         private AttributeModifier create(int level) {
             return new AttributeModifier(id(), name, value * level, operation);
+        }
+
+        /**生成tooltip 倣本體GolemStatType#getAdderTooltip */
+        private MutableComponent getTooltip(){
+            String key = "";
+            double result = value;
+            switch (operation){
+                case ADDITION -> {
+                    // 此路徑原則上不應產生、當代以AttributeGolemModifier
+                    key = "attribute.modifier." + (value < 0 ? "take." : "plus.") + "0";
+                }
+                case MULTIPLY_BASE -> {
+                    key = "attribute.modifier." + (value < 0 ? "take." : "plus.") + "1";
+                    result = value * 100;
+                }
+                case MULTIPLY_TOTAL -> {
+                    key = "attribute.modifier.equals.1";
+                    result = (1 + value) * 100;
+                }
+            }
+            return Component.translatable(key,
+                    ATTRIBUTE_MODIFIER_FORMAT.format(Math.abs(result)),
+                    Component.translatable(attribute.get().getDescriptionId())).withStyle(ChatFormatting.BLUE);
         }
     }
 
@@ -115,5 +144,15 @@ public class AttributeOperationModifier extends GolemModifier {
         for (AttributeOperationModifier modifier : LIST) {
             modifier.onRemove(golem);
         }
+    }
+
+    @Override
+    public @NotNull List<MutableComponent> getDetail(int v) {
+        List<MutableComponent> ans = new ArrayList<>();
+        for (AttrEntry entry: entries){
+            ans.add(entry.getTooltip());
+        }
+        ans.addAll(super.getDetail(v));
+        return ans;
     }
 }
