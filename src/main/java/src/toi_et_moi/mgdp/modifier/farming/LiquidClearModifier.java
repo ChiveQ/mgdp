@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import src.toi_et_moi.mgdp.MGDPConfig;
 
 import java.util.List;
 import java.util.stream.StreamSupport;
@@ -28,7 +29,7 @@ public class LiquidClearModifier extends GolemModifier {
 		if (golem.level().isClientSide()) return;
 		if (golem.tickCount % INTERVAL != 0) return;
 
-		int range = level * src.toi_et_moi.mgdp.Config.liquidClearRangePerLevel;
+		int range = level * MGDPConfig.liquidClearRangePerLevel;
 		BlockPos center = golem.blockPosition();
 		StreamSupport.stream(
 				BlockPos.withinManhattan(center, range, range, range).spliterator(), false
@@ -58,7 +59,7 @@ public class LiquidClearModifier extends GolemModifier {
 
 	@Override
 	public List<MutableComponent> getDetail(int v) {
-		int perLevel = src.toi_et_moi.mgdp.Config.liquidClearRangePerLevel;
+		int perLevel = MGDPConfig.liquidClearRangePerLevel;
 		int totalRange = v * 8;
 		return List.of(
 				Component.translatable(getDescriptionId() + ".desc",

@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class Config {
+public class MGDPConfig {
 
     // --- Common Config / 通用配置 ---
 

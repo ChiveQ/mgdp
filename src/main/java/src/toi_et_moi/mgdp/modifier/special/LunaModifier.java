@@ -16,13 +16,12 @@ import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import src.toi_et_moi.mgdp.Config;
+import src.toi_et_moi.mgdp.MGDPConfig;
 import src.toi_et_moi.mgdp.Mgdp;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
@@ -160,6 +159,6 @@ public class LunaModifier extends GolemModifier {
 	}
 
 	private static void setCooldown(ServerPlayer player) {
-		COOLDOWNS.put(player.getUUID(), player.level().getGameTime() + Config.lunaCooldown * 20L);
+		COOLDOWNS.put(player.getUUID(), player.level().getGameTime() + MGDPConfig.lunaCooldown * 20L);
 	}
 }

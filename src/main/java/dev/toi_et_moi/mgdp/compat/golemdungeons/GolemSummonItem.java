@@ -16,7 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.jetbrains.annotations.Nullable;
-import src.toi_et_moi.mgdp.Config;
+import src.toi_et_moi.mgdp.MGDPConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +76,7 @@ public class GolemSummonItem extends Item {
         }
         if (golems.isEmpty()) return InteractionResult.PASS;
 
-        int step = Config.summonSpacing;
+        int step = MGDPConfig.summonSpacing;
         BlockPos center = BlockPos.containing(ctx.getClickLocation());
         List<BlockPos> offsets = formationOffsets(count, step);
         for (int i = 0; i < golems.size(); i++) {

@@ -8,6 +8,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import src.toi_et_moi.mgdp.MGDPConfig;
 import src.toi_et_moi.mgdp.Mgdp;
 
 @Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -40,7 +41,7 @@ public class SelfDestructModifier extends GolemModifier {
 
 		int power = Math.max(1, (int) (golem.getMaxHealth() / 10.0f));
 		golem.level().explode(golem, golem.getX(), golem.getY(), golem.getZ(),
-				power, src.toi_et_moi.mgdp.Config.destructionMode
+				power, MGDPConfig.destructionMode
 						? Level.ExplosionInteraction.BLOCK
 						: Level.ExplosionInteraction.NONE);
 	}

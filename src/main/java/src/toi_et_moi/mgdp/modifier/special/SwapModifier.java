@@ -16,6 +16,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
+import src.toi_et_moi.mgdp.MGDPConfig;
 import src.toi_et_moi.mgdp.Mgdp;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPItems;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
@@ -157,7 +158,7 @@ public class SwapModifier extends GolemModifier {
     }
 
     private static void setCooldown(Player player) {
-        int ticks = src.toi_et_moi.mgdp.Config.swapCooldown * 20;
+        int ticks = MGDPConfig.swapCooldown * 20;
         COOLDOWNS.put(player.getUUID(), player.level().getGameTime() + ticks);
     }
 }

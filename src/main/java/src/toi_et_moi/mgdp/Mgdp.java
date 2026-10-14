@@ -36,8 +36,8 @@ public class Mgdp {
 		MGDPItems.register();
 		src.toi_et_moi.mgdp.network.MGDPNetwork.register();
 			PACKET_HANDLER = src.toi_et_moi.mgdp.network.MGDPNetwork.CHANNEL;
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
-		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_SPEC);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, MGDPConfig.COMMON_SPEC);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, MGDPConfig.CLIENT_SPEC);
 	}
 
 	@SubscribeEvent
@@ -221,7 +221,7 @@ public class Mgdp {
         @SubscribeEvent
         public static void onRenderOverlay(net.minecraftforge.client.event.RenderGuiOverlayEvent event) {
             if (event.getOverlay() != net.minecraftforge.client.gui.overlay.VanillaGuiOverlay.SUBTITLES.type()) return;
-            if (!src.toi_et_moi.mgdp.Config.golemHealthWarning) return;
+            if (!MGDPConfig.golemHealthWarning) return;
             var mc = net.minecraft.client.Minecraft.getInstance();
             if (mc.player == null || mc.level == null) return;
             // Cache entity scan to every 10 ticks for performance

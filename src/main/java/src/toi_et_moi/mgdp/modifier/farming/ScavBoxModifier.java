@@ -5,13 +5,11 @@ import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.mode.GolemModes;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -31,7 +29,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.network.PacketDistributor;
-import src.toi_et_moi.mgdp.Config;
+import src.toi_et_moi.mgdp.MGDPConfig;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import src.toi_et_moi.mgdp.network.MGDPNetwork;
 import src.toi_et_moi.mgdp.network.ScavStatusPacket;
@@ -124,13 +122,13 @@ public class ScavBoxModifier extends GolemModifier {
 
 		// 计时条件：必须处于停留行为模式且无战斗目标；状态经数据包推送到头顶渲染
 		if (golem.getTarget() != null) {
-			if (Config.scavShowCountdown && golem.tickCount % STATUS_INTERVAL == 0) {
+			if (MGDPConfig.scavShowCountdown && golem.tickCount % STATUS_INTERVAL == 0) {
 				sendStatus(golem, ScavStatusPacket.STATE_COMBAT, 0);
 			}
 			return;
 		}
 		if (golem.getMode() != GolemModes.STAND) {
-			if (Config.scavShowCountdown && golem.tickCount % STATUS_INTERVAL == 0) {
+			if (MGDPConfig.scavShowCountdown && golem.tickCount % STATUS_INTERVAL == 0) {
 				sendStatus(golem, ScavStatusPacket.STATE_NO_MODE, 0);
 			}
 			return;
@@ -141,7 +139,7 @@ public class ScavBoxModifier extends GolemModifier {
 		long cooldown = cooldownTicks(level);
 		if (idle < cooldown) {
 			data.putLong(TAG_IDLE, idle);
-			if (Config.scavShowCountdown && golem.tickCount % STATUS_INTERVAL == 0) {
+			if (MGDPConfig.scavShowCountdown && golem.tickCount % STATUS_INTERVAL == 0) {
 				sendStatus(golem, ScavStatusPacket.STATE_COUNTING, cooldown - idle);
 			}
 			return;
@@ -171,7 +169,7 @@ public class ScavBoxModifier extends GolemModifier {
 	}
 
 	private long cooldownTicks(int level) {
-		int minutes = Config.scavCooldownBaseMinutes - (level - 1) * Config.scavCooldownPerLevel;
+		int minutes = MGDPConfig.scavCooldownBaseMinutes - (level - 1) * MGDPConfig.scavCooldownPerLevel;
 		return Math.max(1, minutes) * 60L * 20L;
 	}
 
@@ -192,8 +190,8 @@ public class ScavBoxModifier extends GolemModifier {
 		// 2. 联动模组专属表：装了哪个模组就按配置概率滚哪张（未配置的恒触发）
 		for (String[] entry : MOD_TABLES) {
 			if (ModList.get().isLoaded(entry[0])) {
-				double chance = Config.scavModTableChances == null ? 1.0
-						: Config.scavModTableChances.getOrDefault(entry[0], 1.0);
+				double chance = MGDPConfig.scavModTableChances == null ? 1.0
+						: MGDPConfig.scavModTableChances.getOrDefault(entry[0], 1.0);
 				if (sl.random.nextDouble() < chance) {
 					rollTableTimes(haul, sl, ResourceLocation.tryParse(entry[1]), origin, mult);
 				}
@@ -325,7 +323,7 @@ public class ScavBoxModifier extends GolemModifier {
 	 * 每张表各自按 Config.lunaScavChance 掷一次；表不存在时原版返回 LootTable.EMPTY，静默无产出。
 	 */
 	private void rollLunaTables(List<ItemStack> haul, ServerLevel sl, Vec3 origin) {
-		double chance = Config.lunaScavChance;
+		double chance = MGDPConfig.lunaScavChance;
 		if (chance <= 0) return;
 		if (sl.random.nextDouble() < chance) {
 			haul.addAll(rollTable(sl, LUNA_VANILLA_TABLE, origin));
@@ -442,7 +440,7 @@ public class ScavBoxModifier extends GolemModifier {
 
 	private Set<ResourceLocation> getChestPool(ServerLevel sl) {
 		Object server = sl.getServer();
-		if (chestPool == null || poolServer != server || poolConfigVersion != Config.scavConfigVersion) {
+		if (chestPool == null || poolServer != server || poolConfigVersion != MGDPConfig.scavConfigVersion) {
 			chestPool = new HashSet<>();
 			// 枚举全部数据包中的 loot_tables/chests/*.json（原版 + 所有模组自动覆盖）
 			// 注意：listResources 返回的键是带 "loot_tables/" 前缀的完整相对路径
@@ -458,13 +456,13 @@ public class ScavBoxModifier extends GolemModifier {
 						}
 					});
 			LOGGER.info("[ScavBox] chest loot pool rebuilt: {} tables", chestPool.size());
-			if (Config.scavExcludeTables != null) {
-				for (String exclude : Config.scavExcludeTables) {
+			if (MGDPConfig.scavExcludeTables != null) {
+				for (String exclude : MGDPConfig.scavExcludeTables) {
 					chestPool.remove(new ResourceLocation(exclude));
 				}
 			}
 			poolServer = server;
-			poolConfigVersion = Config.scavConfigVersion;
+			poolConfigVersion = MGDPConfig.scavConfigVersion;
 		}
 		return chestPool;
 	}

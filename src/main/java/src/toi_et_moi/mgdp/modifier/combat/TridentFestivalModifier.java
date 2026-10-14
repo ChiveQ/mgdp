@@ -13,11 +13,8 @@ import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.List;
+import src.toi_et_moi.mgdp.MGDPConfig;
 
 public class TridentFestivalModifier extends GolemModifier {
 
@@ -79,7 +76,7 @@ public class TridentFestivalModifier extends GolemModifier {
 		final net.minecraft.world.entity.Entity finalOwner = owner;
 		// Visual explosion + block destruction (if enabled)
 		sl.explode(owner, pos.getX(), pos.getY(), pos.getZ(), 6.0f,
-				src.toi_et_moi.mgdp.Config.destructionMode
+				MGDPConfig.destructionMode
 						? Level.ExplosionInteraction.BLOCK
 						: Level.ExplosionInteraction.NONE);
 

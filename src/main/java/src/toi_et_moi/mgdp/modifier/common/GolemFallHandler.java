@@ -1,7 +1,5 @@
 package src.toi_et_moi.mgdp.modifier.common;
 
-import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
-import dev.xkmc.modulargolems.content.entity.dog.DogGolemEntity;
 import dev.xkmc.modulargolems.content.entity.dog.DogGolemEntity;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.player.Player;
@@ -10,7 +8,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import src.toi_et_moi.mgdp.Config;
+import src.toi_et_moi.mgdp.MGDPConfig;
 import src.toi_et_moi.mgdp.Mgdp;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
@@ -45,7 +43,7 @@ public class GolemFallHandler {
 		if (!(event.getEntity() instanceof Player player)) return;
 		if (player.isPassenger()) return;
 		if (player.onGround()) return;
-		if ((double)player.fallDistance <= Config.dogFallDistance && player.getDeltaMovement().y >= -1.5) return;
+		if ((double)player.fallDistance <= MGDPConfig.dogFallDistance && player.getDeltaMovement().y >= -1.5) return;
 
 		// Skip if player already has fall immunity
 		if (player.isCreative() || player.isSpectator()) return;

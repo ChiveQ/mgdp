@@ -24,7 +24,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
-import src.toi_et_moi.mgdp.Config;
+import src.toi_et_moi.mgdp.MGDPConfig;
 import dev.toi_et_moi.mgdp.compat.l2complements.LCProxy;
 
 import java.util.ArrayDeque;
@@ -103,7 +103,7 @@ public class MinerModifier extends GolemModifier {
 
 		Level levelW = golem.level();
 		BlockPos center = golem.blockPosition();
-		Set<String> extra = Config.minerExtraBlocks;
+		Set<String> extra = MGDPConfig.minerExtraBlocks;
 
 		UUID id = golem.getUUID();
 		// 工作预算制：每 tick +1 工作点（上限 MAX_WORK），只对"触发挖掘"计费

@@ -30,7 +30,7 @@ import src.toi_et_moi.mgdp.jukebox.JukeboxGolem;
 import net.minecraftforge.common.ForgeMod;
 
 
-import src.toi_et_moi.mgdp.Config;
+import src.toi_et_moi.mgdp.MGDPConfig;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import src.toi_et_moi.mgdp.init.IFlipData;
 
@@ -513,7 +513,7 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
 	@Redirect(method = "setTarget",
 			  at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Mob;setTarget(Lnet/minecraft/world/entity/LivingEntity;)V"))
 	private void mgdp$redirectAutoAggro(Mob mob, LivingEntity target) {
-		if (!Config.mobAutoAggro) return;
+		if (!MGDPConfig.mobAutoAggro) return;
 
 		long now = this.level().getGameTime();
 		Long last = aaggroLast.get(mob.getUUID());

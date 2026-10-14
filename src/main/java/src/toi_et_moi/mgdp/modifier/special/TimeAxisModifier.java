@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import src.toi_et_moi.mgdp.Config;
+import src.toi_et_moi.mgdp.MGDPConfig;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -90,7 +90,7 @@ public class TimeAxisModifier extends GolemModifier {
 
 	@SuppressWarnings("unchecked")
 	private void accelerateBlocks(ServerLevel level, AbstractGolemEntity<?, ?> golem) {
-		int speed = Config.timeAxisSpeed;
+		int speed = MGDPConfig.timeAxisSpeed;
 		if (speed <= 0) return;
 
 		int r = 4;
