@@ -45,7 +45,7 @@ public class MGDPModifiers {
     public static final RegistryEntry<HarvestCropModifier> HARVEST_CROP;
     public static final RegistryEntry<GolemModifier> FLIGHT;
     public static final RegistryEntry<AttributeOperationModifier> ROCKET_FLIGHT;
-    public static final RegistryEntry<GolemModifier> SPIRIT;
+    public static final RegistryEntry<SpiritModifier> SPIRIT;
     public static final RegistryEntry<PotionAuraModifier> POTION_AURA;
     public static final RegistryEntry<RebirthModifier> REBIRTH;
     public static final RegistryEntry<SimpleFlagModifier> UNSTOPPABLE;
