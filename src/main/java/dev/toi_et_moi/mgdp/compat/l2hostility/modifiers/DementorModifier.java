@@ -35,8 +35,4 @@ public class DementorModifier extends GolemModifier {
 		event.setAmount(Math.min(amount, reduced));
 	}
 
-	@Override
-	public List<MutableComponent> getDetail(int v) {
-		return List.of(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GREEN));
-	}
 }

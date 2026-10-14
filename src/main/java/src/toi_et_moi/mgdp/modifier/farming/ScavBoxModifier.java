@@ -114,11 +114,6 @@ public class ScavBoxModifier extends GolemModifier {
 		super(StatFilterType.MASS, 3);
 	}
 
-	@Override
-	public List<MutableComponent> getDetail(int v) {
-		return List.of(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GREEN));
-	}
-
 	private static final int STATUS_INTERVAL = 20; // 头顶状态推送间隔：1 秒
 
 	@Override

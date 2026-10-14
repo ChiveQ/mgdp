@@ -104,8 +104,4 @@ public class BombDisposalModifier extends GolemModifier {
 		return ItemStack.EMPTY;
 	}
 
-	@Override
-	public List<MutableComponent> getDetail(int v) {
-		return List.of(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GREEN));
-	}
 }

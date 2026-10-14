@@ -14,8 +14,4 @@ public class UnbreakableModifier extends GolemModifier {
 		super(StatFilterType.HEALTH, 1);
 	}
 
-	@Override
-	public List<MutableComponent> getDetail(int v) {
-		return List.of(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GREEN));
-	}
 }

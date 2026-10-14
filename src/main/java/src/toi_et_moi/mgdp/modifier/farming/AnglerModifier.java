@@ -111,8 +111,4 @@ public class AnglerModifier extends GolemModifier {
 		return false;
 	}
 
-	@Override
-	public List<MutableComponent> getDetail(int v) {
-		return List.of(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GREEN));
-	}
 }

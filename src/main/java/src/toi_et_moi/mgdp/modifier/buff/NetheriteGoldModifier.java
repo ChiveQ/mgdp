@@ -24,8 +24,4 @@ public class NetheriteGoldModifier extends AttributeGolemModifier {
         addFlag.accept(GolemFlags.FIRE_IMMUNE);
     }
 
-    @Override
-    public @NotNull List<MutableComponent> getDetail(int v) {
-        return List.of(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GREEN));
-    }
 }
