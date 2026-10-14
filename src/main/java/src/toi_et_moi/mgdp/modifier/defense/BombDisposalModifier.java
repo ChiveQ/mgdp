@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.defense;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.ChatFormatting;
@@ -7,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.item.PrimedTnt;
@@ -42,7 +44,7 @@ public class BombDisposalModifier extends GolemModifier {
 		// Check if any golem with this modifier is nearby
 		for (AbstractGolemEntity<?, ?> golem : explosionLevel.getEntitiesOfClass(AbstractGolemEntity.class,
 				net.minecraft.world.phys.AABB.ofSize(center, 70, 70, 70))) {
-			if (golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.BOMB_DISPOSAL.get())) {
+			if (golem.getModifiers().containsKey(MGDPModifiers.BOMB_DISPOSAL.get())) {
 				event.setCanceled(true);
 				return;
 			}
@@ -84,7 +86,7 @@ public class BombDisposalModifier extends GolemModifier {
 		net.minecraft.resources.ResourceLocation key = net.minecraft.world.entity.EntityType.getKey(entity.getType());
 		if (key == null) return ItemStack.EMPTY;
 		// Try original name first (some mods use same ID for entity and item)
-		net.minecraft.resources.ResourceLocation itemKey = new net.minecraft.resources.ResourceLocation(key.getNamespace(), key.getPath().toLowerCase());
+		net.minecraft.resources.ResourceLocation itemKey = ResourceLocation.fromNamespaceAndPath(key.getNamespace(), key.getPath().toLowerCase());
 		var item = net.minecraftforge.registries.ForgeRegistries.ITEMS.getValue(itemKey);
 		if (item != null && item != net.minecraft.world.item.Items.AIR) {
 			return new ItemStack(item);
@@ -93,7 +95,7 @@ public class BombDisposalModifier extends GolemModifier {
 		String stripped = key.getPath().toLowerCase()
 				.replace("primed_", "").replace("primed", "").replace("fuse_", "");
 		if (!stripped.equals(key.getPath().toLowerCase())) {
-			net.minecraft.resources.ResourceLocation strippedKey = new net.minecraft.resources.ResourceLocation(key.getNamespace(), stripped);
+			net.minecraft.resources.ResourceLocation strippedKey = ResourceLocation.fromNamespaceAndPath(key.getNamespace(), stripped);
 			var strippedItem = net.minecraftforge.registries.ForgeRegistries.ITEMS.getValue(strippedKey);
 			if (strippedItem != null && strippedItem != net.minecraft.world.item.Items.AIR) {
 				return new ItemStack(strippedItem);

@@ -1,5 +1,8 @@
 package dev.toi_et_moi.mgdp.compat.revelation.modifiers;
 
+import dev.toi_et_moi.mgdp.compat.goety.GoetyDispatch;
+import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
@@ -42,8 +45,8 @@ public class CruelModifier extends GolemModifier {
 		if (!net.minecraftforge.fml.ModList.get().isLoaded("goety")) return;
 		if (golem.tickCount % 20 != 0) return;
 
-		var freezing = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "freezing"));
-		var chillHide = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "chill_hide"));
+		var freezing = ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"freezing"));
+		var chillHide = ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"chill_hide"));
 		if (freezing != null) golem.removeEffect(freezing);
 
 		// Aura
@@ -64,7 +67,7 @@ public class CruelModifier extends GolemModifier {
 
 		// Weather lock: conduit + cold biome = thunderstorm
 		if (golem.level() instanceof ServerLevel wl) {
-			boolean hasConduit = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.CONDUIT.get());
+			boolean hasConduit = golem.getModifiers().containsKey(MGDPModifiers.CONDUIT.get());
 			boolean isCold = golem.level().getBiome(golem.blockPosition()).value().coldEnoughToSnow(golem.blockPosition());
 			if (hasConduit && isCold && !wl.isThundering()) {
 				wl.setWeatherParameters(0, 4800, true, true);
@@ -77,7 +80,7 @@ public class CruelModifier extends GolemModifier {
 			if (wallTarget != null && wallTarget.isAlive() && golem.tickCount % 60 == 0) {
 				int wallMult = golem.level().isRaining() || golem.level().isThundering() ? 3 : 2;
 				try {
-					var wallType = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("goety", "glacial_wall"));
+					var wallType = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "glacial_wall"));
 					if (wallType != null) {
 						var ctor = Class.forName("com.Polarice3.Goety.common.entities.neutral.GlacialWall")
 								.getConstructor(net.minecraft.world.entity.EntityType.class, net.minecraft.world.level.Level.class);
@@ -142,10 +145,10 @@ public class CruelModifier extends GolemModifier {
 			int choice = rng.nextInt(3);
 
 			if (choice == 0) {
-				boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+				boolean all = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get());
 				data.putInt(TAG_BARRAGE, (all ? 12 : 8) * mult);
 			} else if (choice == 1) {
-				var chunkType = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("goety", "ice_chunk"));
+				var chunkType = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"ice_chunk"));
 				if (chunkType != null) {
 					var ctor = Class.forName("com.Polarice3.Goety.common.entities.projectiles.IceChunk")
 							.getConstructor(net.minecraft.world.level.Level.class, LivingEntity.class, LivingEntity.class);
@@ -176,7 +179,7 @@ public class CruelModifier extends GolemModifier {
 					}
 				}
 			} else if (choice == 2) {
-				var cycloneType = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("goety", "cyclone"));
+				var cycloneType = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"cyclone"));
 				if (cycloneType != null) {
 					var ctor = Class.forName("com.Polarice3.Goety.common.entities.projectiles.Cyclone")
 							.getConstructor(net.minecraft.world.level.Level.class, LivingEntity.class, double.class, double.class, double.class);
@@ -206,7 +209,7 @@ public class CruelModifier extends GolemModifier {
 
 	private void fireBarrageVolley(AbstractGolemEntity<?, ?> golem, LivingEntity target, float atk) throws Exception {
 		var rng = golem.getRandom();
-		var spearType = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("goety", "ice_spear"));
+		var spearType = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"ice_spear"));
 		if (spearType == null) return;
 
 		var ctor = Class.forName("com.Polarice3.Goety.common.entities.projectiles.IceSpear")
@@ -237,7 +240,7 @@ public class CruelModifier extends GolemModifier {
 		// Mix in one Ice Storm
 		int stormCount = 1;
 		for (int si = 0; si < stormCount; si++) {
-			var stormType = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("goety", "ice_storm"));
+			var stormType = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"ice_storm"));
 			if (stormType != null) {
 				var stormCtor = Class.forName("com.Polarice3.Goety.common.entities.projectiles.IceStorm")
 						.getConstructor(LivingEntity.class, double.class, double.class, double.class, net.minecraft.world.level.Level.class);
@@ -259,11 +262,11 @@ public class CruelModifier extends GolemModifier {
 		var source = event.getSource();
 		boolean isFrost = false;
 		for (var frost : new ResourceLocation[]{
-				new ResourceLocation("goety", "direct_freeze"),
-				new ResourceLocation("goety", "indirect_freeze"),
-				new ResourceLocation("goety", "ice_spike"),
-				new ResourceLocation("goety", "ice_bouquet"),
-				new ResourceLocation("goety", "frost_breath"),
+				ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"direct_freeze"),
+				ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"indirect_freeze"),
+				ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"ice_spike"),
+				ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"ice_bouquet"),
+				ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"frost_breath"),
 		}) {
 			if (source.is(ResourceKey.create(Registries.DAMAGE_TYPE, frost))) {
 				isFrost = true;
@@ -279,7 +282,7 @@ public class CruelModifier extends GolemModifier {
 				multiplier = 10.99F;
 			}
 		}
-		boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+		boolean all = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get());
 		if (all) multiplier *= 1.5F;
 		event.setAmount(event.getAmount() * multiplier);
 	}
@@ -289,11 +292,11 @@ public class CruelModifier extends GolemModifier {
 		if (!net.minecraftforge.fml.ModList.get().isLoaded("goety")) return;
 		var src = event.getSource();
 		for (var frost : new ResourceLocation[]{
-				new ResourceLocation("goety", "direct_freeze"),
-				new ResourceLocation("goety", "indirect_freeze"),
-				new ResourceLocation("goety", "ice_spike"),
-				new ResourceLocation("goety", "ice_bouquet"),
-				new ResourceLocation("goety", "frost_breath"),
+				ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"direct_freeze"),
+				ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"indirect_freeze"),
+				ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"ice_spike"),
+				ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"ice_bouquet"),
+				ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"frost_breath"),
 		}) {
 			if (src.is(ResourceKey.create(Registries.DAMAGE_TYPE, frost))) {
 				event.setCanceled(true);

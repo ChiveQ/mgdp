@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import src.toi_et_moi.mgdp.item.IronCurtainItem;
+import src.toi_et_moi.mgdp.init.IronCurtainItem;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {

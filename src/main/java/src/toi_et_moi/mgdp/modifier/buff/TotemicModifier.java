@@ -6,6 +6,7 @@ import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class TotemicModifier extends GolemModifier {
 	}
 
 	@Override
-	public List<MutableComponent> getDetail(int v) {
+	public @NotNull List<MutableComponent> getDetail(int v) {
 		int idx = Math.min(v - 1, INTERVALS.length - 1);
 		int interval = INTERVALS[idx] / 20;
 		return List.of(Component.translatable(getDescriptionId() + ".desc", interval).withStyle(ChatFormatting.GREEN));

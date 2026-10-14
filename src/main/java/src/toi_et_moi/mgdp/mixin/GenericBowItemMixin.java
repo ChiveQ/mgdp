@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 /**
  * 修复莱特兰弓艺（L2Archery）的箭矢增伤：

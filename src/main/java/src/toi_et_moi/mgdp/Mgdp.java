@@ -6,7 +6,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import src.toi_et_moi.mgdp.item.IronCurtainItem;
+import src.toi_et_moi.mgdp.init.IronCurtainItem;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -16,7 +16,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import org.slf4j.Logger;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPItems;
 import src.toi_et_moi.mgdp.init.MGDPKeyMappings;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import src.toi_et_moi.mgdp.modifier.defense.ChargedShieldModifier;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
@@ -32,7 +32,7 @@ public class Mgdp {
 
 	public Mgdp() {
 		MinecraftForge.EVENT_BUS.register(this);
-		MGDPModifiers.register();
+//		MGDPModifiers.register();
 		MGDPItems.register();
 		src.toi_et_moi.mgdp.network.MGDPNetwork.register();
 			PACKET_HANDLER = src.toi_et_moi.mgdp.network.MGDPNetwork.CHANNEL;
@@ -107,7 +107,7 @@ public class Mgdp {
 
 	@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 	public static class ClientTickHandler {
-		static java.util.List<? extends dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity> cachedLowHpGolems = java.util.Collections.emptyList();
+		static java.util.List<? extends AbstractGolemEntity<?,?>> cachedLowHpGolems = java.util.Collections.emptyList();
 		static long lastScanTick = -1;
 		@SubscribeEvent
 		public static void onClientTick(net.minecraftforge.event.TickEvent.ClientTickEvent event) {
@@ -155,8 +155,8 @@ public class Mgdp {
          */
         @SubscribeEvent
         public static void onRenderScavCountdown(net.minecraftforge.client.event.RenderLivingEvent.Post<?, ?> event) {
-            if (!(event.getEntity() instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity golem)) return;
-            if (!golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.SCAV_BOX.get())) return;
+            if (!(event.getEntity() instanceof AbstractGolemEntity<?,?> golem)) return;
+            if (!golem.getModifiers().containsKey(MGDPModifiers.SCAV_BOX.get())) return;
             long[] st = src.toi_et_moi.mgdp.network.ScavStatusPacket.CLIENT_STATUS.get(event.getEntity().getId());
             if (st == null) return;
             var level = net.minecraft.client.Minecraft.getInstance().level;
@@ -199,7 +199,7 @@ public class Mgdp {
         
         @SubscribeEvent
         public static void onRenderLivingPre(net.minecraftforge.client.event.RenderLivingEvent.Pre<?, ?> event) {
-            if (!(event.getEntity() instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity golem)) return;
+            if (!(event.getEntity() instanceof AbstractGolemEntity<?,?> golem)) return;
             int progress = ((src.toi_et_moi.mgdp.init.IFlipData) golem).mgdp$getFlipProgress();
             if (progress <= 0) return;
             float angle = (float) java.lang.Math.toRadians(progress * 0.9f);
@@ -212,7 +212,7 @@ public class Mgdp {
 
         @SubscribeEvent
         public static void onRenderPre(net.minecraftforge.client.event.RenderLivingEvent.Pre<?, ?> event) {
-            if (!(event.getEntity() instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity golem)) return;
+            if (!(event.getEntity() instanceof AbstractGolemEntity<?,?> golem)) return;
             float windmill = ((src.toi_et_moi.mgdp.init.IFlipData) golem).mgdp$getWindmill();
             if (windmill <= 0) return;
             event.getPoseStack().mulPose(new org.joml.Quaternionf().rotationY((float) java.lang.Math.toRadians(windmill)));
@@ -230,10 +230,10 @@ public class Mgdp {
                 Mgdp.ClientTickHandler.lastScanTick = gameTime;
                 // 只统计玩家自己的傀儡：无主傀儡（如阵形召唤）和其他玩家的傀儡不告警
                 var ownerId = mc.player.getUUID();
-                Mgdp.ClientTickHandler.cachedLowHpGolems = mc.level.getEntitiesOfClass(
-                    dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity.class,
-                    mc.player.getBoundingBox().inflate(64),
-                    g -> g.isAlive() && ownerId.equals(g.getOwnerUUID()) && g.getHealth() / g.getMaxHealth() < 0.25f);
+//                Mgdp.ClientTickHandler.cachedLowHpGolems = mc.level.getEntitiesOfClass(
+//                    dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity.class,
+//                    mc.player.getBoundingBox().inflate(64),
+//                    g -> g.isAlive() && ownerId.equals(g.getOwnerUUID()) && g.getHealth() / g.getMaxHealth() < 0.25f);
             }
             var cache = Mgdp.ClientTickHandler.cachedLowHpGolems;
             java.util.List<net.minecraft.network.chat.MutableComponent> lines = new java.util.ArrayList<>();

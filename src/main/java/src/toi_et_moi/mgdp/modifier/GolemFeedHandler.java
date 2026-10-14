@@ -1,5 +1,7 @@
 package src.toi_et_moi.mgdp.modifier;
 
+import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
+import dev.toi_et_moi.mgdp.init.MGDP;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -20,14 +22,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.compat.goety_revelation.ProfaneStealHandler;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.compat.revelation.handlers.ProfaneStealHandler;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = MGDP.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GolemFeedHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -180,7 +181,7 @@ public class GolemFeedHandler {
         // 天启饥荒（The Profane）：进食恢复翻倍；配合万众归一（The Genesis）再翻倍（共4倍）
         if (ProfaneStealHandler.hasProfane(golem)) {
             healAmount *= 2;
-            if (golem.getModifiers().containsKey(MGDPModifiers.THE_GENESIS.get())) {
+            if (golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get())) {
                 healAmount *= 2;
             }
         }

@@ -15,7 +15,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class LastLineModifier extends GolemModifier {
 
 	private static final ResourceKey<Biome> FINAL_PLATEAU = ResourceKey.create(Registries.BIOME,
-			new ResourceLocation("twilightforest", "final_plateau"));
+			ResourceLocation.fromNamespaceAndPath(TFDispatch.MODID, "final_plateau"));
 
 	public LastLineModifier() {
 		super(StatFilterType.HEALTH, 1);
@@ -24,21 +24,16 @@ public class LastLineModifier extends GolemModifier {
 	@Override
     public void onAttacked(AbstractGolemEntity<?, ?> golem, LivingAttackEvent event, int level) {
 		if (golem.level().isClientSide()) return;
-		if (!ModList.get().isLoaded("twilightforest")) return;
-
 		// Only activate in the Final Plateau biome
 		var biome = golem.level().getBiome(golem.blockPosition());
 		if (!biome.is(FINAL_PLATEAU)) return;
-
 		// Get the direct damage source entity
 		Entity source = event.getSource().getEntity();
 		if (source == null) return;
-
 		// Don't reduce damage from golems or Twilight Forest entities
 		if (source instanceof AbstractGolemEntity) return;
 		var typeId = ForgeRegistries.ENTITY_TYPES.getKey(source.getType());
-		if (typeId != null && "twilightforest".equals(typeId.getNamespace())) return;
-
+		if (typeId != null && TFDispatch.MODID.equals(typeId.getNamespace())) return;
 		// Completely negate damage from all other sources
         event.setCanceled(true);
 	}

@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 @Mixin(FlameThrowerItem.class)
 public class FlameThrowerMixin {

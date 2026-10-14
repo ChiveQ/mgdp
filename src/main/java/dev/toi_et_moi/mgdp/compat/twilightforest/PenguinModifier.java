@@ -10,9 +10,10 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
-@Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+import java.util.List;
+
+//@Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PenguinModifier extends GolemModifier {
 
     public PenguinModifier() {
@@ -21,7 +22,7 @@ public class PenguinModifier extends GolemModifier {
 
     @Override
     public java.util.List<net.minecraft.network.chat.MutableComponent> getDetail(int v) {
-        return java.util.List.of(net.minecraft.network.chat.Component.translatable(getDescriptionId() + ".desc")
+        return List.of(net.minecraft.network.chat.Component.translatable(getDescriptionId() + ".desc")
                 .withStyle(net.minecraft.ChatFormatting.GREEN));
     }
 
@@ -29,11 +30,11 @@ public class PenguinModifier extends GolemModifier {
     public static void onLivingDeath(LivingDeathEvent event) {
         if (event.getSource().getEntity() instanceof AbstractGolemEntity<?, ?> golem
                 && !event.getEntity().level().isClientSide
-                && golem.getModifiers().containsKey(MGDPModifiers.PENGUIN.get())) {
+                && golem.getModifiers().containsKey(TFCompatRegistry.PENGUIN.get())) {
             LivingEntity target = event.getEntity();
             var level = target.level();
             var type = net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.get(
-                    new ResourceLocation("twilightforest", "penguin"));
+                    ResourceLocation.fromNamespaceAndPath(TFDispatch.MODID, "penguin"));
             if (type != null) {
                 var penguin = type.create(level);
                 if (penguin != null) {

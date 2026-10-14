@@ -2,6 +2,10 @@ package src.toi_et_moi.mgdp.modifier;
 
 import dev.xkmc.modulargolems.content.item.upgrade.IUpgradeItem;
 import dev.xkmc.modulargolems.content.modifier.common.AddSlotModifier;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public class MGDPAddSlotModifier extends AddSlotModifier {
@@ -14,14 +18,13 @@ public class MGDPAddSlotModifier extends AddSlotModifier {
     }
 
     @Override
-    public int addSlot(List<IUpgradeItem> list, int lv) {
+    public int addSlot(@NotNull List<IUpgradeItem> list, int lv) {
         return slots * lv;
     }
 
     @Override
-    public List<net.minecraft.network.chat.MutableComponent> getDetail(int v) {
-        return List.of(net.minecraft.network.chat.Component.translatable(
-                getDescriptionId() + ".desc", slots * v)
+    public @NotNull List<MutableComponent> getDetail(int v) {
+        return List.of(Component.translatable(getDescriptionId() + ".desc", slots * v)
                 .withStyle(net.minecraft.ChatFormatting.GREEN));
     }
 }

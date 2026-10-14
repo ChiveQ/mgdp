@@ -133,7 +133,7 @@ public class MindControlModifier extends GolemModifier {
 	private static EntityType<?> lookupServant(String namespace, String baseName, boolean suffix) {
 		String id = suffix ? baseName + "_servant" : baseName;
 		// Fast path: check the original namespace first (minecraft:zombie -> minecraft:zombie_servant = skip, goety:necromancer -> goety:necromancer_servant = hit)
-		EntityType<?> type = BuiltInRegistries.ENTITY_TYPE.containsKey(new ResourceLocation(namespace, id)) ? BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation(namespace, id)) : null;
+		EntityType<?> type = BuiltInRegistries.ENTITY_TYPE.containsKey(ResourceLocation.fromNamespaceAndPath(namespace, id)) ? BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation(namespace, id)) : null;
 		if (type != null) return type;
 		// Priority: same ns > exact goety: > goety addon > goety_ > others
 		EntityType<?> fallbackAddon = null;

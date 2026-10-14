@@ -22,7 +22,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.client.model.generators.ModelFile;
 import src.toi_et_moi.mgdp.init.BlackMourningItem;
-import src.toi_et_moi.mgdp.item.IronCurtainItem;
+import src.toi_et_moi.mgdp.init.IronCurtainItem;
 
 import java.util.function.Supplier;
 
@@ -72,7 +72,7 @@ public class MGDPItems {
     static {
         // 标签页
         MGDP_TAB = MGDP.REGISTRATE.buildModCreativeTab("mgdp_tab", "MG: Decisive Plan - Main",
-                    b -> b.icon(MGDPItems.FLIGHT::asStack));
+                    b -> b.icon(MGDPItems.FLIGHT::asStack).withSearchBar());
         // 手杖
         {
             IRON_CURTAIN = MGDP.REGISTRATE.item("iron_curtain", p -> new IronCurtainItem(p.stacksTo(1).rarity(Rarity.EPIC)))
@@ -162,10 +162,8 @@ public class MGDPItems {
             DEATH_KNELL = regUpgrade("death_knell", () -> MGDPModifiers.DEATH_KNELL, Rarity.EPIC).register();
             ECHO_TRIO = regUpgrade("echo_trio", () -> MGDPModifiers.ECHO_TRIO, Rarity.EPIC).register();
             MIND_CONTROL = regUpgrade("mind_control", () -> MGDPModifiers.MIND_CONTROL, 1,false,Rarity.EPIC).register();
-            CREATIVE_SLOT = regUpgrade("creative_slot", () -> MGDPModifiers.CREATIVE_SLOT)
-                    .properties(p -> p.stacksTo(64)).register(); // 堆叠？
-            CREATIVE_SLOT_100 = regUpgrade("creative_slot_100", () -> MGDPModifiers.CREATIVE_SLOT_100)
-                    .properties(p -> p.stacksTo(64)).register();
+            CREATIVE_SLOT = regUpgrade("creative_slot", () -> MGDPModifiers.CREATIVE_SLOT).register();
+            CREATIVE_SLOT_100 = regUpgrade("creative_slot_100", () -> MGDPModifiers.CREATIVE_SLOT_100).register();
             BRUSH = regUpgrade("brush", () -> MGDPModifiers.BRUSH).register();
             BOMB_DISPOSAL = regUpgrade("bomb_disposal", () -> MGDPModifiers.BOMB_DISPOSAL).register();
             PROJECTILE_DODGE = regUpgrade("projectile_dodge", () -> MGDPModifiers.PROJECTILE_DODGE, 1, true)

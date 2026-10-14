@@ -19,7 +19,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.EMERALD;
 public class HeroModifier extends GolemModifier {
 
 	private static final TagKey<EntityType<?>> RAIDERS = TagKey.create(
-			Registries.ENTITY_TYPE, new ResourceLocation("minecraft", "raiders"));
+			Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath("minecraft", "raiders"));
 
 	public HeroModifier() {
 		super(StatFilterType.MASS, 1);

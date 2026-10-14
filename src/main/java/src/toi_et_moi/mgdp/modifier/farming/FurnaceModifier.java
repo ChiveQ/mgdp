@@ -16,14 +16,10 @@ public class FurnaceModifier extends AbstractCookingModifier {
 		SimpleContainer container = new SimpleContainer(stack);
 		Level level = golem.level();
 		var manager = level.getRecipeManager();
-
-		Optional<AbstractCookingRecipe> ans = manager.getRecipeFor(RecipeType.SMELTING, container, level)
-				.map(r -> (AbstractCookingRecipe) r);
+		Optional<AbstractCookingRecipe> ans = manager.getRecipeFor(RecipeType.SMELTING, container, level).map(r -> r);
 		if (ans.isPresent()) return ans;
-		ans = manager.getRecipeFor(RecipeType.BLASTING, container, level)
-				.map(r -> (AbstractCookingRecipe) r);
+		ans = manager.getRecipeFor(RecipeType.BLASTING, container, level).map(r -> r);
 		if (ans.isPresent()) return ans;
-		return manager.getRecipeFor(RecipeType.SMOKING, container, level)
-				.map(r -> (AbstractCookingRecipe) r);
+		return manager.getRecipeFor(RecipeType.SMOKING, container, level).map(r -> r);
 	}
 }

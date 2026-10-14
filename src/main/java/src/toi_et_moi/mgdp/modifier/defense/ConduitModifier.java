@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.defense;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -38,7 +39,7 @@ public class ConduitModifier extends GolemModifier {
 
 		// Weather lock synergy with Lightning Storm
 		if (golem.tickCount % 20 == 0
-				&& golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.LIGHTNING_STORM.get())) {
+				&& golem.getModifiers().containsKey(MGDPModifiers.LIGHTNING_STORM.get())) {
 			if (golem.level() instanceof ServerLevel sl && !sl.isThundering()) {
 				sl.setWeatherParameters(0, 4800, true, true);
 			}

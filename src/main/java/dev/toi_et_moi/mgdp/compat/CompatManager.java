@@ -6,6 +6,7 @@ import dev.toi_et_moi.mgdp.compat.cataclysm.CataSlotTemplateRegistry;
 import dev.toi_et_moi.mgdp.compat.create.CreateDispatch;
 import dev.toi_et_moi.mgdp.compat.dungeonsdelight.DDDispatch;
 import dev.toi_et_moi.mgdp.compat.goety.GoetyDispatch;
+import dev.toi_et_moi.mgdp.compat.goety.GoetySlotTemplateRegistry;
 import dev.toi_et_moi.mgdp.compat.golemdungeons.GDDispatch;
 import dev.toi_et_moi.mgdp.compat.golemmagicka.GolemMagickaDispatch;
 import dev.toi_et_moi.mgdp.compat.ironsspellbooks.ISSDispatch;
@@ -50,8 +51,8 @@ public class CompatManager {
     public static void registerSlotTemplates(){
         if(ModList.get().isLoaded(LCDispatch.MODID)) LIST.add(new LCDispatch());
         if(ModList.get().isLoaded(CataDispatch.MODID)) CataSlotTemplateRegistry.register();
-        if(ModList.get().isLoaded(GoetyDispatch.MODID)) ISSSlotTemplateRegistry.register();
         if(ModList.get().isLoaded(ISSDispatch.MODID)) ISSSlotTemplateRegistry.register();
+        if(ModList.get().isLoaded(GoetyDispatch.MODID)) GoetySlotTemplateRegistry.register();
         if(ModList.get().isLoaded(JerotesDispatch.MODID)) LIST.add(new JerotesDispatch());
     }
 

@@ -1,5 +1,7 @@
 package dev.toi_et_moi.mgdp.compat.revelation.modifiers;
 
+import dev.toi_et_moi.mgdp.compat.goety.GoetyDispatch;
+import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -14,7 +16,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.ArrayList;
 import java.util.List;
 
-import src.toi_et_moi.mgdp.compat.goety_revelation.ProfaneStealHandler;
+import dev.toi_et_moi.mgdp.compat.revelation.handlers.ProfaneStealHandler;
 
 public class WitchKingModifier extends GolemModifier {
 
@@ -25,8 +27,7 @@ public class WitchKingModifier extends GolemModifier {
     private static List<MobEffect> NEGATIVE_EFFECTS = null;
 
     private static MobEffect goety(String name) {
-        var effect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", name));
-        return effect;
+        return ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, name));
     }
 
     public WitchKingModifier() {
@@ -72,7 +73,7 @@ public class WitchKingModifier extends GolemModifier {
 
 		// Self and ally buffing (every 3 seconds)
 		if (golem.tickCount % 60 == 0) {
-			int amp = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get()) ? AMPLIFIER + 1 : AMPLIFIER;
+			int amp = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get()) ? AMPLIFIER + 1 : AMPLIFIER;
 			var box = golem.getBoundingBox().inflate(RANGE);
 			for (var entity : golem.level().getEntitiesOfClass(LivingEntity.class, box, e -> e.isAlive())) {
 				if (entity.distanceToSqr(golem) > RANGE * RANGE) continue;

@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -35,7 +36,7 @@ public class BrushModifier extends GolemModifier {
 		// Apply suspicious_smell if FruitsDelight is loaded
 		if (net.minecraftforge.fml.ModList.get().isLoaded("fruitsdelight")) {
 			var smell = net.minecraftforge.registries.ForgeRegistries.MOB_EFFECTS.getValue(
-					new net.minecraft.resources.ResourceLocation("fruitsdelight", "suspicious_smell"));
+					ResourceLocation.fromNamespaceAndPath("fruitsdelight", "suspicious_smell"));
 			if (smell != null) {
 				var owner = golem.getOwner();
 				if (owner != null && owner.isAlive() && golem.distanceToSqr(owner) < 400

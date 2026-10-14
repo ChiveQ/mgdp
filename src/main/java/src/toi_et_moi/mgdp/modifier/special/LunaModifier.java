@@ -24,7 +24,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import src.toi_et_moi.mgdp.Config;
 import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 import java.util.HashMap;
 import java.util.List;

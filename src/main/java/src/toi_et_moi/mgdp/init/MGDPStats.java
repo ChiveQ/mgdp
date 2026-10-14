@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.init;
 
+import dev.toi_et_moi.mgdp.init.MGDP;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -21,7 +22,7 @@ public class MGDPStats {
 	}
 
 	private static ResourceLocation register(String name, StatFormatter formatter) {
-		ResourceLocation id = new ResourceLocation(Mgdp.MODID, name);
+		ResourceLocation id = MGDP.loc(name);
 		Registry.register(BuiltInRegistries.CUSTOM_STAT, id, id);
 		Stats.CUSTOM.get(id);
 		return id;

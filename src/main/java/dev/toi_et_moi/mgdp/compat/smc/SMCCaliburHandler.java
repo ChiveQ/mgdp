@@ -1,4 +1,4 @@
-package src.toi_et_moi.mgdp.compat;
+package dev.toi_et_moi.mgdp.compat.smc;
 
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.core.BlockPos;

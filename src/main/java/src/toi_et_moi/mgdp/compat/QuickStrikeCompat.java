@@ -1,7 +1,9 @@
 package src.toi_et_moi.mgdp.compat;
 
+import dev.toi_et_moi.mgdp.init.MGDP;
 import dev.xkmc.mob_weapon_api.registry.WeaponRegistry;
 import dev.xkmc.mob_weapon_api.registry.WeaponStatus;
+import dev.xkmc.modulargolems.content.item.ranged.MetalGolemBowItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CrossbowItem;
@@ -31,10 +33,10 @@ public class QuickStrikeCompat {
 
 	@SubscribeEvent
 	public static void onCommonSetup(FMLCommonSetupEvent event) {
-		WeaponRegistry.BOW.register(new ResourceLocation(Mgdp.MODID, "quick_strike_bow"),
+		WeaponRegistry.BOW.register(MGDP.loc( "quick_strike_bow"),
 				QuickStrikeCompat::isGenericBow,
 				(user, stack) -> new QuickStrikeBowBehavior(), 5);
-		WeaponRegistry.CROSSBOW.register(new ResourceLocation(Mgdp.MODID, "quick_strike_crossbow"),
+		WeaponRegistry.CROSSBOW.register(MGDP.loc( "quick_strike_crossbow"),
 				stack -> WeaponStatus.RANGED.of(stack.getItem() instanceof CrossbowItem),
 				(user, stack) -> new QuickStrikeCrossbowBehavior(), 5);
 	}
@@ -43,7 +45,7 @@ public class QuickStrikeCompat {
 		if (!(stack.getItem() instanceof BowItem)) return WeaponStatus.RANGED.of(false);
 		String cls = stack.getItem().getClass().getName();
 		// MetalGolemBowItem（modulargolems 专属机械弓）走 golem_bow 行为，不能抢
-		if (cls.equals("dev.xkmc.modulargolems.content.item.ranged.MetalGolemBowItem"))
+		if(stack.getItem() instanceof MetalGolemBowItem)
 			return WeaponStatus.RANGED.of(false);
 		// L2Archery 弓走 L2BowBehavior，保留莱特兰弓艺完整逻辑
 		if (cls.startsWith("dev.xkmc.l2archery.")) return WeaponStatus.RANGED.of(false);

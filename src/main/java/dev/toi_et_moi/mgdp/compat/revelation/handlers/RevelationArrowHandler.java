@@ -1,4 +1,4 @@
-package src.toi_et_moi.mgdp.compat.goety_revelation;
+package dev.toi_et_moi.mgdp.compat.revelation.handlers;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -16,7 +16,7 @@ import src.toi_et_moi.mgdp.Mgdp;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+//@Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class RevelationArrowHandler {
 
     private static final List<ResourceLocation> NEGATIVE_EFFECTS = new ArrayList<>();

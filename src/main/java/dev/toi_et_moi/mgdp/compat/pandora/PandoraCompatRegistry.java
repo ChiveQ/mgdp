@@ -3,8 +3,9 @@ package dev.toi_et_moi.mgdp.compat.pandora;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.modulargolems.content.item.upgrade.SimpleUpgradeItem;
 
-import static dev.xkmc.modulargolems.init.registrate.GolemItems.regModUpgrade;
-import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
+import static dev.toi_et_moi.mgdp.init.registrate.MGDPItems.regModUpgrade;
+import static dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers.reg;
+
 
 public class PandoraCompatRegistry {
 

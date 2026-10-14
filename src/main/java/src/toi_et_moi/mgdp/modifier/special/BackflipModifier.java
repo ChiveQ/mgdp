@@ -17,7 +17,7 @@ public class BackflipModifier extends AttributeGolemModifier {
 	private static final String TAG_FLIP_TICK = "mgdp_flip_tick";
 
 	public BackflipModifier() {
-		super(1, new AttrEntry(() -> GolemTypes.STAT_ARMOR.get(), () -> 1.0));
+		super(1, new AttrEntry(GolemTypes.STAT_ARMOR, () -> 1.0));
 	}
 
 	@Override

@@ -25,7 +25,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 import src.toi_et_moi.mgdp.Config;
-import src.toi_et_moi.mgdp.compat.L2Compat;
+import dev.toi_et_moi.mgdp.compat.l2complements.LCProxy;
 
 import java.util.ArrayDeque;
 import java.util.HashSet;
@@ -174,7 +174,7 @@ public class MinerModifier extends GolemModifier {
 			BlockPos pos, BlockState state, ItemStack tool, float durabilityCost, BlockPos dropAt) {
 		BlockEntity be = level.getBlockEntity(pos);
 		List<ItemStack> drops = Block.getDrops(state, sl, pos, be, golem, tool);
-		L2Compat.tryAutoSmelt(sl, tool, drops); // 自动冶炼（莱特兰扩充附魔）
+		LCProxy.tryAutoSmelt(sl, tool, drops); // 自动冶炼（莱特兰扩充附魔）
 		for (ItemStack drop : drops) {
 			Block.popResource(level, dropAt, drop);
 		}

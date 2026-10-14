@@ -1,4 +1,6 @@
 package dev.toi_et_moi.mgdp.compat.revelation.modifiers;
+import dev.toi_et_moi.mgdp.compat.goety.GoetyDispatch;
+import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 
 import dev.xkmc.modulargolems.content.core.StatFilterType;
@@ -14,7 +16,6 @@ import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
 import java.util.function.Consumer;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.registries.ForgeRegistries;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
 public class PyreLordModifier extends GolemModifier {
 
@@ -53,12 +54,12 @@ public class PyreLordModifier extends GolemModifier {
     @Override
     public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
         if (golem.level().isClientSide()) return;
-        boolean all = golem.getModifiers().containsKey(MGDPModifiers.THE_GENESIS.get());
+        boolean all = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get());
         if (golem.tickCount % (all ? 10 : 20) != 0) return; // 万众归一: meteor rate doubled
         if (!net.minecraftforge.fml.ModList.get().isLoaded("goety")) return;
 
         // Remove burn_hex from self (immunity)
-        var hex = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "burn_hex"));
+        var hex = ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"burn_hex"));
         if (hex != null) {
             golem.removeEffect(hex);
             // Burn hex aura: apply to valid hostile targets within 35 blocks
@@ -75,7 +76,7 @@ public class PyreLordModifier extends GolemModifier {
         if (spawnY < 0) return;
 
         try {
-            var type = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("goety", "nether_meteor"));
+            var type = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"nether_meteor"));
             if (type == null) {
                 src.toi_et_moi.mgdp.Mgdp.LOGGER.warn("PyreLord: nether_meteor entity type not found");
                 return;
@@ -148,7 +149,7 @@ public class PyreLordModifier extends GolemModifier {
     @Override
     public void onHurt(AbstractGolemEntity<?, ?> golem, LivingHurtEvent event, int level) {
         // Hellfire damage -75%
-        var hellfireKey = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("goety", "hellfire"));
+        var hellfireKey = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "hellfire"));
         if (event.getSource().is(hellfireKey)) {
             event.setAmount(event.getAmount() * 0.25F);
         }
@@ -162,8 +163,8 @@ public class PyreLordModifier extends GolemModifier {
                 || source.is(DamageTypes.LAVA) || source.is(DamageTypes.EXPLOSION)
                 || source.is(DamageTypes.PLAYER_EXPLOSION) || source.is(DamageTypes.FIREBALL)
                 || source.is(DamageTypes.UNATTRIBUTED_FIREBALL)
-                || source.is(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("goety", "hellfire")))) {
-            boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+                || source.is(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"hellfire")))) {
+            boolean all = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get());
             event.setAmount(event.getAmount() * (all ? 8.0F : 4.0F));
         }
     }

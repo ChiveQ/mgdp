@@ -1,6 +1,7 @@
 package src.toi_et_moi.mgdp.modifier.common;
 
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
+import dev.xkmc.modulargolems.init.ModularGolems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
@@ -20,7 +21,7 @@ import src.toi_et_moi.mgdp.Mgdp;
 @Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class BeheadingHandler {
 
-	private static final ResourceLocation SLICING_AXE_ID = new ResourceLocation("modulargolems", "golem_slicing_axe");
+	private static final ResourceLocation SLICING_AXE_ID = ModularGolems.loc("golem_slicing_axe");
 
 	@SubscribeEvent
 	public static void onDeath(LivingDeathEvent event) {
@@ -40,7 +41,7 @@ public class BeheadingHandler {
 
 
 	private static ItemStack getModHead(String id) {
-		var rl = new ResourceLocation(id);
+		var rl = ResourceLocation.parse(id);
 		var trophy = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(new ResourceLocation(id + "_trophy"));
 		if (trophy != Items.AIR) return new ItemStack(trophy);
 		var head = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(new ResourceLocation(id + "_head"));

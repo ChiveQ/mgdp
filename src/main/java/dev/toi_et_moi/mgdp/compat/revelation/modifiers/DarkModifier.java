@@ -1,5 +1,7 @@
 package dev.toi_et_moi.mgdp.compat.revelation.modifiers;
 
+import dev.toi_et_moi.mgdp.compat.goety.GoetyDispatch;
+import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.targeting.TargetManager;
@@ -38,8 +40,8 @@ public class DarkModifier extends GolemModifier {
 		if (golem.tickCount % 20 != 0) return;
 
 		// Wane V aura on enemies (VI with 万众归一)
-		var wane = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "wane"));
-		int amp = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get()) ? AMP + 1 : AMP;
+		var wane = ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "wane"));
+		int amp = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get()) ? AMP + 1 : AMP;
 		var box = golem.getBoundingBox().inflate(RANGE);
 		for (var entity : golem.level().getEntitiesOfClass(LivingEntity.class, box, e -> e.isAlive())) {
 			if (entity.distanceToSqr(golem) > RANGE * RANGE) continue;
@@ -73,7 +75,7 @@ public class DarkModifier extends GolemModifier {
 					// The 7-arg constructor leaves totalLife at 0 (discards on first tick) and no owner
 					slash.getClass().getMethod("setTotalLife", int.class).invoke(slash, 60);
 					((AbstractHurtingProjectile) slash).setOwner(golem);
-					boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+					boolean all = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get());
 					slash.getClass().getMethod("setDamage", float.class).invoke(slash, atk * (all ? 5.0F : 3.0F));
 					slash.setDeltaMovement(nx * 2.0, ny * 2.0, nz * 2.0);
 					slash.hasImpulse = true;
@@ -86,7 +88,7 @@ public class DarkModifier extends GolemModifier {
 
 		// Shadow walk V for 3s every 5s while the golem itself stands in darkness
 		if (isDark(golem.level(), golem.blockPosition()) && golem.tickCount % 100 == 0) {
-			var shadowWalk = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "shadow_walk"));
+			var shadowWalk = ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "shadow_walk"));
 			if (shadowWalk != null) {
 				golem.addEffect(new MobEffectInstance(shadowWalk, 60, AMP));
 			}
@@ -101,11 +103,11 @@ public class DarkModifier extends GolemModifier {
 		if (target == golem || target == golem.getOwner()) return;
 
 		// +300% damage vs wane debuffed targets or targets in a dark environment
-		var wane = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "wane"));
+		var wane = ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "wane"));
 		boolean waned = wane != null && target.hasEffect(wane);
 		boolean inDark = isDark(target.level(), target.blockPosition());
 		if (waned || inDark) {
-			boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+			boolean all = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get());
 			event.setAmount(event.getAmount() * (all ? 5.5F : 4.0F));
 		}
 	}

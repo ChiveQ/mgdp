@@ -6,6 +6,7 @@ import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LightLayer;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class SunlightModifier extends GolemModifier {
 
@@ -27,7 +28,7 @@ public class SunlightModifier extends GolemModifier {
 	}
 
 	@Override
-	public void onHurtTarget(AbstractGolemEntity<?, ?> golem, LivingHurtEvent event, int level) {
+	public void onHurtTarget(AbstractGolemEntity<?, ?> golem, @NotNull LivingHurtEvent event, int level) {
 		if (golem.level().isClientSide()) return;
 
 		BlockPos pos = golem.blockPosition();

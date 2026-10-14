@@ -13,7 +13,6 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.ShearsItem;
@@ -27,11 +26,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
-import src.toi_et_moi.mgdp.compat.L2Compat;
+import dev.toi_et_moi.mgdp.compat.l2complements.LCProxy;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.lang.reflect.Method;
 import java.util.*;
@@ -203,7 +201,7 @@ public class HarvestCropModifier extends GolemModifier {
 	private void dropWithSmelt(Level level, ServerLevel sl, BlockPos pos, BlockState state,
 			AbstractGolemEntity<?, ?> golem, ItemStack tool) {
 		List<ItemStack> drops = Block.getDrops(state, sl, pos, null, golem, tool);
-		L2Compat.tryAutoSmelt(sl, tool, drops);
+		LCProxy.tryAutoSmelt(sl, tool, drops);
 		for (ItemStack drop : drops) {
 			Block.popResource(level, pos, drop);
 		}

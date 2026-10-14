@@ -10,14 +10,14 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 @Mixin(ThrownTrident.class)
 public class ThrownTridentTagMixin {
 
 	@Inject(method = "<init>(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V", at = @At("TAIL"))
 	private void mgdp$tagTrident(Level level, LivingEntity shooter, ItemStack stack, CallbackInfo ci) {
-		if (shooter instanceof AbstractGolemEntity golem
+		if (shooter instanceof AbstractGolemEntity<?,?> golem
 				&& golem.getModifiers().containsKey(MGDPModifiers.TRIDENT_FESTIVAL.get())) {
 			((ThrownTrident) (Object) this).addTag("mgdp_trident_festival");
 		}

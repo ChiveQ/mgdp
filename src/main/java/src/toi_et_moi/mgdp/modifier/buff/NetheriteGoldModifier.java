@@ -6,14 +6,14 @@ import dev.xkmc.modulargolems.init.registrate.GolemTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.function.Consumer;
 
 public class NetheriteGoldModifier extends AttributeGolemModifier {
 
-    private static final AttrEntry REGEN_ENTRY = new AttrEntry(
-            () -> GolemTypes.STAT_REGEN.get(), () -> 5.0);
+    private static final AttrEntry REGEN_ENTRY = new AttrEntry(GolemTypes.STAT_REGEN, () -> 5.0);
 
     public NetheriteGoldModifier() {
         super(1, REGEN_ENTRY);
@@ -25,7 +25,7 @@ public class NetheriteGoldModifier extends AttributeGolemModifier {
     }
 
     @Override
-    public List<MutableComponent> getDetail(int v) {
+    public @NotNull List<MutableComponent> getDetail(int v) {
         return List.of(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GREEN));
     }
 }

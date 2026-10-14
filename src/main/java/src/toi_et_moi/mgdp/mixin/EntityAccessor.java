@@ -8,9 +8,9 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(Entity.class)
 public interface EntityAccessor {
 
-    @Accessor("noPhysics")
-    void setNoPhysics(boolean value);
-
-    @Accessor("DATA_SHARED_FLAGS_ID")
-    EntityDataAccessor<Byte> getDataSharedFlagsId();
+//    @Accessor("noPhysics")
+//    void setNoPhysics(boolean value);
+//
+//    @Accessor("DATA_SHARED_FLAGS_ID")
+//    EntityDataAccessor<Byte> getDataSharedFlagsId();
 }

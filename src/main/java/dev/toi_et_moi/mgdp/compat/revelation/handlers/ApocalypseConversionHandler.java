@@ -1,6 +1,8 @@
-package src.toi_et_moi.mgdp.compat.goety_revelation;
+package dev.toi_et_moi.mgdp.compat.revelation.handlers;
 
+import dev.toi_et_moi.mgdp.compat.goety.GoetyDispatch;
 import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
+import dev.toi_et_moi.mgdp.compat.revelation.RevelationDispatch;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -12,10 +14,7 @@ import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
-import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
 /**
  * Special acquisitions for the final apostle titles:
@@ -25,7 +24,7 @@ import src.toi_et_moi.mgdp.init.MGDPModifiers;
  *   (goety_revelation:ascension_halo) converts it into the genesis upgrade item after
  *   a 10-second channelled ritual (altar sounds).
  */
-@Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+//@Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ApocalypseConversionHandler {
 
 	private static final int GENESIS_CONVERT_TICKS = 200;
@@ -39,7 +38,7 @@ public class ApocalypseConversionHandler {
 		if (!(event.getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
 		if (RevelationCompatRegistry.THE_APOCALYPSE == null) return; // goety_revelation not installed
 
-		MobEffect doom = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "doom"));
+		MobEffect doom = ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "doom"));
 		if (doom == null || event.getEffectInstance().getEffect() != doom) return;
 
 		ItemStack hand = golem.getMainHandItem();
@@ -62,16 +61,16 @@ public class ApocalypseConversionHandler {
 		boolean converting = convertStart > 0;
 
 		var mods = golem.getModifiers();
-		boolean all = mods.containsKey(MGDPModifiers.THE_PYRE_LORD.get())
-				&& mods.containsKey(MGDPModifiers.THE_WITCH_KING.get())
-				&& mods.containsKey(MGDPModifiers.THE_CRUEL.get())
-				&& mods.containsKey(MGDPModifiers.THE_GREAT_SHADOW.get())
-				&& mods.containsKey(MGDPModifiers.THE_DEFILER.get())
-				&& mods.containsKey(MGDPModifiers.THE_DARK.get())
-				&& mods.containsKey(MGDPModifiers.THE_GLORIOUS.get());
+		boolean all = mods.containsKey(RevelationCompatRegistry.THE_PYRE_LORD.get())
+				&& mods.containsKey(RevelationCompatRegistry.THE_WITCH_KING.get())
+				&& mods.containsKey(RevelationCompatRegistry.THE_CRUEL.get())
+				&& mods.containsKey(RevelationCompatRegistry.THE_GREAT_SHADOW.get())
+				&& mods.containsKey(RevelationCompatRegistry.THE_DEFILER.get())
+				&& mods.containsKey(RevelationCompatRegistry.THE_DARK.get())
+				&& mods.containsKey(RevelationCompatRegistry.THE_GLORIOUS.get());
 
 		if (ASCENSION_HALO == null) {
-			ASCENSION_HALO = ForgeRegistries.ITEMS.getValue(new ResourceLocation("goety_revelation", "ascension_halo"));
+			ASCENSION_HALO = ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath(RevelationDispatch.MODID, "ascension_halo"));
 		}
 		boolean hasHalo = ASCENSION_HALO != null && golem.getMainHandItem().is(ASCENSION_HALO);
 
@@ -97,7 +96,7 @@ public class ApocalypseConversionHandler {
 	}
 
 	private static void playSound(AbstractGolemEntity<?, ?> golem, String name) {
-		SoundEvent snd = ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("goety", name));
+		SoundEvent snd = ForgeRegistries.SOUND_EVENTS.getValue(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, name));
 		if (snd != null) {
 			golem.playSound(snd, 2.0F, 1.0F);
 		}

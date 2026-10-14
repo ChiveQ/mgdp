@@ -1,5 +1,6 @@
 package dev.toi_et_moi.mgdp.compat.l2hostility.modifiers;
 
+import dev.toi_et_moi.mgdp.compat.l2hostility.HostilityCompatRegistry;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -16,7 +17,6 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class UndyingModifier extends GolemModifier {
 		if (!(event.getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
 		if (golem.level().isClientSide()) return;
 		if (event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY)) return;
-		if (!golem.getModifiers().containsKey(MGDPModifiers.UNDYING.get())) return;
+		if (!golem.getModifiers().containsKey(HostilityCompatRegistry.UNDYING.get())) return;
 
 		event.setCanceled(true);
 		golem.setHealth(golem.getMaxHealth());

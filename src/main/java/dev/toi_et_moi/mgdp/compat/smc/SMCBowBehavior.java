@@ -1,4 +1,9 @@
-package src.toi_et_moi.mgdp.compat;
+package dev.toi_et_moi.mgdp.compat.smc;
+import com.starmeow.smc.items.RainbowBow;
+import com.starmeow.smc.items.SMCArmorItems;
+import dev.toi_et_moi.mgdp.init.MGDP;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
+import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 
 import dev.xkmc.mob_weapon_api.api.projectile.BowUseContext;
@@ -14,7 +19,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
 
@@ -38,15 +42,15 @@ public class SMCBowBehavior extends SimpleBowBehavior {
     }
 
     private static boolean hasQuickStrike(LivingEntity user) {
-        return user instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity golem
-                && golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.QUICK_STRIKE.get());
+        return user instanceof AbstractGolemEntity<?,?> golem
+                && golem.getModifiers().containsKey(MGDPModifiers.QUICK_STRIKE.get());
     }
 
     @Override
     public int getStandardPullTime(BowUseContext ctx, ItemStack stack) {
         boolean qs = hasQuickStrike(ctx.user());
         ResourceLocation id = net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(stack.getItem());
-        if (id != null && id.getNamespace().equals("smc") && id.getPath().equals("rainbow_bow"))
+        if (stack.getItem() instanceof RainbowBow)
             return qs ? 1 : 16;
         if (qs) return 1;
         return super.getStandardPullTime(ctx, stack);
@@ -58,7 +62,7 @@ public class SMCBowBehavior extends SimpleBowBehavior {
             return super.shootArrow(ctx, power, bowStack, hand);
 
         ResourceLocation id = net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(bowStack.getItem());
-        if (id == null || !id.getNamespace().equals("smc"))
+        if (!id.getNamespace().equals("smc"))
             return super.shootArrow(ctx, power, bowStack, hand);
 
         String path = id.getPath();
@@ -77,8 +81,7 @@ public class SMCBowBehavior extends SimpleBowBehavior {
         var level = user.level();
 
         // Create RainbowArrow
-        var type = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("smc", "rainbow_arrow"));
-        if (type == null) return super.shootArrow(ctx, power, bowStack, hand);
+        var type = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.fromNamespaceAndPath(SMCDispatch.MODID, "rainbow_arrow"));
 
         try {
             var ctor = Class.forName("com.starmeow.smc.entities.projectiles.RainbowArrow")
@@ -93,7 +96,7 @@ public class SMCBowBehavior extends SimpleBowBehavior {
             } catch (Exception ignored) {}
 
             // Apply Power enchantment
-            int powerLv = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, bowStack);
+            int powerLv = bowStack.getEnchantmentLevel(Enchantments.POWER_ARROWS);
             if (powerLv > 0) {
                 arrow.setBaseDamage(arrow.getBaseDamage() + powerLv * 0.5 + 0.5);
             }
@@ -114,7 +117,7 @@ public class SMCBowBehavior extends SimpleBowBehavior {
             level.addFreshEntity(arrow);
             return hasQuickStrike(user) ? 4 : 12;
         } catch (Exception e) {
-            src.toi_et_moi.mgdp.Mgdp.LOGGER.warn("SMCBow: rainbow failed", e);
+            MGDP.LOGGER.warn("SMCBow: rainbow failed", e);
             return super.shootArrow(ctx, power, bowStack, hand);
         }
     }
@@ -144,7 +147,7 @@ public class SMCBowBehavior extends SimpleBowBehavior {
         if (ammo.isEmpty()) ammo = new ItemStack(Items.ARROW);
 
         // Fire 2 extra arrows with same direction as main arrow, velocity spread
-        int powerLv = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, bowStack);
+        int powerLv = bowStack.getEnchantmentLevel(Enchantments.POWER_ARROWS);
         for (int s = 1; s <= 2; s++) {
             AbstractArrow extra;
             if (ammo.getItem() instanceof ArrowItem ai) {

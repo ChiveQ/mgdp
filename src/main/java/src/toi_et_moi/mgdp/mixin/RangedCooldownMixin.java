@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 @Mixin({SmartBowAttackGoal.class, SmartInstantRangedAttackGoal.class, SmartHoldRangedAttackGoal.class})
 public abstract class RangedCooldownMixin {
@@ -23,6 +23,7 @@ public abstract class RangedCooldownMixin {
 		if (attackTime > 100) return;
 		Object self = this;
 		Mob mob = ((SmartRangedAccessor)self).getMob();
+//		Mob mob = ((SmartHoldRangedAttackGoal)self).mob;
 		if (!(mob instanceof AbstractGolemEntity<?, ?> golem)) return;
 		if (!golem.getModifiers().containsKey(MGDPModifiers.QUICK_STRIKE.get())) return;
 		attackTime = 0;

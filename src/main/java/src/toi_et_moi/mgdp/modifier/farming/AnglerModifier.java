@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.farming;
 
+import dev.toi_et_moi.mgdp.init.MGDP;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -30,7 +31,7 @@ import java.util.List;
 
 public class AnglerModifier extends GolemModifier {
 
-	private static final ResourceLocation FISHING_LOOT = new ResourceLocation("minecraft:gameplay/fishing");
+	private static final ResourceLocation FISHING_LOOT = ResourceLocation.parse("minecraft:gameplay/fishing");
 
 	public AnglerModifier() {
 		super(StatFilterType.MASS, 1);
@@ -73,7 +74,7 @@ public class AnglerModifier extends GolemModifier {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			MGDP.LOGGER.throwing(e);
 		}
 
 		// XP

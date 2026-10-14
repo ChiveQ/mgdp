@@ -10,14 +10,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.function.Consumer;
 
 public class EnchantedNetheriteGoldModifier extends AttributeGolemModifier {
 
-    private static final AttrEntry REGEN_ENTRY = new AttrEntry(
-            () -> GolemTypes.STAT_REGEN.get(), () -> 5.0);
+    private static final AttrEntry REGEN_ENTRY = new AttrEntry(GolemTypes.STAT_REGEN, () -> 5.0);
 
     public EnchantedNetheriteGoldModifier() {
         super(1, REGEN_ENTRY);
@@ -29,7 +29,7 @@ public class EnchantedNetheriteGoldModifier extends AttributeGolemModifier {
     }
 
     @Override
-    public void onHurt(AbstractGolemEntity<?, ?> golem, LivingHurtEvent event, int level) {
+    public void onHurt(@NotNull AbstractGolemEntity<?, ?> golem, LivingHurtEvent event, int level) {
         if (!event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
             event.setAmount(event.getAmount() * 0.8F);
             if (event.getSource().is(DamageTypeTags.IS_EXPLOSION)) {
@@ -39,7 +39,7 @@ public class EnchantedNetheriteGoldModifier extends AttributeGolemModifier {
     }
 
     @Override
-    public List<MutableComponent> getDetail(int v) {
+    public @NotNull List<MutableComponent> getDetail(int v) {
         return List.of(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GREEN));
     }
 }

@@ -6,7 +6,7 @@ import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 import src.toi_et_moi.mgdp.init.IFlipData;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 public class BackstepModifier extends GolemModifier {
 

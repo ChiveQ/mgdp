@@ -1,5 +1,7 @@
 package dev.toi_et_moi.mgdp.compat.goety.modifiers;
 
+import dev.toi_et_moi.mgdp.compat.goety.GoetyCompatRegistry;
+import dev.toi_et_moi.mgdp.compat.goety.GoetyDispatch;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -14,8 +16,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
@@ -52,7 +52,7 @@ public class VoidEchoModifier extends GolemModifier {
 	public static void onHurtTarget(LivingHurtEvent event) {
 		if (!(event.getSource().getEntity() instanceof AbstractGolemEntity<?, ?> golem)) return;
 		if (golem.level().isClientSide()) return;
-		if (!golem.getModifiers().containsKey(MGDPModifiers.VOID_ECHO.get())) return;
+		if (!golem.getModifiers().containsKey(GoetyCompatRegistry.VOID_ECHO.get())) return;
 		LivingEntity target = event.getEntity();
 
 		int lastSlash = golem.getPersistentData().getInt("mgdp_void_slash");
@@ -72,14 +72,14 @@ public class VoidEchoModifier extends GolemModifier {
 				Vec3 dir = target.getLookAngle().normalize();
 				Vec3 pos = target.position().add(dir.scale(-3));
 				golem.teleportTo(pos.x, pos.y, pos.z);
-				var shadowWalk = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "shadow_walk"));
+				var shadowWalk = ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "shadow_walk"));
 				if (shadowWalk != null) {
 					golem.addEffect(new MobEffectInstance(shadowWalk, 20, 0));
 				}
 			}
 		}
 
-		var voidEffect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "void_touched"));
+		var voidEffect = ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "void_touched"));
 		if (voidEffect != null) {
 			target.addEffect(new MobEffectInstance(voidEffect, 100, 1));
 		}
@@ -102,7 +102,7 @@ public class VoidEchoModifier extends GolemModifier {
 				Vec3 dir = target.getLookAngle().normalize();
 				Vec3 pos = target.position().add(dir.scale(-3));
 				golem.teleportTo(pos.x, pos.y, pos.z);
-				var sw = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "shadow_walk"));
+				var sw = ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID,"shadow_walk"));
 				if (sw != null) golem.addEffect(new MobEffectInstance(sw, 20, 0));
 			}
 		}

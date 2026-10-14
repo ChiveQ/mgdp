@@ -27,8 +27,4 @@ public class QuickStrikeModifier extends GolemModifier {
 		event.getEntity().invulnerableTime = 0;
 	}
 
-	@Override
-	public List<MutableComponent> getDetail(int v) {
-		return List.of(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GREEN));
-	}
 }

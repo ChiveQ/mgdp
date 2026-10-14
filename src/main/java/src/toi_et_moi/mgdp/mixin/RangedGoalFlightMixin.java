@@ -6,10 +6,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 /**
  * When the golem is flying, the parent mod's SmartRangedAttackGoal.strafing()
@@ -38,6 +40,8 @@ import src.toi_et_moi.mgdp.init.MGDPModifiers;
 @Mixin(SmartRangedAttackGoal.class)
 public abstract class RangedGoalFlightMixin {
 
+//    @Shadow @Final protected E mob;
+
     // remap is left at its default (true) for these two redirectors: their
     // target classes (PathNavigation, MoveControl) are vanilla Minecraft,
     // whose runtime class files still hold SRG names (m_xxxxx_). The
@@ -63,6 +67,7 @@ public abstract class RangedGoalFlightMixin {
                     target = "Lnet/minecraft/world/entity/ai/control/MoveControl;strafe(FF)V"))
     private void mgdp$disableStrafeForFlight(MoveControl ctrl, float forward, float sideways) {
         Mob mob = ((SmartRangedAccessor) this).getMob();
+//        mob = (SmartRangedAttackGoal<>)this.mob;
         if (mob instanceof AbstractGolemEntity<?, ?> golem
                 && (golem.getModifiers().containsKey(MGDPModifiers.FLIGHT.get())
                     || golem.getModifiers().containsKey(MGDPModifiers.ROCKET_FLIGHT.get()))) {

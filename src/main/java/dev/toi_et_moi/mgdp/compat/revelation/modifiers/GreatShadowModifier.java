@@ -1,5 +1,7 @@
 package dev.toi_et_moi.mgdp.compat.revelation.modifiers;
 
+import dev.toi_et_moi.mgdp.compat.goety.GoetyDispatch;
+import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.targeting.TargetManager;
@@ -56,7 +58,7 @@ public class GreatShadowModifier extends GolemModifier {
 
 		// Darkness V + Blindness V + Wild Rage aura on enemies
 		var wildRage = net.minecraftforge.registries.ForgeRegistries.MOB_EFFECTS
-				.getValue(new ResourceLocation("goety", "wild_rage"));
+				.getValue(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "wild_rage"));
 		var box = golem.getBoundingBox().inflate(RANGE);
 		for (var entity : golem.level().getEntitiesOfClass(LivingEntity.class, box, e -> e.isAlive())) {
 			if (entity.distanceToSqr(golem) > RANGE * RANGE) continue;
@@ -123,7 +125,7 @@ public class GreatShadowModifier extends GolemModifier {
 
 			Projectile bolt = createProjectile(golem, vx, vy, vz, type);
 			if (bolt == null) continue;
-			boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+			boolean all = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get());
 			bolt.getClass().getMethod("setExtraDamage", float.class).invoke(bolt, atk * (all ? 0.25F : 0.15F));
 			bolt.setPos(sx, sy, sz);
 			bolt.setDeltaMovement(vx * 1.1, vy * 1.1, vz * 1.1);
@@ -166,12 +168,12 @@ public class GreatShadowModifier extends GolemModifier {
 		// +300% damage: magic damage and undead/debuffed target bonuses stack multiplicatively
 		var source = event.getSource();
 		boolean isMagic = source.is(ResourceKey.create(Registries.DAMAGE_TYPE,
-				new ResourceLocation("goety", "magic_bolt")))
+				ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "magic_bolt")))
 				|| source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC);
 		boolean isUndead = target.getMobType() == MobType.UNDEAD;
 		boolean isDebuffed = target.hasEffect(MobEffects.DARKNESS) || target.hasEffect(MobEffects.BLINDNESS);
 
-		float boost = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get()) ? 4.5F : 3.0F;
+		float boost = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get()) ? 4.5F : 3.0F;
 		float mult = 1.0F;
 		if (isMagic) mult += boost;
 		if (isUndead || isDebuffed) mult += boost;
@@ -191,10 +193,10 @@ public class GreatShadowModifier extends GolemModifier {
 		// -80% magic damage (vanilla magic + goety magic types)
 		boolean isMagic = source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC)
 				|| source.is(DamageTypes.WITHER)
-				|| source.is(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("goety", "magic_bolt")))
-				|| source.is(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("goety", "magic_fire")))
-				|| source.is(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("goety", "magic_fireball")))
-				|| source.is(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("goety", "no_owner_magic_fireball")));
+				|| source.is(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "magic_bolt")))
+				|| source.is(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "magic_fire")))
+				|| source.is(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "magic_fireball")))
+				|| source.is(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "no_owner_magic_fireball")));
 
 		if (fromUndead || isMagic) {
 			event.setAmount(event.getAmount() * 0.2F);

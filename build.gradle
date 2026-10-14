@@ -65,7 +65,7 @@ minecraft {
     // However, it must be at "META-INF/accesstransformer.cfg" in the final mod jar to be loaded by Forge.
     // This default location is a best practice to automatically put the file in the right place in the final jar.
     // See https://docs.minecraftforge.net/en/latest/advanced/accesstransformers/ for more information.
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
@@ -204,14 +204,18 @@ dependencies {
     // 1.20.1联勭
     compileOnly fg.deobf("curse.maven:lendercataclysm-551586:8246047")
     runtimeOnly fg.deobf("curse.maven:lendercataclysm-551586:8246047")
+    compileOnly fg.deobf("curse.maven:goety-586095:8951387")
     runtimeOnly fg.deobf("curse.maven:goety-586095:8951387")
     //runtimeOnly fg.deobf("curse.maven:goety-revelation-1236817:8311906")
     //runtimeOnly fg.deobf("curse.maven:endinglibrary-1471165:8292038") // runData时去除
+    compileOnly fg.deobf("curse.maven:star-meow-craft-1154807:8648282")
     runtimeOnly fg.deobf("curse.maven:star-meow-craft-1154807:8648282")
     runtimeOnly fg.deobf("curse.maven:caelus-308989:5281700")
+    compileOnly fg.deobf("curse.maven:create-328085:7178761")
     runtimeOnly fg.deobf("curse.maven:create-328085:7178761")
     //runtimeOnly fg.deobf("curse.maven:the-twilight-forest-227639:5468648")  // 显卡不可
     runtimeOnly fg.deobf("curse.maven:lionfish-api-1001614:8095554")
+    compileOnly fg.deobf("curse.maven:irons-spells-n-spellbooks-855414:8680180")
     runtimeOnly fg.deobf("curse.maven:irons-spells-n-spellbooks-855414:8680180")
     runtimeOnly fg.deobf("curse.maven:curios-309927:6418456")
     runtimeOnly fg.deobf("curse.maven:geckolib-388172:8285794")
@@ -237,7 +241,9 @@ dependencies {
     compileOnly fg.deobf("curse.maven:curse-of-pandora-968311:6428103")
     runtimeOnly fg.deobf("curse.maven:curse-of-pandora-968311:6428103")
     runtimeOnly fg.deobf("curse.maven:patchouli-306770:7731017")
+    // 运行时辅助
     runtimeOnly fg.deobf("curse.maven:jei-238222:8778011")
+    runtimeOnly fg.deobf("curse.maven:tslatentitystatus-tes-830420:9033346")
 
     // 1.21.1
 //    runtimeOnly "curse.maven:jei-238222:8792638"

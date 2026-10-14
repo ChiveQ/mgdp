@@ -11,11 +11,12 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 @Mixin({DogGolemRenderer.class, HumanoidGolemRenderer.class, MetalGolemRenderer.class})
 public abstract class AbstractGolemRendererMixin<T extends AbstractGolemEntity<?, ?>, M extends EntityModel<T>>
@@ -23,7 +24,7 @@ public abstract class AbstractGolemRendererMixin<T extends AbstractGolemEntity<?
 
     protected AbstractGolemRendererMixin() { super(null, null, 0); }
 
-    private static final ResourceLocation ENERGY_SWIRL = new ResourceLocation("textures/entity/creeper/creeper_armor.png");
+    private static final ResourceLocation ENERGY_SWIRL = ResourceLocation.parse("textures/entity/creeper/creeper_armor.png");
 
 
     @Inject(method = "<init>", at = @At("RETURN"))
@@ -45,7 +46,8 @@ public abstract class AbstractGolemRendererMixin<T extends AbstractGolemEntity<?
             public void render(PoseStack pose, MultiBufferSource buf, int light,
                                T entity, float limbSwing, float limbSwingAmount,
                                float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
-                var flags = ((EntityAccessor) entity).getDataSharedFlagsId();
+//                var flags = ((EntityAccessor) entity).getDataSharedFlagsId();
+                var flags = Entity.DATA_SHARED_FLAGS_ID;
                 if ((entity.getEntityData().get(flags) & 64) == 0) return;
                 float u = ((float) entity.tickCount + partialTick) * 0.03F;
                 float v = u * 0.5F;

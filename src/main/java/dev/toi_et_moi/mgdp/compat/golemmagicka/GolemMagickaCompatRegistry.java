@@ -4,12 +4,9 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.xkmc.golemmagicka.init.reg.GMTypes;
 import dev.xkmc.modulargolems.content.item.upgrade.SimpleUpgradeItem;
 import dev.xkmc.modulargolems.content.modifier.base.AttributeGolemModifier;
-import net.minecraft.world.item.Item;
-import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
 import static dev.toi_et_moi.mgdp.init.registrate.MGDPItems.regModUpgrade;
-import static dev.xkmc.modulargolems.init.registrate.GolemModifiers.reg;
+import static dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers.reg;
 
 public class GolemMagickaCompatRegistry {
 

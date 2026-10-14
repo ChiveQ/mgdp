@@ -5,6 +5,7 @@ import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import dev.xkmc.l2library.serial.config.ConfigDataProvider;
 import dev.xkmc.modulargolems.compat.materials.common.ModDispatch;
 import net.minecraft.data.DataGenerator;
+import net.minecraftforge.common.MinecraftForge;
 import org.jetbrains.annotations.Nullable;
 
 public class TFDispatch extends ModDispatch {
@@ -13,6 +14,7 @@ public class TFDispatch extends ModDispatch {
 
     public TFDispatch(){
         TFCompatRegistry.register();
+        MinecraftForge.EVENT_BUS.register(PenguinModifier.class);
     }
 
     @Override

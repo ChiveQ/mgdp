@@ -1,5 +1,6 @@
 package dev.toi_et_moi.mgdp.compat.l2hostility.modifiers;
 
+import dev.toi_et_moi.mgdp.compat.l2hostility.HostilityCompatRegistry;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -17,7 +18,6 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class GrenadeModifier extends GolemModifier {
 		if (!(event.getSource().getDirectEntity() instanceof ShulkerBullet bullet)) return;
 		if (!(bullet.getOwner() instanceof AbstractGolemEntity<?, ?> golem)) return;
 		if (golem.level().isClientSide()) return;
-		int level = golem.getModifiers().getOrDefault(MGDPModifiers.GRENADE.get(), 0);
+		int level = golem.getModifiers().getOrDefault(HostilityCompatRegistry.GRENADE.get(), 0);
 		if (level <= 0) return;
 
 		float total = 30.0F * level;

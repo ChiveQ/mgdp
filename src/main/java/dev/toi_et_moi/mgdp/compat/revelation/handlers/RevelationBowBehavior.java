@@ -1,4 +1,8 @@
-package src.toi_et_moi.mgdp.compat.goety_revelation;
+package dev.toi_et_moi.mgdp.compat.revelation.handlers;
+import dev.toi_et_moi.mgdp.compat.goety.GoetyDispatch;
+import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
+import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 
 import dev.xkmc.mob_weapon_api.api.projectile.BowUseContext;
@@ -11,14 +15,14 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
-import src.toi_et_moi.mgdp.compat.SMCBowBehavior;
+import dev.toi_et_moi.mgdp.compat.smc.SMCBowBehavior;
 
 public class RevelationBowBehavior extends SimpleBowBehavior {
 
     @Override
     public int getStandardPullTime(BowUseContext ctx, ItemStack stack) {
-        if (ctx.user() instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity golem
-                && golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.QUICK_STRIKE.get()))
+        if (ctx.user() instanceof AbstractGolemEntity<?,?> golem
+                && golem.getModifiers().containsKey(MGDPModifiers.QUICK_STRIKE.get()))
             return 1;
         return 6;
     }
@@ -29,13 +33,13 @@ public class RevelationBowBehavior extends SimpleBowBehavior {
         var level = user.level();
 
         // Create DeathArrow from Goety
-        var type = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("goety", "death_arrow"));
+        var type = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "death_arrow"));
         if (type == null) return super.shootArrow(ctx, power, bowStack, hand);
 
         // Apocalypse modifier => volley of 3 death arrows (otherwise 1)
         int arrowCount = 1;
-        boolean apocalypse = user instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity golemApoc
-                && golemApoc.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_APOCALYPSE.get());
+        boolean apocalypse = user instanceof AbstractGolemEntity<?,?> golemApoc
+                && golemApoc.getModifiers().containsKey(RevelationCompatRegistry.THE_APOCALYPSE.get());
         if (apocalypse) arrowCount = 3;
 
         try {
@@ -73,7 +77,7 @@ public class RevelationBowBehavior extends SimpleBowBehavior {
             // Play apostle shoot sound once
             try {
                 var sound = net.minecraftforge.registries.ForgeRegistries.SOUND_EVENTS.getValue(
-                        new ResourceLocation("goety", "apostle_shoot"));
+                        ResourceLocation.fromNamespaceAndPath("goety", "apostle_shoot"));
                 if (sound != null) {
                     level.playSound(null, user.getX(), user.getY(), user.getZ(),
                             sound, SoundSource.NEUTRAL, 1.0F, 1.0F);
@@ -123,8 +127,8 @@ public class RevelationBowBehavior extends SimpleBowBehavior {
                 level.addFreshEntity(arrow);
             }
 
-            return user instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity g
-                    && g.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.QUICK_STRIKE.get()) ? 4 : 20;
+            return user instanceof AbstractGolemEntity<?,?> g
+                    && g.getModifiers().containsKey(MGDPModifiers.QUICK_STRIKE.get()) ? 4 : 20;
         } catch (Exception e) {
             src.toi_et_moi.mgdp.Mgdp.LOGGER.warn("RevelationBow: death_arrow failed", e);
             return super.shootArrow(ctx, power, bowStack, hand);
@@ -135,7 +139,7 @@ public class RevelationBowBehavior extends SimpleBowBehavior {
         if (!net.minecraftforge.fml.ModList.get().isLoaded("curios")) return false;
         if (!net.minecraftforge.fml.ModList.get().isLoaded("goety_revelation")) return false;
         try {
-            var haloItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation("goety_revelation", "ascension_halo"));
+            var haloItem = ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("goety_revelation", "ascension_halo"));
             if (haloItem == null) return false;
             var helper = Class.forName("top.theillusivec4.curios.api.CuriosApi")
                     .getMethod("getCuriosHelper").invoke(null);

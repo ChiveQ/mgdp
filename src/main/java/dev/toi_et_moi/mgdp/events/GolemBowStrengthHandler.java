@@ -1,4 +1,4 @@
-package src.toi_et_moi.mgdp.handler;
+package dev.toi_et_moi.mgdp.events;
 
 import dev.xkmc.l2damagetracker.init.L2DamageTracker;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
@@ -19,6 +19,7 @@ import src.toi_et_moi.mgdp.Mgdp;
  * 使用 Forge 事件实现，不用 mixin。
  */
 @Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Deprecated
 public class GolemBowStrengthHandler {
 
 	@SubscribeEvent

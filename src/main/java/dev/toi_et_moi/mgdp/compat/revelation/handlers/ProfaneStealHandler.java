@@ -1,4 +1,4 @@
-package src.toi_et_moi.mgdp.compat.goety_revelation;
+package dev.toi_et_moi.mgdp.compat.revelation.handlers;
 
 import dev.xkmc.modulargolems.compat.materials.goety.revelation.GRCompatRegistry;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
@@ -26,7 +26,7 @@ import java.util.UUID;
  * HIGHEST 记录攻击前目标正面效果快照，LOWEST 对比出被删的效果并缓存，
  * 供 onHurtTarget（伤害结算）中的女巫之王读取。
  */
-@Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+//@Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ProfaneStealHandler {
 
 	private static final Map<UUID, List<MobEffectInstance>> BEFORE = new HashMap<>();

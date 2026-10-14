@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.farming;
 
+import dev.toi_et_moi.mgdp.init.MGDP;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.mode.GolemModes;
@@ -31,7 +32,7 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.network.PacketDistributor;
 import src.toi_et_moi.mgdp.Config;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import src.toi_et_moi.mgdp.network.MGDPNetwork;
 import src.toi_et_moi.mgdp.network.ScavStatusPacket;
 
@@ -85,13 +86,13 @@ public class ScavBoxModifier extends GolemModifier {
 	private static final String[][] LUNA_TABLES = {
 			{"goety_revelation", "mgdp:scav/luna/goety_revelation"}
 	};
-	private static final ResourceLocation LUNA_VANILLA_TABLE = new ResourceLocation("mgdp", "scav/luna/vanilla");
+	private static final ResourceLocation LUNA_VANILLA_TABLE = MGDP.loc("scav/luna/vanilla");
 
-	private static final ResourceLocation FARM_TABLE = new ResourceLocation("mgdp", "scav/farm");
-	private static final ResourceLocation MINE_TABLE = new ResourceLocation("mgdp", "scav/mine");
-	private static final ResourceLocation LUMBER_TABLE = new ResourceLocation("mgdp", "scav/lumber");
-	private static final ResourceLocation ARCH_TABLE = new ResourceLocation("mgdp", "scav/archaeology");
-	private static final ResourceLocation SWIM_TABLE = new ResourceLocation("mgdp", "scav/swim");
+	private static final ResourceLocation FARM_TABLE = MGDP.loc("scav/farm");
+	private static final ResourceLocation MINE_TABLE = MGDP.loc("scav/mine");
+	private static final ResourceLocation LUMBER_TABLE = MGDP.loc("scav/lumber");
+	private static final ResourceLocation ARCH_TABLE = MGDP.loc( "scav/archaeology");
+	private static final ResourceLocation SWIM_TABLE = MGDP.loc( "scav/swim");
 
 	/** 原版原木 -> 同种树苗（成对抽出，森林砍伐带回家种回去） */
 	private static final Map<String, String> LOG_SAPLING_PAIRS = Map.of(
@@ -199,7 +200,7 @@ public class ScavBoxModifier extends GolemModifier {
 				double chance = Config.scavModTableChances == null ? 1.0
 						: Config.scavModTableChances.getOrDefault(entry[0], 1.0);
 				if (sl.random.nextDouble() < chance) {
-					rollTableTimes(haul, sl, new ResourceLocation(entry[1]), origin, mult);
+					rollTableTimes(haul, sl, ResourceLocation.tryParse(entry[1]), origin, mult);
 				}
 			}
 		}

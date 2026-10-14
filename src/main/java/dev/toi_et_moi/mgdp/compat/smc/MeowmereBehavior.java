@@ -1,4 +1,4 @@
-package src.toi_et_moi.mgdp.compat;
+package dev.toi_et_moi.mgdp.compat.smc;
 
 import dev.xkmc.mob_weapon_api.api.projectile.ProjectileWeaponUser;
 import dev.xkmc.mob_weapon_api.api.simple.IInstantWeaponBehavior;

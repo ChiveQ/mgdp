@@ -1,8 +1,8 @@
 package src.toi_et_moi.mgdp.mixin;
 
+import dev.toi_et_moi.mgdp.content.modifier.base.AttributeOperationModifier;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.goals.GolemSwimMoveControl;
-import dev.xkmc.modulargolems.content.entity.mode.GolemModes;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -13,10 +13,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MoverType;
-import net.minecraft.world.entity.AreaEffectCloud;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.tags.DamageTypeTags;
@@ -25,7 +21,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
 
-import dev.xkmc.mob_weapon_api.api.simple.IHoldWeaponBehavior;
 import dev.xkmc.mob_weapon_api.registry.WeaponRegistry;
 import dev.xkmc.mob_weapon_api.registry.WeaponStatus;
 
@@ -33,17 +28,10 @@ import src.toi_et_moi.mgdp.modifier.FlightPathNavigation;
 import src.toi_et_moi.mgdp.jukebox.JukeboxGolem;
 
 import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.fml.ModList;
-
-import java.lang.reflect.Method;
-
-import java.util.List;
-import java.util.function.Predicate;
 
 
-import src.toi_et_moi.mgdp.init.MGDPKeyMappings;
 import src.toi_et_moi.mgdp.Config;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import src.toi_et_moi.mgdp.init.IFlipData;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -295,54 +283,22 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
         }
         boolean hasFlight = mgdp$isFlying(golem);
         boolean hasSpirit = golem.getModifiers().containsKey(MGDPModifiers.SPIRIT.get());
-        ((EntityAccessor) this).setNoPhysics(hasFlight && hasSpirit);
-
-        java.util.UUID diamondId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_diamond_attack");
-        java.util.UUID enchDiamondId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_enchanted_diamond_attack");
-        java.util.UUID crimsonId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_crimson_attack");
-        java.util.UUID enchCrimsonId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_enchanted_crimson_attack");
-        java.util.UUID crimsonArmorId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_crimson_armor");
-        java.util.UUID crimsonToughId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_crimson_tough");
-        var atk = this.getAttribute(Attributes.ATTACK_DAMAGE);
-        var armor = this.getAttribute(Attributes.ARMOR);
-        var tough = this.getAttribute(Attributes.ARMOR_TOUGHNESS);
-        atk.removeModifier(diamondId);
-        atk.removeModifier(enchDiamondId);
-        atk.removeModifier(crimsonId);
-        atk.removeModifier(enchCrimsonId);
-        armor.removeModifier(crimsonArmorId);
-        tough.removeModifier(crimsonToughId);
-        if (golem.getModifiers().containsKey(MGDPModifiers.DIAMOND_ATTACK.get())) {
-            atk.addPermanentModifier(new AttributeModifier(diamondId, "mgdp diamond attack", 0.3, AttributeModifier.Operation.MULTIPLY_BASE));
-        }
-        if (golem.getModifiers().containsKey(MGDPModifiers.ENCHANTED_DIAMOND_ATTACK.get())) {
-            atk.addPermanentModifier(new AttributeModifier(enchDiamondId, "mgdp enchanted diamond attack", 0.6, AttributeModifier.Operation.MULTIPLY_BASE));
-        }
+//        ((EntityAccessor) this).setNoPhysics(hasFlight && hasSpirit);
+        this.noPhysics = hasFlight && hasSpirit;
+        // ==== rocket flight 属性修正仍保留（尚未迁移，归入后续 flight 重构）====
         java.util.UUID rocketArmorId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_rocket_armor");
         java.util.UUID rocketToughId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_rocket_tough");
+        var armor = this.getAttribute(Attributes.ARMOR);
+        var tough = this.getAttribute(Attributes.ARMOR_TOUGHNESS);
         armor.removeModifier(rocketArmorId);
         tough.removeModifier(rocketToughId);
         if (golem.getModifiers().containsKey(MGDPModifiers.ROCKET_FLIGHT.get())) {
             armor.addPermanentModifier(new AttributeModifier(rocketArmorId, "mgdp rocket armor", -1.0, AttributeModifier.Operation.MULTIPLY_TOTAL));
             tough.addPermanentModifier(new AttributeModifier(rocketToughId, "mgdp rocket tough", -1.0, AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
-        double armorVal = 0;
-        double toughVal = 0;
-        if (golem.getModifiers().containsKey(MGDPModifiers.CRIMSON_ATTACK.get())) {
-            atk.addPermanentModifier(new AttributeModifier(crimsonId, "mgdp crimson attack", 0.5, AttributeModifier.Operation.MULTIPLY_TOTAL));
-            armorVal = -0.5;
-            toughVal = -0.5;
-        }
-        if (golem.getModifiers().containsKey(MGDPModifiers.ENCHANTED_CRIMSON_ATTACK.get())) {
-            atk.addPermanentModifier(new AttributeModifier(enchCrimsonId, "mgdp enchanted crimson attack", 1.0, AttributeModifier.Operation.MULTIPLY_TOTAL));
-            armorVal = -1.0;
-            toughVal = -1.0;
-        }
-        if (armorVal != 0) {
-            armor.addPermanentModifier(new AttributeModifier(crimsonArmorId, "mgdp crimson armor", armorVal, AttributeModifier.Operation.MULTIPLY_BASE));
-            tough.addPermanentModifier(new AttributeModifier(crimsonToughId, "mgdp crimson tough", toughVal, AttributeModifier.Operation.MULTIPLY_BASE));
-        }
-        
+        // 清理上一轮 AttributeOperationModifier 施加的修饰符（当前四个 combat 子类）。
+        // 仍持有对应 modifier 的傀儡会在下一次 onAiStep 重新补回正确值。
+        AttributeOperationModifier.removeAll(golem);
     }
 
     @Inject(method = "canSwim", at = @At("RETURN"), cancellable = true, remap = false)

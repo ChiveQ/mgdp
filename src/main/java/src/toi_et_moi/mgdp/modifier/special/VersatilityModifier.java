@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.special;
 
+import dev.toi_et_moi.mgdp.init.MGDP;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.item.upgrade.IUpgradeItem;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -13,7 +14,7 @@ import java.util.List;
 public class VersatilityModifier extends GolemModifier {
 
 	private static final TagKey<Item> DARK_TAG = TagKey.create(Registries.ITEM,
-			new ResourceLocation("mgdp", "dark_upgrades"));
+			MGDP.loc("dark_upgrades"));
 	private static final int MAX_FREE = 5;
 
 	public VersatilityModifier() {

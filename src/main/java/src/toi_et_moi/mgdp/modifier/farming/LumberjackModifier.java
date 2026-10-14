@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
-import src.toi_et_moi.mgdp.compat.L2Compat;
+import dev.toi_et_moi.mgdp.compat.l2complements.LCProxy;
 
 import java.util.HashSet;
 import java.util.List;
@@ -134,7 +134,7 @@ public class LumberjackModifier extends GolemModifier {
 
 			// 掉落 + 自动冶炼（原木→木炭），原木每块消耗 1 点耐久
 			List<ItemStack> drops = Block.getDrops(state, sl, pos, level.getBlockEntity(pos), golem, tool);
-			L2Compat.tryAutoSmelt(sl, tool, drops);
+			LCProxy.tryAutoSmelt(sl, tool, drops);
 			for (ItemStack drop : drops) {
 				Block.popResource(level, pos, drop);
 			}

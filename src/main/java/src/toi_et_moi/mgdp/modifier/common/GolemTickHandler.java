@@ -4,7 +4,6 @@ import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.humanoid.HumanoidGolemEntity;
 import dev.xkmc.modulargolems.content.entity.mode.GolemModes;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -17,7 +16,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import src.toi_et_moi.mgdp.jukebox.JukeboxGolem;
 
 @Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -60,7 +59,7 @@ public class GolemTickHandler {
 		if (golem.getMode() != GolemModes.STAND) return;
 
 		try {
-			Class<?> cc = Class.forName("src.toi_et_moi.mgdp.compat.CreateCompat");
+			Class<?> cc = Class.forName("dev.toi_et_moi.mgdp.compat.create.CreateCompat");
 			cc.getMethod("tryDriveHandCrank", AbstractGolemEntity.class).invoke(null, golem);
 		} catch (Exception ignored) {}
 	}

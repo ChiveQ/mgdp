@@ -51,7 +51,6 @@ public enum MGDPLangData {
         return ans;
     }
 
-
     public static void genLang(RegistrateLangProvider pvd) {
         for (MGDPLangData lang : MGDPLangData.values()) {
             pvd.add(lang.key, lang.def);

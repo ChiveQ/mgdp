@@ -8,7 +8,7 @@ import dev.xkmc.modulargolems.content.modifier.base.PotionAttackModifier;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
-import src.toi_et_moi.mgdp.compat.L2Compat;
+import dev.toi_et_moi.mgdp.compat.l2complements.LCProxy;
 import src.toi_et_moi.mgdp.mixin.PotionAttackModifierAccessor;
 
 import java.util.ArrayList;
@@ -44,11 +44,12 @@ public class PotionAuraModifier extends GolemModifier {
             int modLv = entry.getValue();
             if (mod instanceof PotionAttackModifier atk) {
                 MobEffectInstance inst = ((PotionAttackModifierAccessor) atk).getFunc().apply(modLv);
+//                MobEffectInstance inst = atk.func.apply(modLv);
                 if (inst != null && !inst.getEffect().isBeneficial()) {
                     negative.add(inst);
                 }
             }
-            MobEffectInstance l2 = L2Compat.tryGetEffect(mod, modLv);
+            MobEffectInstance l2 = LCProxy.tryGetEffect(mod, modLv);
             if (l2 != null && !l2.getEffect().isBeneficial()) {
                 negative.add(l2);
             }

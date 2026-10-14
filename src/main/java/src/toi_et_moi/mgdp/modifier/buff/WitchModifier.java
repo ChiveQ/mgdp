@@ -167,7 +167,7 @@ public class WitchModifier extends GolemModifier {
         if (ownerUUID == null) return false;
         if (entity instanceof net.minecraft.world.entity.TamableAnimal ta
                 && ownerUUID.equals(ta.getOwnerUUID())) return true;
-        if (entity instanceof dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity ge
+        if (entity instanceof AbstractGolemEntity<?,?> ge
                 && ownerUUID.equals(ge.getOwnerUUID())) return true;
         // Check capabilities or other owner patterns via Entity.getOwnerUUID() if it exists
         try {

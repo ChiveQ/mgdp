@@ -1,5 +1,7 @@
 package dev.toi_et_moi.mgdp.compat.revelation.modifiers;
 
+import dev.toi_et_moi.mgdp.compat.goety.GoetyDispatch;
+import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.targeting.TargetManager;
@@ -54,7 +56,7 @@ public class DefilerModifier extends GolemModifier {
 		if (golem.tickCount % 20 != 0) return;
 
 		// Venom V aura on enemies
-		var venom = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("goety", "acid_venom"));
+		var venom = ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "acid_venom"));
 		var box = golem.getBoundingBox().inflate(RANGE);
 		for (var entity : golem.level().getEntitiesOfClass(LivingEntity.class, box, e -> e.isAlive())) {
 			if (entity.distanceToSqr(golem) > RANGE * RANGE) continue;
@@ -103,7 +105,7 @@ public class DefilerModifier extends GolemModifier {
 			quill.setPos(golem.getX(), golem.getEyeY() - 0.3, golem.getZ());
 			quill.setDeltaMovement(vx * 2.5, vy * 2.5, vz * 2.5);
 			quill.hasImpulse = true;
-			boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+			boolean all = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get());
 			quill.getClass().getMethod("setExtraDamage", float.class).invoke(quill, atk * (all ? 0.45F : 0.35F));
 			quill.getClass().getMethod("setDuration", int.class).invoke(quill, all ? 8 : 5);
 			quill.getClass().getMethod("setSpear", boolean.class, int.class).invoke(quill, true, 2);
@@ -114,7 +116,7 @@ public class DefilerModifier extends GolemModifier {
 	/** Spawns several acid pools on the ground around the golem. */
 	private static void spawnAcidPools(AbstractGolemEntity<?, ?> golem, float atk) {
 		try {
-			var poolType = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("goety", "acid_pool"));
+			var poolType = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "acid_pool"));
 			if (poolType == null) return;
 			var ctor = Class.forName("com.Polarice3.Goety.common.entities.projectiles.AcidPool")
 					.getConstructor(net.minecraft.world.entity.EntityType.class, Level.class);
@@ -125,7 +127,7 @@ public class DefilerModifier extends GolemModifier {
 				var pos = golem.blockPosition().offset(rng.nextInt(13) - 10, 0, rng.nextInt(13) - 10);
 				((Entity) pool).setPos(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
 				pool.getClass().getMethod("setRadius", float.class).invoke(pool, 3.0F + rng.nextFloat());
-				boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+				boolean all = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get());
 				pool.getClass().getMethod("setDamage", float.class).invoke(pool, atk * (all ? 0.75F : 0.5F));
 				pool.getClass().getMethod("setDuration", int.class).invoke(pool, 60);
 				pool.getClass().getMethod("setOwner", LivingEntity.class).invoke(pool, golem);
@@ -144,17 +146,17 @@ public class DefilerModifier extends GolemModifier {
 					e -> e.isAlive() && golem.canAttack(e) && TargetManager.wantsToAttack(golem, e))) {
 				if (tgt.distanceToSqr(golem) > RANGE * RANGE) continue;
 
-				var thornType = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("goety", "blossom_thorn"));
+				var thornType = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "blossom_thorn"));
 				if (thornType != null) {
 					var thornCtor = Class.forName("com.Polarice3.Goety.common.entities.projectiles.BlossomThorn")
 							.getConstructor(Level.class, double.class, double.class, double.class, int.class, LivingEntity.class);
 					var thorn = thornCtor.newInstance(golem.level(), tgt.getX(), tgt.getY(), tgt.getZ(), 20, golem);
-					boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+					boolean all = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get());
 					thorn.getClass().getMethod("setExtraDamage", float.class).invoke(thorn, atk * (all ? 0.9F : 0.6F));
 					golem.level().addFreshEntity((Entity) thorn);
 				}
 
-				var vineType = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation("goety", "entangle_vines"));
+				var vineType = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.fromNamespaceAndPath(GoetyDispatch.MODID, "entangle_vines"));
 				if (vineType != null) {
 					var vineCtor = Class.forName("com.Polarice3.Goety.common.entities.projectiles.EntangleVines")
 							.getConstructor(Level.class, LivingEntity.class, Entity.class);
@@ -176,7 +178,7 @@ public class DefilerModifier extends GolemModifier {
 
 		// +300% damage: arthropods, or any target currently under a debuff
 		boolean isArthropod = target.getType().is(TagKey.create(
-				net.minecraft.core.registries.Registries.ENTITY_TYPE, new ResourceLocation("minecraft", "arthropod")));
+				net.minecraft.core.registries.Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath("minecraft", "arthropod")));
 		boolean hasDebuff = false;
 		for (var effect : target.getActiveEffects()) {
 			if (!effect.getEffect().isBeneficial()) {
@@ -185,7 +187,7 @@ public class DefilerModifier extends GolemModifier {
 			}
 		}
 		if (isArthropod || hasDebuff) {
-			boolean all = golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get());
+			boolean all = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get());
 			event.setAmount(event.getAmount() * (all ? 5.5F : 4.0F));
 		}
 	}

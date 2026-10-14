@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.combat;
 
+import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -11,7 +12,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class DeathKnellModifier extends GolemModifier {
 		if (level <= 0) return;
 
 		float extra = event.getEntity().getMaxHealth() * 0.02f;
-		if (golem.getModifiers().containsKey(MGDPModifiers.THE_APOCALYPSE.get())) {
+		if (golem.getModifiers().containsKey(RevelationCompatRegistry.THE_APOCALYPSE.get())) {
 			// 末日终结 synergy: the 2% max HP bonus lands as true void damage
 			event.getEntity().hurt(event.getEntity().damageSources().fellOutOfWorld(), extra);
 		} else {
@@ -38,8 +39,4 @@ public class DeathKnellModifier extends GolemModifier {
 		}
 	}
 
-	@Override
-	public List<MutableComponent> getDetail(int v) {
-		return List.of(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GREEN));
-	}
 }

@@ -23,7 +23,6 @@ public class RealitySuppressionModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
 		var ins = golem.getAttribute(CoPAttrs.REALITY.get());
 		if (ins == null) return;
 		ins.setBaseValue(level);

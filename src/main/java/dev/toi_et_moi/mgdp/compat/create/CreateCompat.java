@@ -1,5 +1,6 @@
-package src.toi_et_moi.mgdp.compat;
+package dev.toi_et_moi.mgdp.compat.create;
 
+import dev.toi_et_moi.mgdp.init.MGDP;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.core.BlockPos;
@@ -20,12 +21,12 @@ public class CreateCompat {
 	private static final int SCAN_INTERVAL = 4;
 	private static final int BASE_RANGE = 2;
 
-	private static final ResourceLocation HAND_CRANK_ID = new ResourceLocation("create", "hand_crank");
-	private static final ResourceLocation PUSH_MODIFIER_ID = new ResourceLocation("modulargolems", "push");
-	private static final ResourceLocation FORCE_MODIFIER_ID = new ResourceLocation("modulargolems", "mechanical_force");
-	private static final ResourceLocation MOBILITY_MODIFIER_ID = new ResourceLocation("modulargolems", "mechanical_mobility");
-	private static final ResourceLocation FORCE_EFFECT_ID = new ResourceLocation("modulargolems", "mechanical_force");
-	private static final ResourceLocation MOBILITY_EFFECT_ID = new ResourceLocation("modulargolems", "mechanical_mobility");
+	private static final ResourceLocation HAND_CRANK_ID = ResourceLocation.fromNamespaceAndPath(CreateDispatch.MODID, "hand_crank");
+	private static final ResourceLocation PUSH_MODIFIER_ID = MGDP.loc("push");
+	private static final ResourceLocation FORCE_MODIFIER_ID = MGDP.loc("mechanical_force");
+	private static final ResourceLocation MOBILITY_MODIFIER_ID = MGDP.loc("mechanical_mobility");
+	private static final ResourceLocation FORCE_EFFECT_ID = MGDP.loc("mechanical_force");
+	private static final ResourceLocation MOBILITY_EFFECT_ID = MGDP.loc("mechanical_mobility");
 
 	public static void tryDriveHandCrank(AbstractGolemEntity<?, ?> golem) {
 		if (golem.tickCount % SCAN_INTERVAL != 0) return;

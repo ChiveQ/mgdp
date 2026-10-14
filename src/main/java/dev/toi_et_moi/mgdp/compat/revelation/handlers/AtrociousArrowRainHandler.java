@@ -1,5 +1,6 @@
-package src.toi_et_moi.mgdp.compat.goety_revelation;
+package dev.toi_et_moi.mgdp.compat.revelation.handlers;
 
+import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
 import dev.xkmc.modulargolems.compat.materials.goety.revelation.GRCompatRegistry;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.core.BlockPos;
@@ -24,7 +25,7 @@ import src.toi_et_moi.mgdp.Mgdp;
  * 十恶不赦（modulargolems goety_revelation 使徒头衔：the_atrocious）扩展：
  * 周期在目标头顶召唤箭雨；傀儡手持天启长弓（goety_revelation:bow_of_revelation）时改为死亡箭雨。
  */
-@Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+//@Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class AtrociousArrowRainHandler {
 
 	private static final ResourceLocation ATROCIOUS_MG = new ResourceLocation("modulargolems", "the_atrocious");
@@ -97,7 +98,7 @@ public class AtrociousArrowRainHandler {
 	}
 
 	private static boolean hasGenesis(AbstractGolemEntity<?, ?> golem) {
-		if (golem.getModifiers().containsKey(src.toi_et_moi.mgdp.init.MGDPModifiers.THE_GENESIS.get())) {
+		if (golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get())) {
 			return true;
 		}
 		for (var entry : golem.getModifiers().entrySet()) {

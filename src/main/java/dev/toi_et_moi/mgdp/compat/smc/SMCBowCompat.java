@@ -1,5 +1,6 @@
-package src.toi_et_moi.mgdp.compat;
+package dev.toi_et_moi.mgdp.compat.smc;
 
+import dev.toi_et_moi.mgdp.init.MGDP;
 import dev.xkmc.mob_weapon_api.registry.WeaponRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,11 +11,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.compat.goety_revelation.RevelationBowBehavior;
+import dev.toi_et_moi.mgdp.compat.revelation.handlers.RevelationBowBehavior;
 
 import java.util.Optional;
 
 @Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Deprecated
 public class SMCBowCompat {
 
     @SubscribeEvent
@@ -33,12 +35,12 @@ public class SMCBowCompat {
     }
 
     private static void registerSMCBow(String bowId) {
-        ResourceLocation id = new ResourceLocation("smc", bowId);
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath("smc", bowId);
         var item = ForgeRegistries.ITEMS.getValue(id);
         if (item == null) return;
 
         WeaponRegistry.BOW.register(
-                new ResourceLocation("mgdp", "smc_" + bowId),
+                MGDP.loc( "smc_" + bowId),
                 (ItemStack stack) -> stack.is(item)
                         ? Optional.of(dev.xkmc.mob_weapon_api.registry.WeaponStatus.RANGED)
                         : Optional.empty(),
@@ -47,11 +49,11 @@ public class SMCBowCompat {
     }
 
     private static void registerRevelationBow() {
-        var item = ForgeRegistries.ITEMS.getValue(new ResourceLocation("goety_revelation", "bow_of_revelation"));
+        var item = ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("goety_revelation", "bow_of_revelation"));
         if (item == null) return;
 
         WeaponRegistry.BOW.register(
-                new ResourceLocation("mgdp", "revelation_bow"),
+                MGDP.loc( "revelation_bow"),
                 (ItemStack stack) -> stack.is(item)
                         ? Optional.of(dev.xkmc.mob_weapon_api.registry.WeaponStatus.RANGED)
                         : Optional.empty(),

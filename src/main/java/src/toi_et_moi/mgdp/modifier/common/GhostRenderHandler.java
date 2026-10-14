@@ -6,7 +6,7 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-import src.toi_et_moi.mgdp.init.MGDPModifiers;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import src.toi_et_moi.mgdp.mixin.EntityRendererAccessor;
 
 import java.util.IdentityHashMap;
@@ -23,8 +23,10 @@ public class GhostRenderHandler {
         if (!golem.getModifiers().containsKey(MGDPModifiers.GHOST.get())) return;
 
         LivingEntityRenderer<?, ?> renderer = event.getRenderer();
-        SAVED_SHADOWS.put(renderer, ((EntityRendererAccessor) renderer).getShadowRadius());
-        ((EntityRendererAccessor) renderer).setShadowRadius(0);
+//        SAVED_SHADOWS.put(renderer, ((EntityRendererAccessor) renderer).getShadowRadius());
+        SAVED_SHADOWS.put(renderer, renderer.shadowRadius);
+//        ((EntityRendererAccessor) renderer).setShadowRadius(0);
+        renderer.shadowRadius = 0;
         event.setCanceled(true);
     }
 
@@ -32,7 +34,8 @@ public class GhostRenderHandler {
     public static void onRenderLivingPost(RenderLivingEvent.Post<?, ?> event) {
         Float saved = SAVED_SHADOWS.remove(event.getRenderer());
         if (saved != null) {
-            ((EntityRendererAccessor) event.getRenderer()).setShadowRadius(saved);
+            event.getRenderer().shadowRadius = saved;
+//            ((EntityRendererAccessor) event.getRenderer()).setShadowRadius(saved);
         }
     }
 }
