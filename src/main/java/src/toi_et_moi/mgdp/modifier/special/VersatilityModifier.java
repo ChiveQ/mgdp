@@ -5,7 +5,6 @@ import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.item.upgrade.IUpgradeItem;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 

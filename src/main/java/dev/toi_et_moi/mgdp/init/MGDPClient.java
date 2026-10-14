@@ -1,12 +1,10 @@
 package dev.toi_et_moi.mgdp.init;
 
-import dev.toi_et_moi.mgdp.init.registrate.MGDPMiscEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import src.toi_et_moi.mgdp.Mgdp;
 import src.toi_et_moi.mgdp.init.MGDPKeyMappings;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = MGDP.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)

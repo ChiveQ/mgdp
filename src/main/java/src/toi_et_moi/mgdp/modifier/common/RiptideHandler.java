@@ -5,13 +5,11 @@ import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import src.toi_et_moi.mgdp.Mgdp;
 
 @Deprecated
 @Mod.EventBusSubscriber(modid = MGDP.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)

@@ -1,5 +1,6 @@
 package dev.toi_et_moi.mgdp.compat.smc;
 
+import dev.toi_et_moi.mgdp.compat.revelation.handlers.RevelationBowBehavior;
 import dev.toi_et_moi.mgdp.init.MGDP;
 import dev.xkmc.mob_weapon_api.registry.WeaponRegistry;
 import net.minecraft.resources.ResourceLocation;
@@ -11,7 +12,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import src.toi_et_moi.mgdp.Mgdp;
-import dev.toi_et_moi.mgdp.compat.revelation.handlers.RevelationBowBehavior;
 
 import java.util.Optional;
 

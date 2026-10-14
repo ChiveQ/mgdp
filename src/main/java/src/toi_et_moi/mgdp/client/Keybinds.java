@@ -15,7 +15,6 @@ import src.toi_et_moi.mgdp.network.LunaClonePacket;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_F;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_L;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_T;
 
 @Mod.EventBusSubscriber(modid = Mgdp.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Keybinds {

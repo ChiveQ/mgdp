@@ -1,12 +1,12 @@
 package src.toi_et_moi.mgdp.compat;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.mob_weapon_api.api.projectile.BowUseContext;
 import dev.xkmc.mob_weapon_api.api.projectile.ProjectileWeaponUser;
 import dev.xkmc.mob_weapon_api.example.behavior.SimpleBowBehavior;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 /**
  * 通用弓行为（替换 SimpleBowBehavior fallback）：带 QuickStrike（秒拉弓+满力）与无限弹药支持。

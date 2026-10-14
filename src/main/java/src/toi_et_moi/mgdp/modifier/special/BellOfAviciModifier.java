@@ -8,7 +8,6 @@ import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Enemy;

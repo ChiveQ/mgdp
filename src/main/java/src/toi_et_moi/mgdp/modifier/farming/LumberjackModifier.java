@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.farming;
 
+import dev.toi_et_moi.mgdp.compat.l2complements.LCProxy;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -22,16 +23,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
-import dev.toi_et_moi.mgdp.compat.l2complements.LCProxy;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.UUID;
-import java.util.WeakHashMap;
-import java.util.ArrayDeque;
+import java.util.*;
 
 /**
  * 伐木升级（蓝色升级）——从收获作物升级中独立出来的砍树功能

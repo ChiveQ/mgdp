@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.combat;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
@@ -9,10 +10,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.AABB;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import src.toi_et_moi.mgdp.modifier.defense.ChargedShieldModifier;
 
 import java.util.List;

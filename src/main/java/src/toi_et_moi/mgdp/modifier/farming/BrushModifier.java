@@ -5,11 +5,8 @@ import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import dev.xkmc.modulargolems.content.modifier.special.PickupModifier;
 import dev.xkmc.modulargolems.init.data.MGConfig;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
@@ -19,8 +16,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BrushableBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.util.FakePlayerFactory;
-
-import java.util.List;
 
 public class BrushModifier extends GolemModifier {
 

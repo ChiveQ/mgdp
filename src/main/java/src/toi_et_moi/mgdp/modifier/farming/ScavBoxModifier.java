@@ -1,6 +1,8 @@
 package src.toi_et_moi.mgdp.modifier.farming;
 
+import com.mojang.logging.LogUtils;
 import dev.toi_et_moi.mgdp.init.MGDP;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.mode.GolemModes;
@@ -29,19 +31,12 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.network.PacketDistributor;
+import org.slf4j.Logger;
 import src.toi_et_moi.mgdp.MGDPConfig;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import src.toi_et_moi.mgdp.network.MGDPNetwork;
 import src.toi_et_moi.mgdp.network.ScavStatusPacket;
 
-import com.mojang.logging.LogUtils;
-import org.slf4j.Logger;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 拾荒箱升级（灵感来自逃离塔科夫 scav 宝箱）

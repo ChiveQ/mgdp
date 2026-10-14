@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.mixin;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.mob_weapon_api.api.projectile.BowUseContext;
 import dev.xkmc.mob_weapon_api.integration.l2archery.L2BowBehavior;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
@@ -8,7 +9,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 /**
  * L2BowBehavior override 了 getStandardPullTime（返回弓的 config.pull_time），

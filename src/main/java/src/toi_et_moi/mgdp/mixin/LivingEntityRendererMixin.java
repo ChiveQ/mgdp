@@ -1,6 +1,7 @@
 package src.toi_et_moi.mgdp.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.world.entity.LivingEntity;
@@ -9,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 @Mixin(LivingEntityRenderer.class)
 public class LivingEntityRendererMixin {

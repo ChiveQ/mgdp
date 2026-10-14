@@ -1,17 +1,15 @@
 package src.toi_et_moi.mgdp.mixin;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.mob_weapon_api.example.goal.SmartRangedAttackGoal;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 /**
  * When the golem is flying, the parent mod's SmartRangedAttackGoal.strafing()

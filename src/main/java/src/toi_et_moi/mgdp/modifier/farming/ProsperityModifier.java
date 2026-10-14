@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.farming;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -22,7 +23,6 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 import java.util.List;
 

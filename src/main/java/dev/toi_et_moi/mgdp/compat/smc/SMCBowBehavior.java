@@ -1,13 +1,12 @@
 package dev.toi_et_moi.mgdp.compat.smc;
+
 import com.starmeow.smc.items.RainbowBow;
-import com.starmeow.smc.items.SMCArmorItems;
 import dev.toi_et_moi.mgdp.init.MGDP;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
-import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
-import net.minecraft.core.registries.BuiltInRegistries;
-
 import dev.xkmc.mob_weapon_api.api.projectile.BowUseContext;
 import dev.xkmc.mob_weapon_api.example.behavior.SimpleBowBehavior;
+import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
@@ -16,9 +15,8 @@ import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.function.Supplier;
 

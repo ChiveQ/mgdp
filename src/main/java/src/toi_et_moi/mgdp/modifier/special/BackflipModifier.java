@@ -1,6 +1,5 @@
 package src.toi_et_moi.mgdp.modifier.special;
 
-import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.AttributeGolemModifier;
 import dev.xkmc.modulargolems.init.registrate.GolemTypes;

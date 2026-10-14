@@ -9,7 +9,6 @@ import dev.toi_et_moi.mgdp.init.registrate.MGDPItems;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPMiscEntities;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.l2library.base.L2Registrate;
-import dev.xkmc.l2library.serial.config.PacketHandlerWithConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.EventPriority;

@@ -1,21 +1,22 @@
 package dev.toi_et_moi.mgdp.compat.revelation.modifiers;
+
 import dev.toi_et_moi.mgdp.compat.goety.GoetyDispatch;
 import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
-import net.minecraft.core.registries.BuiltInRegistries;
-
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
+import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
-import java.util.function.Consumer;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Consumer;
 
 public class PyreLordModifier extends GolemModifier {
 

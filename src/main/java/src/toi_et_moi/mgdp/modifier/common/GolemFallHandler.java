@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.common;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.entity.dog.DogGolemEntity;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.player.Player;
@@ -10,7 +11,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.MGDPConfig;
 import src.toi_et_moi.mgdp.Mgdp;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 @Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GolemFallHandler {

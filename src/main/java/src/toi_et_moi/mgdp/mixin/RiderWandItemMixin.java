@@ -3,7 +3,6 @@ package src.toi_et_moi.mgdp.mixin;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.dog.DogGolemEntity;
 import dev.xkmc.modulargolems.content.item.wand.RiderWandItem;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;

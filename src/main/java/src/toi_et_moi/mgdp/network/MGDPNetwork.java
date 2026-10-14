@@ -5,9 +5,8 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 import src.toi_et_moi.mgdp.Mgdp;
 import src.toi_et_moi.mgdp.jukebox.JukeboxPacket;
-import src.toi_et_moi.mgdp.modifier.SwapPacket;
 import src.toi_et_moi.mgdp.jukebox.packet.NetMusicSoundPacket;
-import src.toi_et_moi.mgdp.network.GolemRecallPacket;
+import src.toi_et_moi.mgdp.modifier.SwapPacket;
 
 public class MGDPNetwork {
 

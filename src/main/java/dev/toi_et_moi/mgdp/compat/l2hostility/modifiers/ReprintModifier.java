@@ -4,10 +4,7 @@ import dev.xkmc.l2complements.init.registrate.LCEnchantments;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +17,6 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-import java.util.List;
 import java.util.Map;
 
 public class ReprintModifier extends GolemModifier {

@@ -3,10 +3,7 @@ package src.toi_et_moi.mgdp.modifier.farming;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -19,8 +16,6 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-
-import java.util.List;
 
 public class FlareModifier extends GolemModifier {
 

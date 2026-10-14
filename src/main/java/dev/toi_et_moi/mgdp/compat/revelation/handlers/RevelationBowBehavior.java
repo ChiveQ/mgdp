@@ -1,21 +1,21 @@
 package dev.toi_et_moi.mgdp.compat.revelation.handlers;
+
 import dev.toi_et_moi.mgdp.compat.goety.GoetyDispatch;
 import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
+import dev.toi_et_moi.mgdp.compat.smc.SMCBowBehavior;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
-import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
-import net.minecraft.core.registries.BuiltInRegistries;
-
 import dev.xkmc.mob_weapon_api.api.projectile.BowUseContext;
 import dev.xkmc.mob_weapon_api.example.behavior.SimpleBowBehavior;
+import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.ForgeRegistries;
-import dev.toi_et_moi.mgdp.compat.smc.SMCBowBehavior;
 
 public class RevelationBowBehavior extends SimpleBowBehavior {
 

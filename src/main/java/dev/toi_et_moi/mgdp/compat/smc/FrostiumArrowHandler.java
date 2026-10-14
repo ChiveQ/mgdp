@@ -4,8 +4,8 @@ import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
 
 @Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)

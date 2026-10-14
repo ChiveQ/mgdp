@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.client;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.events.event.GolemInfoEvent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -9,7 +10,6 @@ import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
 import src.toi_et_moi.mgdp.init.IConquerorData;
 import src.toi_et_moi.mgdp.init.IFlipData;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 @Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ShieldBlockOverlayHandler {

@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.farming;
 
+import dev.toi_et_moi.mgdp.compat.l2complements.LCProxy;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -25,16 +26,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 import src.toi_et_moi.mgdp.MGDPConfig;
-import dev.toi_et_moi.mgdp.compat.l2complements.LCProxy;
 
-import java.util.ArrayDeque;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.UUID;
-import java.util.WeakHashMap;
+import java.util.*;
 
 /**
  * 挖矿升级（蓝色升级）

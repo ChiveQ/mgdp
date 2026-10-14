@@ -3,6 +3,7 @@ package src.toi_et_moi.mgdp.mixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
@@ -10,7 +11,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.LevelReader;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 /**
  * 拾荒箱彩蛋：叼烟哥没有影子——影子被吓跑了。

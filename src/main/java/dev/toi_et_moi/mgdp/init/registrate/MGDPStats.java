@@ -1,8 +1,6 @@
 package dev.toi_et_moi.mgdp.init.registrate;
 
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.toi_et_moi.mgdp.init.MGDP;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.StatFormatter;
 import net.minecraft.stats.Stats;

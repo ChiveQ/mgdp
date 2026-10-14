@@ -1,39 +1,28 @@
 package src.toi_et_moi.mgdp.mixin;
 
 import dev.toi_et_moi.mgdp.content.modifier.base.AttributeOperationModifier;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
+import dev.xkmc.mob_weapon_api.registry.WeaponRegistry;
+import dev.xkmc.mob_weapon_api.registry.WeaponStatus;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.goals.GolemSwimMoveControl;
-
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MoverType;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-
-import dev.xkmc.mob_weapon_api.registry.WeaponRegistry;
-import dev.xkmc.mob_weapon_api.registry.WeaponStatus;
-
-import src.toi_et_moi.mgdp.modifier.FlightPathNavigation;
-import src.toi_et_moi.mgdp.jukebox.JukeboxGolem;
-
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
-
-
-import src.toi_et_moi.mgdp.MGDPConfig;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
-import src.toi_et_moi.mgdp.init.IFlipData;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -41,6 +30,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import src.toi_et_moi.mgdp.MGDPConfig;
+import src.toi_et_moi.mgdp.init.IFlipData;
+import src.toi_et_moi.mgdp.jukebox.JukeboxGolem;
+import src.toi_et_moi.mgdp.modifier.FlightPathNavigation;
 
 @Mixin(AbstractGolemEntity.class)
 public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGolem, IFlipData {

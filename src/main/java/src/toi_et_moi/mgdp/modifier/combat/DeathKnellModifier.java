@@ -1,20 +1,15 @@
 package src.toi_et_moi.mgdp.modifier.combat;
 
 import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
-
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Mgdp.MODID)
 public class DeathKnellModifier extends GolemModifier {

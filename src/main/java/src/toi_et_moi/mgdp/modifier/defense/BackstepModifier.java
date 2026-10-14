@@ -1,12 +1,12 @@
 package src.toi_et_moi.mgdp.modifier.defense;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 import src.toi_et_moi.mgdp.init.IFlipData;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 public class BackstepModifier extends GolemModifier {
 

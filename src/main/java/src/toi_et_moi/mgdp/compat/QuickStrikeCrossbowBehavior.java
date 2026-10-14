@@ -1,8 +1,9 @@
 package src.toi_et_moi.mgdp.compat;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.mob_weapon_api.api.projectile.CrossbowUseContext;
-import dev.xkmc.mob_weapon_api.api.projectile.ProjectileWeaponUser;
 import dev.xkmc.mob_weapon_api.api.projectile.ProjectileWeaponUseContext;
+import dev.xkmc.mob_weapon_api.api.projectile.ProjectileWeaponUser;
 import dev.xkmc.mob_weapon_api.example.behavior.GeneralCrossbowBehavior;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.sounds.SoundEvents;
@@ -11,7 +12,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 import java.util.List;
 

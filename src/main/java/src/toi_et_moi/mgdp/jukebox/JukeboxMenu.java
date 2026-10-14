@@ -4,7 +4,6 @@ import dev.xkmc.l2library.base.menu.base.BaseContainerMenu;
 import dev.xkmc.l2library.base.menu.base.SpriteManager;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;

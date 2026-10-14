@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.mixin;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.compat.materials.l2complements.EnderTeleportModifier;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.init.data.MGConfig;
@@ -8,13 +9,12 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.EntityTeleportEvent;
 import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.event.entity.EntityTeleportEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.gen.Invoker;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 /**
  * Flying-aware EnderTeleport.

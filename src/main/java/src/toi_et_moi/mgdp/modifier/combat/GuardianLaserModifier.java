@@ -14,7 +14,6 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import src.toi_et_moi.mgdp.Mgdp;
 import src.toi_et_moi.mgdp.entity.GuardianLaserTargetEntity;
 
 import java.util.HashSet;

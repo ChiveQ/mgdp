@@ -1,18 +1,16 @@
 package dev.toi_et_moi.mgdp.init.advancement;
 
 import com.google.gson.JsonObject;
-import dev.toi_et_moi.mgdp.init.MGDP;
 import dev.xkmc.l2library.serial.advancements.BaseCriterion;
 import dev.xkmc.l2library.serial.advancements.BaseCriterionInstance;
 import dev.xkmc.l2serial.serialization.SerialClass;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.critereon.ContextAwarePredicate;
+import net.minecraft.advancements.critereon.DeserializationContext;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import org.jetbrains.annotations.NotNull;
 import src.toi_et_moi.mgdp.init.MGDPStats;
-
-import java.util.function.BiFunction;
 
 //public class GolemKillTrigger extends SimpleCriterionTrigger<GolemKillTrigger.Instance> {
 public class GolemKillTrigger extends BaseCriterion<GolemKillTrigger.Ins,GolemKillTrigger> {

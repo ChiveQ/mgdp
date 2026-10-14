@@ -3,11 +3,6 @@ package src.toi_et_moi.mgdp.modifier.defense;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
-import net.minecraft.ChatFormatting;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -22,8 +17,6 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Mgdp.MODID)
 public class BombDisposalModifier extends GolemModifier {

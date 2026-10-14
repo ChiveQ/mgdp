@@ -1,16 +1,16 @@
 package src.toi_et_moi.mgdp.mixin;
 
-import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.mob_weapon_api.example.goal.SmartBowAttackGoal;
-import dev.xkmc.mob_weapon_api.example.goal.SmartInstantRangedAttackGoal;
 import dev.xkmc.mob_weapon_api.example.goal.SmartHoldRangedAttackGoal;
+import dev.xkmc.mob_weapon_api.example.goal.SmartInstantRangedAttackGoal;
+import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.world.entity.Mob;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 @Mixin({SmartBowAttackGoal.class, SmartInstantRangedAttackGoal.class, SmartHoldRangedAttackGoal.class})
 public abstract class RangedCooldownMixin {

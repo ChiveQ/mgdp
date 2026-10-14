@@ -7,15 +7,14 @@ import dev.xkmc.modulargolems.content.item.ranged.CannonPoseUtil;
 import dev.xkmc.modulargolems.content.item.ranged.IShoulderCannonAnimated;
 import dev.xkmc.modulargolems.content.item.ranged.ShouldWeaponItem;
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import src.toi_et_moi.mgdp.Mgdp;
 import src.toi_et_moi.mgdp.entity.MourningBeamEntity;
 
 public class BlackMourningItem extends ShouldWeaponItem implements IShoulderCannonAnimated {

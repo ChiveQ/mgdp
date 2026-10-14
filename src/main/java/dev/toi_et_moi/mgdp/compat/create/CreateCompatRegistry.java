@@ -2,8 +2,6 @@ package dev.toi_et_moi.mgdp.compat.create;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.xkmc.modulargolems.content.item.upgrade.SimpleUpgradeItem;
-import net.minecraft.world.item.Item;
-import src.toi_et_moi.mgdp.Mgdp;
 
 import static dev.toi_et_moi.mgdp.init.registrate.MGDPItems.regModUpgrade;
 

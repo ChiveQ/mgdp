@@ -8,9 +8,6 @@ import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod;
-import src.toi_et_moi.mgdp.Mgdp;
 
 /**
  * TODO 未深察、仅去反射

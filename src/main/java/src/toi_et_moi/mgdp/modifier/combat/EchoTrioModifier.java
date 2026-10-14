@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.combat;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.targeting.TargetManager;
@@ -7,11 +8,8 @@ import dev.xkmc.modulargolems.content.item.ranged.SonicCannonItem;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import dev.xkmc.modulargolems.init.data.MGDamageTypes;
 import dev.xkmc.modulargolems.init.registrate.GolemTypes;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -25,10 +23,9 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
+import src.toi_et_moi.mgdp.Mgdp;
 
 import java.util.List;
-import src.toi_et_moi.mgdp.Mgdp;
 
 @Mod.EventBusSubscriber(modid = Mgdp.MODID)
 public class EchoTrioModifier extends GolemModifier {

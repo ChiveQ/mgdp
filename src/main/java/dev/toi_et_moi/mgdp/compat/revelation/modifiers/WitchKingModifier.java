@@ -2,6 +2,7 @@ package dev.toi_et_moi.mgdp.compat.revelation.modifiers;
 
 import dev.toi_et_moi.mgdp.compat.goety.GoetyDispatch;
 import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
+import dev.toi_et_moi.mgdp.compat.revelation.handlers.ProfaneStealHandler;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -15,8 +16,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import dev.toi_et_moi.mgdp.compat.revelation.handlers.ProfaneStealHandler;
 
 public class WitchKingModifier extends GolemModifier {
 

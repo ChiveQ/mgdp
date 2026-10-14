@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.common;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.humanoid.HumanoidGolemEntity;
 import dev.xkmc.modulargolems.content.entity.mode.GolemModes;
@@ -16,7 +17,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import src.toi_et_moi.mgdp.jukebox.JukeboxGolem;
 
 @Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)

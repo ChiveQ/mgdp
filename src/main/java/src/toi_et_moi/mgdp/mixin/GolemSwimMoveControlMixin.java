@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.mixin;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.goals.GolemSwimMoveControl;
 import net.minecraft.util.Mth;
@@ -11,7 +12,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 @Mixin(GolemSwimMoveControl.class)
 public abstract class GolemSwimMoveControlMixin extends MoveControl {

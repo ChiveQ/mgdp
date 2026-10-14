@@ -1,6 +1,7 @@
 package src.toi_et_moi.mgdp.modifier;
 
 import dev.toi_et_moi.mgdp.compat.revelation.RevelationCompatRegistry;
+import dev.toi_et_moi.mgdp.compat.revelation.handlers.ProfaneStealHandler;
 import dev.toi_et_moi.mgdp.init.MGDP;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.server.level.ServerLevel;
@@ -22,7 +23,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-import dev.toi_et_moi.mgdp.compat.revelation.handlers.ProfaneStealHandler;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

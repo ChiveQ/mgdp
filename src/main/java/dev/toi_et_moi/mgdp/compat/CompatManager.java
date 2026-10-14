@@ -22,7 +22,6 @@ import dev.toi_et_moi.mgdp.compat.youkai.YoukaiDispatch;
 import dev.xkmc.modulargolems.compat.materials.common.ModDispatch;
 import net.minecraftforge.fml.ModList;
 
-
 import java.util.ArrayList;
 import java.util.List;
 

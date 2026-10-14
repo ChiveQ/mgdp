@@ -1,10 +1,10 @@
 package dev.toi_et_moi.mgdp.compat.goety.modifiers;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;

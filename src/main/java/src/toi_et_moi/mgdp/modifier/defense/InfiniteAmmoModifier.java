@@ -3,13 +3,8 @@ package src.toi_et_moi.mgdp.modifier.defense;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.ModList;
-
-import java.util.List;
 
 public class InfiniteAmmoModifier extends GolemModifier {
 

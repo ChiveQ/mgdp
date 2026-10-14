@@ -1,9 +1,7 @@
 package src.toi_et_moi.mgdp.mixin;
 
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.DragonFireball;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

@@ -5,12 +5,12 @@ import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.InteractionHand;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.lang.reflect.Field;

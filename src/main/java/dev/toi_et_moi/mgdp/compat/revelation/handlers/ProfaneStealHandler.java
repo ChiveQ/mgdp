@@ -9,14 +9,8 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod;
-import src.toi_et_moi.mgdp.Mgdp;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * 天启饥荒（modulargolems goety_revelation 使徒头衔：The Profane / the_profane）在攻击时删除目标正面效果。

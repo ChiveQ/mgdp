@@ -10,10 +10,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.projectile.DragonFireball;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DragonBreathModifier extends GolemModifier {

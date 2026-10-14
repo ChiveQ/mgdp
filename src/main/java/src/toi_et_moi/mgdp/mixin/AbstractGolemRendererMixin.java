@@ -1,6 +1,7 @@
 package src.toi_et_moi.mgdp.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.dog.DogGolemRenderer;
 import dev.xkmc.modulargolems.content.entity.humanoid.HumanoidGolemRenderer;
@@ -16,7 +17,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 @Mixin({DogGolemRenderer.class, HumanoidGolemRenderer.class, MetalGolemRenderer.class})
 public abstract class AbstractGolemRendererMixin<T extends AbstractGolemEntity<?, ?>, M extends EntityModel<T>>

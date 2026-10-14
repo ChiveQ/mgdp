@@ -1,7 +1,7 @@
 package src.toi_et_moi.mgdp.mixin;
 
-import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.mob_weapon_api.util.ShootUtils;
+import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;

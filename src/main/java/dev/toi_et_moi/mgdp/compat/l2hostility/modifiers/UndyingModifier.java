@@ -4,10 +4,7 @@ import dev.toi_et_moi.mgdp.compat.l2hostility.HostilityCompatRegistry;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -17,8 +14,6 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Mgdp.MODID)
 public class UndyingModifier extends GolemModifier {

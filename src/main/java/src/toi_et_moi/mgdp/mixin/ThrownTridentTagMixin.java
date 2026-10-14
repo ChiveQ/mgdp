@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.mixin;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrownTrident;
@@ -10,7 +11,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 @Mixin(ThrownTrident.class)
 public class ThrownTridentTagMixin {

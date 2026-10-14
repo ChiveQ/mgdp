@@ -3,7 +3,6 @@ package src.toi_et_moi.mgdp.jukebox;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.network.PacketDistributor;
 import src.toi_et_moi.mgdp.Mgdp;

@@ -5,12 +5,7 @@ import dev.xkmc.l2damagetracker.contents.damage.DefaultDamageState;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-
-import java.util.List;
 
 public class DementorModifier extends GolemModifier {
 

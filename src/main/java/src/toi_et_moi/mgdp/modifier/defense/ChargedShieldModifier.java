@@ -3,7 +3,6 @@ package src.toi_et_moi.mgdp.modifier.defense;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
-import src.toi_et_moi.mgdp.init.IFlipData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -11,6 +10,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import src.toi_et_moi.mgdp.init.IFlipData;
 
 import java.util.List;
 

@@ -1,15 +1,14 @@
 package src.toi_et_moi.mgdp.modifier.combat;
-import dev.toi_et_moi.mgdp.compat.smc.SMCDispatch;
-import net.minecraft.core.registries.BuiltInRegistries;
 
+import dev.toi_et_moi.mgdp.compat.smc.SMCDispatch;
 import dev.xkmc.mob_weapon_api.api.projectile.ProjectileWeaponUser;
 import dev.xkmc.mob_weapon_api.example.behavior.ThrowableBehavior;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class PerkinSpearThrowBehavior extends ThrowableBehavior {
 

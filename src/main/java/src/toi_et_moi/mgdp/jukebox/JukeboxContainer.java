@@ -1,7 +1,6 @@
 package src.toi_et_moi.mgdp.jukebox;
 
 import dev.xkmc.l2library.base.menu.base.BaseContainerMenu;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.RecordItem;
 

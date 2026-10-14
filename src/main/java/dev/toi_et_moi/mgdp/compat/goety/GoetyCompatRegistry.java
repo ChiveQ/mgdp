@@ -2,11 +2,11 @@ package dev.toi_et_moi.mgdp.compat.goety;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import dev.xkmc.modulargolems.content.item.upgrade.SimpleUpgradeItem;
 import dev.toi_et_moi.mgdp.compat.goety.modifiers.BottlingModifier;
 import dev.toi_et_moi.mgdp.compat.goety.modifiers.CroneModifier;
 import dev.toi_et_moi.mgdp.compat.goety.modifiers.NecromancerModifier;
 import dev.toi_et_moi.mgdp.compat.goety.modifiers.VoidEchoModifier;
+import dev.xkmc.modulargolems.content.item.upgrade.SimpleUpgradeItem;
 
 import static dev.toi_et_moi.mgdp.init.registrate.MGDPItems.regModUpgrade;
 import static dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers.reg;

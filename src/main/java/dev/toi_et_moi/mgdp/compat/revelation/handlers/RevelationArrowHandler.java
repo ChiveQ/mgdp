@@ -8,10 +8,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
-import src.toi_et_moi.mgdp.Mgdp;
 
 import java.util.ArrayList;
 import java.util.List;

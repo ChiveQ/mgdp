@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.combat;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -15,7 +16,6 @@ import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import src.toi_et_moi.mgdp.init.IFlipData;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 /**
  * 锐不可当：满足条件时直接高跳并朝目标打出大量散射箭矢（复刻突变骷髅）。

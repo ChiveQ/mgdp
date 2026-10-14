@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.common;
 
+import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
@@ -8,7 +9,6 @@ import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import src.toi_et_moi.mgdp.Mgdp;
-import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 
 @Mod.EventBusSubscriber(modid = Mgdp.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class MoonShadowHandler {

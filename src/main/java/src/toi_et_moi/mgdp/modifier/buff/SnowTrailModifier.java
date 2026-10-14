@@ -5,7 +5,6 @@ import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BiomeTags;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.item.enchantment.FrostWalkerEnchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
