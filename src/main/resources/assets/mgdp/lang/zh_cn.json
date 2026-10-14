@@ -38,7 +38,7 @@
   "modifier.mgdp.netherite_gold": "下界合金苹果",
   "modifier.mgdp.netherite_gold.desc": "回复V+火焰免疫。",
   "modifier.mgdp.enchanted_netherite_gold": "附魔下界合金苹果",
-  "modifier.mgdp.enchanted_netherite_gold.desc": "回复V+火焰免疫+爆炸抗性II+20%减伤。",
+  "modifier.mgdp.enchanted_netherite_gold.desc": "回复V+火焰免疫+20%减伤，爆炸伤害40%减伤。",
   "key.mgdp.flight_descend": "骑乘犬形飞行下降",
   "key.mgdp.flight_sprint": "骑乘犬形飞行加速",
   "item.mgdp.iron_curtain": "铁幕装置",

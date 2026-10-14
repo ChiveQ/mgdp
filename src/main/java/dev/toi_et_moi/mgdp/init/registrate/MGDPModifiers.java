@@ -5,6 +5,8 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 //import dev.toi_et_moi.mgdp.compat.golemmagicka.ManaOverloadModifier;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.toi_et_moi.mgdp.content.modifier.base.AttributeOperationModifier;
+import dev.toi_et_moi.mgdp.content.modifier.buff.EnchantedNetheriteGoldModifier;
+import dev.toi_et_moi.mgdp.content.modifier.buff.NetheriteGoldModifier;
 import dev.toi_et_moi.mgdp.content.modifier.combat.*;
 import dev.xkmc.l2library.base.NamedEntry;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
