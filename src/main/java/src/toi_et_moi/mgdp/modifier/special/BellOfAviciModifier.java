@@ -17,51 +17,42 @@ import java.util.List;
 
 public class BellOfAviciModifier extends GolemModifier {
 
-    private static final double RANGE = 64.0;
-    private static final int INTERVAL = 40; // 2 seconds
+    private static final double RANGE = 64.0; // 本體範圍48
+    private static final int INTERVAL = 40; // 2秒
 
     public BellOfAviciModifier() {
         super(StatFilterType.HEALTH, 1);
     }
 
+    /**
+     * 此處與本體BellModifier大體相同
+     * */
     @Override
     public void onSetTarget(AbstractGolemEntity<?, ?> golem, Mob target, int level) {
-        applyGlow(golem);
-    }
-
-    @Override
-    public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-
-        if (golem.tickCount % INTERVAL != 0) return;
-        teleportTargeters(golem);
-    }
-
-    private void applyGlow(AbstractGolemEntity<?, ?> golem) {
         AABB area = golem.getBoundingBox().inflate(RANGE);
         List<Mob> nearby = golem.level().getEntitiesOfClass(Mob.class, area,
                 e -> e instanceof Enemy && !(e instanceof Creeper) && e.canAttack(golem));
-
-        boolean played = false;
+        boolean sound = false;
         for (Mob mob : nearby) {
-            if (!mob.hasEffect(MobEffects.GLOWING)) {
-                played = true;
-            }
+            sound |= !mob.hasEffect(MobEffects.GLOWING);
             EffectUtil.addEffect(mob, new MobEffectInstance(MobEffects.GLOWING, 200),
                     EffectUtil.AddReason.NONE, golem);
             if (!(mob.getTarget() instanceof AbstractGolemEntity)) {
                 mob.setTarget(golem);
             }
         }
-        if (played) {
+        if (sound) {
             golem.playSound(SoundEvents.BELL_BLOCK, 1.0F, 1.0F);
         }
     }
 
-    private void teleportTargeters(AbstractGolemEntity<?, ?> golem) {
+    @Override
+    public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
+        if (golem.tickCount % INTERVAL != 0) return;
+        // 傳送至附近
         AABB area = golem.getBoundingBox().inflate(RANGE);
         List<Mob> nearby = golem.level().getEntitiesOfClass(Mob.class, area,
                 e -> e.isAlive() && (e.getTarget() == golem || TargetManager.wantsToAttack(golem, e)));
-
         for (Mob mob : nearby) {
             double angle = golem.getRandom().nextDouble() * Math.PI * 2;
             double dist = 2.0 + golem.getRandom().nextDouble() * 3.0;
@@ -71,4 +62,5 @@ public class BellOfAviciModifier extends GolemModifier {
             mob.teleportTo(tx, ty, tz);
         }
     }
+
 }
