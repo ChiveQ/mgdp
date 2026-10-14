@@ -25,7 +25,7 @@ public class MindControlModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (!(golem.getTarget() instanceof Mob target)) return;
 		if (Player.class.isInstance(target)) return;
 		if (target instanceof AbstractGolemEntity) return;

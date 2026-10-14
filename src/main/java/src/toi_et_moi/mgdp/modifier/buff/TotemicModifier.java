@@ -27,7 +27,7 @@ public class TotemicModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (level < 1) return;
 
 		int idx = Math.min(level - 1, INTERVALS.length - 1);

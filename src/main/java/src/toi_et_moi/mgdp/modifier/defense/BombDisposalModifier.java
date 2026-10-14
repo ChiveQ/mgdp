@@ -53,7 +53,7 @@ public class BombDisposalModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (golem.tickCount % TNT_SCAN_INTERVAL != 0) return;
 
 		for (Entity entity : golem.level().getEntitiesOfClass(Entity.class,

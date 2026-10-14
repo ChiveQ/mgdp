@@ -67,7 +67,7 @@ public class TimeAxisModifier extends GolemModifier {
 	// === 日冕: 无视负面药水效果（无时间限制） ===
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 
 		// Remove negative effects every 10 ticks
 		if (golem.tickCount % 10 == 0) {

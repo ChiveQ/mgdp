@@ -58,7 +58,7 @@ public class ProsperityModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (golem.tickCount % 40 != 0) return;
 
 		double range = level * 4.0;

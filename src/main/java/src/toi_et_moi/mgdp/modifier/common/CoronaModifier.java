@@ -15,7 +15,7 @@ public class CoronaModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (!golem.level().isDay()) return;
 
 		// Remove all negative potion effects every 10 ticks

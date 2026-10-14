@@ -25,7 +25,7 @@ public class SpyglassModifier extends GolemModifier {
 
     @Override
     public void onAiStep(AbstractGolemEntity<?, ?> golem, int lv) {
-        if (golem.level().isClientSide()) return;
+
         if (!(golem.level() instanceof ServerLevel sl)) return;
         if (golem.tickCount % SCAN_INTERVAL != 0) return;
 

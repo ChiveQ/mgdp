@@ -19,7 +19,7 @@ public class InfiniteAmmoModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (!ModList.get().isLoaded("tacz")) return;
 		// Once per second is enough
 		if (golem.tickCount % 20 != 0) return;

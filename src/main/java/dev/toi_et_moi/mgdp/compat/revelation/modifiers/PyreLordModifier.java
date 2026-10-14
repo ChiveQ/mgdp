@@ -53,7 +53,7 @@ public class PyreLordModifier extends GolemModifier {
 
     @Override
     public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-        if (golem.level().isClientSide()) return;
+
         boolean all = golem.getModifiers().containsKey(RevelationCompatRegistry.THE_GENESIS.get());
         if (golem.tickCount % (all ? 10 : 20) != 0) return; // 万众归一: meteor rate doubled
         if (!net.minecraftforge.fml.ModList.get().isLoaded("goety")) return;

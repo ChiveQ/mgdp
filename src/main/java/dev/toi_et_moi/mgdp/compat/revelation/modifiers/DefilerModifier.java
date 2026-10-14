@@ -31,7 +31,7 @@ public class DefilerModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (!net.minecraftforge.fml.ModList.get().isLoaded("goety")) return;
 
 		// Ongoing poison quill barrage: one volley every 4 ticks

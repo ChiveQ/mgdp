@@ -20,7 +20,7 @@ public class PullingModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 
 		double range = 10.0 + level * 5.0;
 		double strength = 0.15 + (level - 1) * 0.15;

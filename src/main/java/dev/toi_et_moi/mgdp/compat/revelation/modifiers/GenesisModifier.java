@@ -24,7 +24,7 @@ public class GenesisModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 
 		// Invulnerability window countdown
 		var data = golem.getPersistentData();

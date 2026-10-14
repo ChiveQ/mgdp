@@ -116,7 +116,7 @@ public class ScavBoxModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (level <= 0) return;
 		if (!(golem.level() instanceof ServerLevel sl)) return;
 

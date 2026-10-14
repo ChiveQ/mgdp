@@ -28,7 +28,7 @@ public class NecromancerModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (golem.getTarget() == null) return;
 		if (!(golem.level() instanceof ServerLevel serverLevel)) return;
 

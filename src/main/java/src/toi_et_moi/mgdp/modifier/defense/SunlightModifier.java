@@ -16,7 +16,7 @@ public class SunlightModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 
 		BlockPos pos = golem.blockPosition();
 		int light = golem.level().getBrightness(LightLayer.BLOCK, pos)

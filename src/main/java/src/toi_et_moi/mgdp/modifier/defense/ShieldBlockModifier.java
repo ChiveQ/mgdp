@@ -84,7 +84,7 @@ public class ShieldBlockModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		CompoundTag tag = golem.getPersistentData();
 
 		if (!tag.contains(TAG_SHIELDS)) {

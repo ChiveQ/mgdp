@@ -61,7 +61,7 @@ public class HarvestCropModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int modifierLevel) {
-		if (golem.level().isClientSide()) return;
+
 
 		int pickupLevel = 0;
 		for (var entry : golem.getModifiers().entrySet()) {

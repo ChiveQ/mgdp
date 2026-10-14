@@ -48,7 +48,7 @@ public class GrenadeModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (golem.tickCount % 30 != 0) return;
 
 		LivingEntity target = golem.getTarget();

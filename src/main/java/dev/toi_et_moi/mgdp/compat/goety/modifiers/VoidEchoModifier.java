@@ -87,7 +87,7 @@ public class VoidEchoModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		LivingEntity target = golem.getTarget();
 		if (target == null) return;
 

@@ -56,7 +56,7 @@ public class ChargedShieldModifier extends GolemModifier {
 
     @Override
     public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-        if (golem.level().isClientSide()) return;
+
         int idx = Math.min(level - 1, REGEN_INTERVALS.length - 1);
         int interval = REGEN_INTERVALS[idx];
         int maxShields = level * SHIELDS_PER_LEVEL;

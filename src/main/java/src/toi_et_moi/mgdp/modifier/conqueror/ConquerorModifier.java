@@ -87,7 +87,7 @@ public class ConquerorModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (!(golem instanceof IConquerorData data)) return;
 
 		double total = data.mgdp$getVetHp();

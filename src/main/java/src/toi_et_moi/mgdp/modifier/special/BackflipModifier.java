@@ -22,7 +22,7 @@ public class BackflipModifier extends AttributeGolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		var data = golem.getPersistentData();
 
 		if (data.getBoolean(TAG_FLIP)) {

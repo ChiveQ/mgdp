@@ -26,7 +26,7 @@ public class EndOfBeginningModifier extends GolemModifier {
 	// === 始源大地: 免疫击退 ===
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 
 		// Knockback immunity
 		var attr = golem.getAttribute(Attributes.KNOCKBACK_RESISTANCE);

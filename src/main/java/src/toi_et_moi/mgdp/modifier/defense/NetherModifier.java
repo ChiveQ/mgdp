@@ -14,7 +14,7 @@ public class NetherModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (golem.level().dimension() != Level.NETHER) return;
 		if (golem.tickCount % 20 != 0) return;
 

@@ -69,7 +69,7 @@ public class LumberjackModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (level <= 0) return;
 		// 安全阀：战斗停伐
 		if (golem.getTarget() != null) return;

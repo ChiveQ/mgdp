@@ -24,7 +24,7 @@ public class TridentFestivalModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		LivingEntity target = golem.getTarget();
 		if (target == null) return;
 		if (golem.tickCount % 100 != 0) return; // every 5 seconds

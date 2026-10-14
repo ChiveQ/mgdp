@@ -23,7 +23,7 @@ public class OverworldModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 
 		var attr = golem.getAttribute(Attributes.KNOCKBACK_RESISTANCE);
 		if (attr == null) return;

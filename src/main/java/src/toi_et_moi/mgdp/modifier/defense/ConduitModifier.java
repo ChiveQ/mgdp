@@ -21,7 +21,7 @@ public class ConduitModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 
 		// Conduit Power aura for nearby allies (level 3 equivalent)
 		if (golem.tickCount % 40 == 0) {

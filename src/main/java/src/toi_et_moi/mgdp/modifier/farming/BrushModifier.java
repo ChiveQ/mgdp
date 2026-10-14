@@ -30,7 +30,7 @@ public class BrushModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (golem.tickCount % 10 != 0) return;
 
 		// Apply suspicious_smell if FruitsDelight is loaded

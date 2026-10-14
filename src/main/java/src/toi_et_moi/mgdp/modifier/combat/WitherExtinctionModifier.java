@@ -33,7 +33,7 @@ public class WitherExtinctionModifier extends GolemModifier {
 
     @Override
     public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-        if (golem.level().isClientSide()) return;
+
         CompoundTag tag = golem.getPersistentData();
         long now = golem.level().getGameTime();
         ServerLevel sl = (ServerLevel) golem.level();

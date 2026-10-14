@@ -26,7 +26,7 @@ public class PotionAuraModifier extends GolemModifier {
 
     @Override
     public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-        if (golem.level().isClientSide()) return;
+
 
         List<MobEffectInstance> positive = new ArrayList<>();
         List<MobEffectInstance> negative = new ArrayList<>();

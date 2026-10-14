@@ -43,7 +43,7 @@ public class IndomitableModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		var pdata = golem.getPersistentData();
 
 		// 后空翻动画推进（每 tick 独立计时，与锐不可当状态机互不干扰）

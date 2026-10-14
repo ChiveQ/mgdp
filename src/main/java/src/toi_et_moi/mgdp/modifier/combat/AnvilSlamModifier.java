@@ -37,7 +37,7 @@ public class AnvilSlamModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		var data = golem.getPersistentData();
 		boolean jumping = data.getBoolean(TAG_JUMPING);
 

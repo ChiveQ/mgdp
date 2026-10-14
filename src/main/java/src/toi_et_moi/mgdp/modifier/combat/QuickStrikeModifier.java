@@ -18,7 +18,7 @@ public class QuickStrikeModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		golem.specialAttackCoolDown = 0;
 	}
 

@@ -32,7 +32,7 @@ public class BellOfAviciModifier extends GolemModifier {
 
     @Override
     public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-        if (golem.level().isClientSide()) return;
+
         if (golem.tickCount % INTERVAL != 0) return;
         teleportTargeters(golem);
     }

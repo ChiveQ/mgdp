@@ -35,7 +35,7 @@ public class GuardianLaserModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 
 		var data = golem.getPersistentData();
 		LivingEntity target = golem.getTarget();

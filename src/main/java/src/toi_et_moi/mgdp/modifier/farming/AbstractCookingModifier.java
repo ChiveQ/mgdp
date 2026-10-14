@@ -30,7 +30,7 @@ public abstract class AbstractCookingModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.level().isClientSide()) return;
+
 		if (golem.tickCount % 20 != 0) return;
 
 		processHand(golem, InteractionHand.MAIN_HAND);
