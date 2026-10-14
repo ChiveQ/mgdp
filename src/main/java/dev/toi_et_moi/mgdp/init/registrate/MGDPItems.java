@@ -50,7 +50,7 @@ public class MGDPItems {
     public static final ItemEntry<MetalGolemWeaponItem>
             SIMPLE_GOLEM_SPEAR, SIMPLE_IRON_GOLEM_SPEAR, SIMPLE_DIAMOND_GOLEM_SPEAR, SIMPLE_NETHERITE_GOLEM_SPEAR;
 
-    // 升级物品（不依赖其它模组）
+    // 升级物品（不依赖其它模组） 从初序
     public static final ItemEntry<SimpleUpgradeItem>
             HARVEST_CROP, FLIGHT, POTION_AURA, REBIRTH, UNSTOPPABLE, SPIRIT,
             NETHERITE_GOLD, ENCHANTED_NETHERITE_GOLD, BELL_OF_AVICI,
@@ -101,10 +101,11 @@ public class MGDPItems {
         {
             HARVEST_CROP = regUpgrade("harvest_crop", () -> MGDPModifiers.HARVEST_CROP).register();
             FLIGHT = regUpgrade("flight", () -> MGDPModifiers.FLIGHT, Rarity.EPIC).register();
+            ROCKET_FLIGHT = regUpgrade("rocket_flight", () -> MGDPModifiers.ROCKET_FLIGHT).register();
+            SPIRIT = regUpgrade("spirit", () -> MGDPModifiers.SPIRIT, 1, true).register();
             POTION_AURA = regUpgrade("potion_aura", () -> MGDPModifiers.POTION_AURA, Rarity.EPIC).register();
             REBIRTH = regUpgrade("rebirth", () -> MGDPModifiers.REBIRTH, Rarity.EPIC).register();
             UNSTOPPABLE = regUpgrade("unstoppable", () -> MGDPModifiers.UNSTOPPABLE, 1, true).register();
-            SPIRIT = regUpgrade("spirit", () -> MGDPModifiers.SPIRIT, 1, true).register();
             NETHERITE_GOLD = regUpgrade("netherite_gold", () -> MGDPModifiers.NETHERITE_GOLD).register();
             ENCHANTED_NETHERITE_GOLD = regUpgrade("enchanted_netherite_gold", () -> MGDPModifiers.ENCHANTED_NETHERITE_GOLD, 1, true).register();
             BELL_OF_AVICI = regUpgrade("bell_of_avici", () -> MGDPModifiers.BELL_OF_AVICI, Rarity.UNCOMMON).register();
@@ -113,7 +114,6 @@ public class MGDPItems {
             CRIMSON_ATTACK = regUpgrade("crimson_attack", () -> MGDPModifiers.CRIMSON_ATTACK).register();
             ENCHANTED_CRIMSON_ATTACK = regUpgrade("enchanted_crimson_attack", () -> MGDPModifiers.ENCHANTED_CRIMSON_ATTACK, 1, true).register();
             LIGHTNING_STORM = regUpgrade("lighting_storm", () -> MGDPModifiers.LIGHTNING_STORM, 1, true).register();
-            ROCKET_FLIGHT = regUpgrade("rocket_flight", () -> MGDPModifiers.ROCKET_FLIGHT).register();
             DRAGON_BREATH = regUpgrade("dragon_breath", () -> MGDPModifiers.DRAGON_BREATH).register();
             WITHER_EXTINCTION = regUpgrade("wither_extinction", () -> MGDPModifiers.WITHER_EXTINCTION, Rarity.EPIC).register();
             CHARGED_SHIELD = regUpgrade("charged_shield", () -> MGDPModifiers.CHARGED_SHIELD).register();

@@ -43,10 +43,11 @@ public class MGDPModifiers {
     // 顺序同创造物品栏
     public static final RegistryEntry<HarvestCropModifier> HARVEST_CROP;
     public static final RegistryEntry<GolemModifier> FLIGHT;
+    public static final RegistryEntry<GolemModifier> ROCKET_FLIGHT;
+    public static final RegistryEntry<GolemModifier> SPIRIT;
     public static final RegistryEntry<PotionAuraModifier> POTION_AURA;
     public static final RegistryEntry<RebirthModifier> REBIRTH;
     public static final RegistryEntry<SimpleFlagModifier> UNSTOPPABLE;
-    public static final RegistryEntry<GolemModifier> SPIRIT;
     public static final RegistryEntry<NetheriteGoldModifier> NETHERITE_GOLD;
     public static final RegistryEntry<EnchantedNetheriteGoldModifier> ENCHANTED_NETHERITE_GOLD;
     public static final RegistryEntry<BellOfAviciModifier> BELL_OF_AVICI;
@@ -55,7 +56,6 @@ public class MGDPModifiers {
     public static final RegistryEntry<AttributeOperationModifier> CRIMSON_ATTACK;
     public static final RegistryEntry<EnchantedCrimsonAttackModifier> ENCHANTED_CRIMSON_ATTACK;
     public static final RegistryEntry<LightningStormModifier> LIGHTNING_STORM;
-    public static final RegistryEntry<GolemModifier> ROCKET_FLIGHT;
     public static final RegistryEntry<DragonBreathModifier> DRAGON_BREATH;
     public static final RegistryEntry<WitherExtinctionModifier> WITHER_EXTINCTION;
     public static final RegistryEntry<ChargedShieldModifier> CHARGED_SHIELD;
@@ -134,6 +134,14 @@ public class MGDPModifiers {
                 "Flight",
                 "Golem gains creative-style flight. Can move freely in all three dimensions.");
 
+        ROCKET_FLIGHT = reg("rocket_flight", () -> new GolemModifier(StatFilterType.MOVEMENT, 1),
+                "Rocket Flight",
+                "Same as Flight, but -100% armor and toughness.");
+
+        SPIRIT = reg("spirit", () -> new GolemModifier(StatFilterType.MOVEMENT, 1),
+                "Spirit",
+                "Requires Flight. Golem phases through all blocks like a Vex, becoming completely intangible.");
+
         POTION_AURA = reg("potion_aura", PotionAuraModifier::new,
                 "Potion Aura",
                 "Shares positive effects with allies and inflicts negative effects on enemies within 48 blocks.");
@@ -145,10 +153,6 @@ public class MGDPModifiers {
         UNSTOPPABLE = reg("unstoppable", () -> new SimpleFlagModifier(StatFilterType.MOVEMENT, GolemFlags.FREE_MOVE),
                 "Unstoppable",
                 "Golem ignores terrain slowdown, knockback, entity collision, and cramming damage.");
-
-        SPIRIT = reg("spirit", () -> new GolemModifier(StatFilterType.MOVEMENT, 1),
-                "Spirit",
-                "Requires Flight. Golem phases through all blocks like a Vex, becoming completely intangible.");
 
         NETHERITE_GOLD = reg("netherite_gold", NetheriteGoldModifier::new,
                 "Netherite Gold Apple",
@@ -191,10 +195,6 @@ public class MGDPModifiers {
         LIGHTNING_STORM = reg("lighting_storm", LightningStormModifier::new,
                 "Lightning Storm",
                 "Periodically strikes lightning on enemies. Damage = golem attack. 3x in thunderstorms.");
-
-        ROCKET_FLIGHT = reg("rocket_flight", () -> new GolemModifier(StatFilterType.MOVEMENT, 1),
-                "Rocket Flight",
-                "Same as Flight, but -100% armor and toughness.");
 
         DRAGON_BREATH = reg("dragon_breath", DragonBreathModifier::new,
                 "Dragon Breath",
