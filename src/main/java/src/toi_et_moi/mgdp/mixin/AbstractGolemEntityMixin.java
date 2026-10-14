@@ -1,6 +1,7 @@
 package src.toi_et_moi.mgdp.mixin;
 
 import dev.toi_et_moi.mgdp.content.modifier.base.AttributeOperationModifier;
+import dev.toi_et_moi.mgdp.content.modifier.movement.SpiritModifier;
 import dev.toi_et_moi.mgdp.init.registrate.MGDPModifiers;
 import dev.xkmc.mob_weapon_api.registry.WeaponRegistry;
 import dev.xkmc.mob_weapon_api.registry.WeaponStatus;
@@ -17,7 +18,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MoverType;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -265,6 +265,15 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
     }
 
     @Inject(method = "updateAttributes", at = @At("TAIL"), remap = false)
+    private void mgdp$handleUpdate(CallbackInfo ci){
+        AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
+        // 清理上一轮 AttributeOperationModifier 施加的修饰符（当前四个 combat 子类）。
+        // 仍持有对应 modifier 的傀儡会在下一次 onAiStep 重新补回正确值。
+        AttributeOperationModifier.removeAll(golem);
+        SpiritModifier.resetPhysics(golem);
+    }
+
+    @Inject(method = "updateAttributes", at = @At("TAIL"), remap = false)
     private void mgdp$setFlightMoveControl(CallbackInfo ci) {
         AbstractGolemEntity<?, ?> golem = (AbstractGolemEntity<?, ?>) (Object) this;
         if (mgdp$isFlying(golem)) {
@@ -274,24 +283,10 @@ public abstract class AbstractGolemEntityMixin extends Mob implements JukeboxGol
         if (golem.getModifiers().containsKey(MGDPModifiers.UNSTOPPABLE.get())) {
             golem.getAttribute(Attributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0);
         }
-        boolean hasFlight = mgdp$isFlying(golem);
-        boolean hasSpirit = golem.getModifiers().containsKey(MGDPModifiers.SPIRIT.get());
+//        boolean hasFlight = mgdp$isFlying(golem);
+//        boolean hasSpirit = golem.getModifiers().containsKey(MGDPModifiers.SPIRIT.get());
 //        ((EntityAccessor) this).setNoPhysics(hasFlight && hasSpirit);
-        this.noPhysics = hasFlight && hasSpirit;
-        // ==== rocket flight 属性修正仍保留（尚未迁移，归入后续 flight 重构）====
-        java.util.UUID rocketArmorId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_rocket_armor");
-        java.util.UUID rocketToughId = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("mgdp_rocket_tough");
-        var armor = this.getAttribute(Attributes.ARMOR);
-        var tough = this.getAttribute(Attributes.ARMOR_TOUGHNESS);
-        armor.removeModifier(rocketArmorId);
-        tough.removeModifier(rocketToughId);
-        if (golem.getModifiers().containsKey(MGDPModifiers.ROCKET_FLIGHT.get())) {
-            armor.addPermanentModifier(new AttributeModifier(rocketArmorId, "mgdp rocket armor", -1.0, AttributeModifier.Operation.MULTIPLY_TOTAL));
-            tough.addPermanentModifier(new AttributeModifier(rocketToughId, "mgdp rocket tough", -1.0, AttributeModifier.Operation.MULTIPLY_TOTAL));
-        }
-        // 清理上一轮 AttributeOperationModifier 施加的修饰符（当前四个 combat 子类）。
-        // 仍持有对应 modifier 的傀儡会在下一次 onAiStep 重新补回正确值。
-        AttributeOperationModifier.removeAll(golem);
+//        this.noPhysics = hasFlight && hasSpirit;
     }
 
     @Inject(method = "canSwim", at = @At("RETURN"), cancellable = true, remap = false)

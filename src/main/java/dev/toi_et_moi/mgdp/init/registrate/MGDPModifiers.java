@@ -9,6 +9,7 @@ import dev.toi_et_moi.mgdp.content.modifier.buff.EnchantedNetheriteGoldModifier;
 import dev.toi_et_moi.mgdp.content.modifier.buff.NetheriteGoldModifier;
 import dev.toi_et_moi.mgdp.content.modifier.combat.EnchantedCrimsonAttackModifier;
 import dev.toi_et_moi.mgdp.content.modifier.combat.RiptideModifier;
+import dev.toi_et_moi.mgdp.content.modifier.movement.SpiritModifier;
 import dev.xkmc.l2library.base.NamedEntry;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
@@ -43,7 +44,7 @@ public class MGDPModifiers {
     // 顺序同创造物品栏
     public static final RegistryEntry<HarvestCropModifier> HARVEST_CROP;
     public static final RegistryEntry<GolemModifier> FLIGHT;
-    public static final RegistryEntry<GolemModifier> ROCKET_FLIGHT;
+    public static final RegistryEntry<AttributeOperationModifier> ROCKET_FLIGHT;
     public static final RegistryEntry<GolemModifier> SPIRIT;
     public static final RegistryEntry<PotionAuraModifier> POTION_AURA;
     public static final RegistryEntry<RebirthModifier> REBIRTH;
@@ -134,11 +135,15 @@ public class MGDPModifiers {
                 "Flight",
                 "Golem gains creative-style flight. Can move freely in all three dimensions.");
 
-        ROCKET_FLIGHT = reg("rocket_flight", () -> new GolemModifier(StatFilterType.MOVEMENT, 1),
+        ROCKET_FLIGHT = reg("rocket_flight", () -> new AttributeOperationModifier(StatFilterType.MOVEMENT, 1,
+                        new AttributeOperationModifier.AttrEntry(() -> Attributes.ARMOR, "rocket_flight_armor",
+                                AttributeModifier.Operation.MULTIPLY_TOTAL, -1.0),
+                        new AttributeOperationModifier.AttrEntry(() -> Attributes.ARMOR_TOUGHNESS, "rocket_flight_tough",
+                                AttributeModifier.Operation.MULTIPLY_TOTAL, -1.0)),
                 "Rocket Flight",
                 "Same as Flight, but -100% armor and toughness.");
 
-        SPIRIT = reg("spirit", () -> new GolemModifier(StatFilterType.MOVEMENT, 1),
+        SPIRIT = reg("spirit", SpiritModifier::new,//() -> new GolemModifier(StatFilterType.MOVEMENT, 1),
                 "Spirit",
                 "Requires Flight. Golem phases through all blocks like a Vex, becoming completely intangible.");
 

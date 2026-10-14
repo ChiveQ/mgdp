@@ -1,5 +1,6 @@
 package dev.toi_et_moi.mgdp.content.modifier.base;
 
+import dev.toi_et_moi.mgdp.init.MGDP;
 import dev.xkmc.l2library.util.math.MathHelper;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
@@ -28,7 +29,7 @@ import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
  * <p>本体的 {@code AttributeGolemModifier} 只能表达 BASE/ADD/PERCENT 三种语义，
  * 无法区分 MULTIPLY_BASE 与 MULTIPLY_TOTAL，也无法对护甲/韧性做百分比乘法。
  * 因此引入本类：在 {@link #onAiStep} 中幂等地维护 {@link AttributeModifier}
- * 的添加，并在 {@link #onRemove} 中显式移除。</p>
+ * 的添加，并在 {@link #remove} 中显式移除。</p>
  *
  * <p>因为 {@link #onAiStep} 只会在「傀儡确已持有该 modifier」时被本体触发
  * （{@code AbstractGolemEntity#aiStep} 遍历 {@code getModifiersExtended()}），
@@ -61,7 +62,7 @@ public class AttributeOperationModifier extends GolemModifier {
 
         /** 由名称派生稳定 UUID，保证同一条目跨实体、跨 reload 一致，且与其它 modifier 不冲突。 */
         private UUID id() {
-            return MathHelper.getUUIDFromString("mgdp:" + name);
+            return MathHelper.getUUIDFromString(MGDP.MODID + ":" + name);
         }
 
         private AttributeModifier create(int level) {
@@ -129,7 +130,7 @@ public class AttributeOperationModifier extends GolemModifier {
      * 移除本 modifier 施加到该傀儡上的全部 {@link AttributeModifier}。
      * 供升级被取下时的清理逻辑调用（见类 javadoc 中的 mixin 注入点）。
      */
-    public void onRemove(@NotNull AbstractGolemEntity<?, ?> golem) {
+    public void remove(@NotNull AbstractGolemEntity<?, ?> golem) {
         for (AttrEntry entry : entries) {
             AttributeInstance inst = golem.getAttribute(entry.attribute().get());
             if (inst != null) inst.removeModifier(entry.id());
@@ -142,7 +143,7 @@ public class AttributeOperationModifier extends GolemModifier {
      */
     public static void removeAll(@NotNull AbstractGolemEntity<?, ?> golem) {
         for (AttributeOperationModifier modifier : LIST) {
-            modifier.onRemove(golem);
+            modifier.remove(golem);
         }
     }
 
