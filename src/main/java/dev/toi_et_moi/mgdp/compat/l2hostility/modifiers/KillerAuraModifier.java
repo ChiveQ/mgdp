@@ -1,5 +1,6 @@
 package dev.toi_et_moi.mgdp.compat.l2hostility.modifiers;
 
+import dev.toi_et_moi.mgdp.content.modifier.base.DescAttributeGolemModifier;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.targeting.TargetManager;
 import dev.xkmc.modulargolems.content.modifier.base.AttributeGolemModifier;
@@ -27,7 +28,7 @@ import java.util.List;
  * getDirectEntity() instanceof Projectile 过滤，确保只有弹射物命中才触发；
  * 溅射伤害的 direct 实体是傀儡自身，天然不会递归。
  */
-public class KillerAuraModifier extends AttributeGolemModifier {
+public class KillerAuraModifier extends DescAttributeGolemModifier {
 
 	public KillerAuraModifier() {
 		super(3,
@@ -63,10 +64,4 @@ public class KillerAuraModifier extends AttributeGolemModifier {
 		}
 	}
 
-	@Override
-	public List<MutableComponent> getDetail(int v) {
-		List<MutableComponent> ans = super.getDetail(v);
-		ans.add(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GREEN));
-		return ans;
-	}
 }

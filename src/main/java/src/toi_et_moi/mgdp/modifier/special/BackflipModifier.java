@@ -1,5 +1,6 @@
 package src.toi_et_moi.mgdp.modifier.special;
 
+import dev.toi_et_moi.mgdp.content.modifier.base.DescAttributeGolemModifier;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.AttributeGolemModifier;
 import dev.xkmc.modulargolems.init.registrate.GolemTypes;
@@ -10,7 +11,7 @@ import src.toi_et_moi.mgdp.init.IFlipData;
 
 import java.util.List;
 
-public class BackflipModifier extends AttributeGolemModifier {
+public class BackflipModifier extends DescAttributeGolemModifier {
 
 	private static final String TAG_FLIP = "mgdp_flipping";
 	private static final String TAG_FLIP_TICK = "mgdp_flip_tick";
@@ -49,10 +50,4 @@ public class BackflipModifier extends AttributeGolemModifier {
 		data.putInt(TAG_FLIP_TICK, 0);
 	}
 
-	@Override
-	public List<MutableComponent> getDetail(int v) {
-		var list = super.getDetail(v);
-		list.add(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GREEN));
-		return list;
-	}
 }
