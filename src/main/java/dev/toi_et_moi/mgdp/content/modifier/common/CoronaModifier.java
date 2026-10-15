@@ -1,4 +1,4 @@
-package src.toi_et_moi.mgdp.modifier.common;
+package dev.toi_et_moi.mgdp.content.modifier.common;
 
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
@@ -13,19 +13,16 @@ public class CoronaModifier extends GolemModifier {
 		super(StatFilterType.HEALTH, 1);
 	}
 
+	/**
+	 * 已經CoronaListener避免附著新負面效果、此処儘用於入晝旹去舊效果
+	 * */
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-
 		if (!golem.level().isDay()) return;
-
-		// Remove all negative potion effects every 10 ticks
-		if (golem.tickCount % 10 != 0) return;
-
+		if (golem.tickCount % 60 != 0) return;
 		var effects = new ArrayList<>(golem.getActiveEffects());
-		for (var effect : effects) {
-			if (effect.getEffect().getCategory() == MobEffectCategory.HARMFUL) {
-				golem.removeEffect(effect.getEffect());
-			}
-		}
+		effects.forEach(effect -> {
+			if (effect.getEffect().getCategory() == MobEffectCategory.HARMFUL) golem.removeEffect(effect.getEffect());
+		});
 	}
 }
