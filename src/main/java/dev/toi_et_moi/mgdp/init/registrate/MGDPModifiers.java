@@ -71,7 +71,7 @@ public class MGDPModifiers {
     public static final RegistryEntry<GolemModifier> UPSIDE_DOWN,REVERSE;
     public static final RegistryEntry<GhostModifier> GHOST;
     public static final RegistryEntry<SpyglassModifier> SPYGLASS;
-    public static final RegistryEntry<DescAttributeGolemModifier> SHRINK;
+    public static final RegistryEntry<AttributeGolemModifier> SHRINK;
     public static final RegistryEntry<SelfRepairModifier> SELF_REPAIR;
     public static final RegistryEntry<SonicBoomModifier> SONIC_BOOM;
     public static final RegistryEntry<FocusedDefenseModifier> FOCUSED_DEFENSE;
@@ -94,7 +94,7 @@ public class MGDPModifiers {
     public static final RegistryEntry<AnglerModifier> ANGLER;
     public static final RegistryEntry<AnvilSlamModifier> ANVIL_SLAM;
     public static final RegistryEntry<TridentFestivalModifier> TRIDENT_FESTIVAL;
-    public static final RegistryEntry<DescAttributeGolemModifier> IRON_UPGRADE;
+    public static final RegistryEntry<AttributeGolemModifier> IRON_UPGRADE;
     public static final RegistryEntry<DisarmModifier> DISARM;
     public static final RegistryEntry<RiptideModifier> RIPTIDE;
     public static final RegistryEntry<EndVoidModifier> END_VOID;
@@ -260,7 +260,7 @@ public class MGDPModifiers {
                 "Vision Range",
                 "Doubles the golem's follow/target range.");
 
-        SHRINK = reg("shrink", () -> new DescAttributeGolemModifier(4,
+        SHRINK = reg("shrink", () -> new AttributeGolemModifier(4,
                         new AttributeGolemModifier.AttrEntry(GolemTypes.STAT_SIZE_P, () -> -0.2)),
                 "Shrink",
                 "Shrink golem size by 20%% per level. Max level 4.");
@@ -345,7 +345,7 @@ public class MGDPModifiers {
                 "Trident Festival",
                 "Golem summons tridents that explode and strike lightning on impact.");
 
-        IRON_UPGRADE = reg("iron_upgrade", () -> new DescAttributeGolemModifier(2,
+        IRON_UPGRADE = reg("iron_upgrade", () -> new AttributeGolemModifier(2,
                         new AttributeGolemModifier.AttrEntry(GolemTypes.STAT_ARMOR, () -> 5.0),
                         new AttributeGolemModifier.AttrEntry(GolemTypes.STAT_ATTACK, () -> 2.0),
                         new AttributeGolemModifier.AttrEntry(GolemTypes.STAT_RANGE, () -> 0.5),
