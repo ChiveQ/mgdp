@@ -4,7 +4,6 @@ import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.toi_et_moi.mgdp.content.modifier.base.AttributeOperationModifier;
-import dev.toi_et_moi.mgdp.content.modifier.base.DescAttributeGolemModifier;
 import dev.toi_et_moi.mgdp.content.modifier.buff.EnchantedNetheriteGoldModifier;
 import dev.toi_et_moi.mgdp.content.modifier.buff.NetheriteGoldModifier;
 import dev.toi_et_moi.mgdp.content.modifier.combat.EnchantedCrimsonAttackModifier;

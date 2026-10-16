@@ -43,19 +43,6 @@ description = '''MGDP is an addon mod for Modular Golems that adds new upgrades 
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies."${mod_id}"]] #optional
 # the modid of the dependency
-modId = "modulargolems" #mandatory
-mandatory = true
-versionRange = "[2.6.34,)"
-ordering = "AFTER"
-side = "BOTH"
-[[dependencies."${mod_id}"]]
-modId = "create"
-mandatory = false
-versionRange = "[6.0.8,)"
-ordering = "AFTER"
-side = "BOTH"
-[[dependencies."${mod_id}"]] #optional
-# the modid of the dependency
 modId = "forge" #mandatory
 # Does this dependency have to exist - if not, ordering below must be specified
 mandatory = true #mandatory
@@ -79,5 +66,11 @@ modId = "modulargolems"
 mandatory = true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
 versionRange = "${mg_version_range}"
+ordering = "AFTER"
+side = "BOTH"
+[[dependencies."${mod_id}"]]
+modId = "create"
+mandatory = false
+versionRange = "[6.0.8,)"
 ordering = "AFTER"
 side = "BOTH"
