@@ -16,7 +16,7 @@ public class CoronaModifier extends GolemModifier {
 	}
 
 	/**
-	 * 已經CoronaListener避免附著新負面效果、此処儘用於入晝旹去舊效果
+	 * isImmuneTo已免附新負面效果、此処儘用於入晝旹去舊效果
 	 * */
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {

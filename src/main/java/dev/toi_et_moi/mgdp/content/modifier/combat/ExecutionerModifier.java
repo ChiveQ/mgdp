@@ -1,10 +1,11 @@
-package src.toi_et_moi.mgdp.modifier.combat;
+package dev.toi_et_moi.mgdp.content.modifier.combat;
 
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class ExecutionerModifier extends GolemModifier {
 
@@ -13,7 +14,7 @@ public class ExecutionerModifier extends GolemModifier {
 	}
 
 	@Override
-	public void onHurt(AbstractGolemEntity<?, ?> golem, LivingHurtEvent event, int level) {
+	public void onHurt(@NotNull AbstractGolemEntity<?, ?> golem, LivingHurtEvent event, int level) {
 		if (!(event.getSource().getEntity() instanceof LivingEntity attacker)) return;
 		float golemMax = golem.getMaxHealth();
 		float attackerHealth = attacker.getHealth();
