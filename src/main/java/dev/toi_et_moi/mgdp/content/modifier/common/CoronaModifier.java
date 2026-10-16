@@ -4,6 +4,8 @@ import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -24,5 +26,10 @@ public class CoronaModifier extends GolemModifier {
 		effects.forEach(effect -> {
 			if (effect.getEffect().getCategory() == MobEffectCategory.HARMFUL) golem.removeEffect(effect.getEffect());
 		});
+	}
+
+	@Override
+	public boolean isImmuneTo(@NotNull AbstractGolemEntity<?, ?> golem, @NotNull MobEffectInstance ins, int level) {
+		return golem.level().isDay() && ins.getEffect().getCategory() == MobEffectCategory.HARMFUL;
 	}
 }
