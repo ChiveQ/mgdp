@@ -128,7 +128,7 @@ public class MGDPItems {
             TIME_AXIS = regUpgrade("time_axis", () -> MGDPModifiers.TIME_AXIS, Rarity.EPIC).lang("§6Time Axis Upgrade").register();
             UPSIDE_DOWN = regUpgrade("upside_down", () -> MGDPModifiers.UPSIDE_DOWN).register();
             REVERSE = regUpgrade("reverse", () -> MGDPModifiers.REVERSE).register();
-            GHOST = regUpgrade("ghost", () -> MGDPModifiers.GHOST).register();
+            GHOST = regUpgrade("ghost", () -> MGDPModifiers.GHOST).lang("      Upgrade").register();
             SPYGLASS = regUpgrade("spyglass", () -> MGDPModifiers.SPYGLASS).register();
             SHRINK = regUpgrade("shrink", () -> MGDPModifiers.SHRINK).register();
             SELF_REPAIR = regUpgrade("self_repair", () -> MGDPModifiers.SELF_REPAIR).register();

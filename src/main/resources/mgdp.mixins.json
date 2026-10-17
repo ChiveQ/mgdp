@@ -46,7 +46,6 @@
     "RangedGoalFlightMixin"
   ],
   "client": [
-    "EntityRendererAccessor",
       "EntityRendererShadowMixin",
     "AbstractGolemRendererMixin",
     "LivingEntityRendererMixin",

@@ -338,7 +338,7 @@
   "modifier.mgdp.ghost.desc": "  ",
   "item.mgdp.spyglass": "望远镜升级",
   "modifier.mgdp.spyglass": "容器雷达",
-  "modifier.mgdp.spyglass.desc": "傀儡会为主人标记附近的容器位置（粒子效果）。",
+  "modifier.mgdp.spyglass.desc": "傀儡会用粒子效果为主人标记附近的容器位置并提供夜视。",
   "item.mgdp.the_pyre_lord": "§c使徒头衔：爆燃领主",
   "modifier.mgdp.the_pyre_lord": "§c爆燃领主",
   "modifier.mgdp.the_pyre_lord.desc": "§5持续召唤下界流星，给予周围目标灼烧魔印效果。造成的火焰/爆炸/狱火伤害+300%，受到的狱火伤害-75%且无视受到的火焰/熔岩/爆炸伤害。",

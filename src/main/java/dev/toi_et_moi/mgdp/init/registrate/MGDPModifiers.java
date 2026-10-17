@@ -28,7 +28,6 @@ import org.apache.commons.lang3.mutable.MutableObject;
 import src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier;
 import src.toi_et_moi.mgdp.modifier.buff.*;
 import src.toi_et_moi.mgdp.modifier.combat.*;
-import src.toi_et_moi.mgdp.modifier.common.GhostModifier;
 import src.toi_et_moi.mgdp.modifier.common.MoonShadowModifier;
 import src.toi_et_moi.mgdp.modifier.common.SpyglassModifier;
 import src.toi_et_moi.mgdp.modifier.conqueror.ConquerorModifier;
@@ -70,7 +69,7 @@ public class MGDPModifiers {
     public static final RegistryEntry<MoonShadowModifier> MOON_SHADOW;
     public static final RegistryEntry<TimeAxisModifier> TIME_AXIS;
     public static final RegistryEntry<GolemModifier> UPSIDE_DOWN,REVERSE;
-    public static final RegistryEntry<GhostModifier> GHOST;
+    public static final RegistryEntry<GolemModifier> GHOST;
     public static final RegistryEntry<SpyglassModifier> SPYGLASS;
     public static final RegistryEntry<AttributeGolemModifier> SHRINK;
     public static final RegistryEntry<SelfRepairModifier> SELF_REPAIR;
@@ -232,10 +231,10 @@ public class MGDPModifiers {
         REVERSE = reg("reverse", () -> new GolemModifier(StatFilterType.HEALTH, 1),
                 "Reverses the golem's front and back.");
 
-        GHOST = reg("ghost", GhostModifier::new, "Makes the golem's model and shadow invisible.");
+        GHOST = reg("ghost", () -> new GolemModifier(StatFilterType.HEALTH, 1));
+
         SPYGLASS = reg("spyglass", SpyglassModifier::new,
-                "Vision Range",
-                "Doubles the golem's follow/target range.");
+                "Golem marks nearby containers for the owner with particles and gives night vision.");
 
         SHRINK = reg("shrink", () -> new AttributeGolemModifier(4,
                         new AttributeGolemModifier.AttrEntry(GolemTypes.STAT_SIZE_P, () -> -0.2)));
@@ -252,8 +251,7 @@ public class MGDPModifiers {
         EXECUTIONER = reg("executioner", ExecutionerModifier::new,
                 "Stronger against weakened enemies. Takes reduced/no damage from low-health attackers.");
 
-        INVISIBILITY = reg("invisibility", () -> new PotionDefenseModifier(1, () -> MobEffects.INVISIBILITY),
-                "Golem becomes invisible.");
+        INVISIBILITY = reg("invisibility", () -> new PotionDefenseModifier(1, () -> MobEffects.INVISIBILITY));
 
         GUARDIAN_LASER = reg("guardian_laser", GuardianLaserModifier::new,
                 "Charge a laser beam dealing heavy damage to all enemies in its path.");
