@@ -166,13 +166,12 @@ public class MGDPModifiers {
 
         DIAMOND_ATTACK = reg("diamond_attack", () -> new AttributeOperationModifier(
                 new AttributeOperationModifier.AttrEntry(() -> Attributes.ATTACK_DAMAGE, "diamond_attack",
-                        AttributeModifier.Operation.MULTIPLY_BASE, 0.3)),
-                "+30% attack damage.");
+                        AttributeModifier.Operation.MULTIPLY_BASE, 0.3)));
 
         ENCHANTED_DIAMOND_ATTACK = reg("enchanted_diamond_attack", () -> new AttributeOperationModifier(
                 new AttributeOperationModifier.AttrEntry(() -> Attributes.ATTACK_DAMAGE, "enchanted_diamond_attack",
                         AttributeModifier.Operation.MULTIPLY_BASE, 0.6)),
-                "+60% attack damage, all attacks are critical hits.");
+                "All attacks are critical hits.");
 
         CRIMSON_ATTACK = reg("crimson_attack", () -> new AttributeOperationModifier(
                         new AttributeOperationModifier.AttrEntry(() -> Attributes.ATTACK_DAMAGE, "crimson_attack",
@@ -180,11 +179,10 @@ public class MGDPModifiers {
                         new AttributeOperationModifier.AttrEntry(() -> Attributes.ARMOR, "crimson_armor",
                                 AttributeModifier.Operation.MULTIPLY_BASE, -0.5),
                         new AttributeOperationModifier.AttrEntry(() -> Attributes.ARMOR_TOUGHNESS, "crimson_tough",
-                                AttributeModifier.Operation.MULTIPLY_BASE, -0.5)),
-                "-5% current HP per hit, +50% attack damage, min attack speed 1.0.");
+                                AttributeModifier.Operation.MULTIPLY_BASE, -0.5)));
 
         ENCHANTED_CRIMSON_ATTACK = reg("enchanted_crimson_attack", EnchantedCrimsonAttackModifier::new,
-                "-10% current HP per hit, +100% attack damage, 50% lifesteal, min attack speed 1.0.");
+                "Restore health by 50% of the damage dealt, ignores i-frames");
 
         LIGHTNING_STORM = reg("lighting_storm", LightningStormModifier::new,
                 "Periodically strikes lightning on enemies. Damage = golem attack. 3x in thunderstorms.");
