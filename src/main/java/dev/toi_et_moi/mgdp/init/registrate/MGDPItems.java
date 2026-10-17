@@ -291,7 +291,7 @@ public class MGDPItems {
 
     public static ItemBuilder<AddSlotTemplate, L2Registrate> regAddSlotTemplate(String id,Supplier<RegistryEntry<? extends GolemModifier>> mod){
         return MGDP.REGISTRATE.item(id,p -> new AddSlotTemplate(p, mod.get()))
-                .model((ctx,pvd) -> {pvd.generated(ctx,pvd.modLoc("item/expansion/"+id));})
+                .model((ctx,pvd) -> pvd.generated(ctx,pvd.modLoc("item/expansion/"+id)))
                 .defaultLang()
                 .tab(GolemItems.ITEMS.getKey())
                 .tab(MGDP_TAB.getKey());
