@@ -25,7 +25,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import org.apache.commons.lang3.mutable.Mutable;
 import org.apache.commons.lang3.mutable.MutableObject;
-import src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier;
+import dev.toi_et_moi.mgdp.content.modifier.base.LeveledAddSlotModifier;
 import src.toi_et_moi.mgdp.modifier.buff.*;
 import src.toi_et_moi.mgdp.modifier.combat.*;
 import src.toi_et_moi.mgdp.modifier.common.MoonShadowModifier;
@@ -42,6 +42,8 @@ import static dev.toi_et_moi.mgdp.init.MGDP.REGISTRATE;
 public class MGDPModifiers {
     public static void register() {}
     // 顺序同创造物品栏
+    public static final RegistryEntry<LeveledAddSlotModifier> CREATIVE_SLOT;
+    public static final RegistryEntry<LeveledAddSlotModifier> CREATIVE_SLOT_100;
     public static final RegistryEntry<HarvestCropModifier> HARVEST_CROP;
     public static final RegistryEntry<GolemModifier> FLIGHT;
     public static final RegistryEntry<AttributeOperationModifier> ROCKET_FLIGHT;
@@ -102,8 +104,6 @@ public class MGDPModifiers {
     public static final RegistryEntry<DeathKnellModifier> DEATH_KNELL;
     public static final RegistryEntry<EchoTrioModifier> ECHO_TRIO;
     public static final RegistryEntry<MindControlModifier> MIND_CONTROL;
-    public static final RegistryEntry<MGDPAddSlotModifier> CREATIVE_SLOT;
-    public static final RegistryEntry<MGDPAddSlotModifier> CREATIVE_SLOT_100;
     public static final RegistryEntry<BrushModifier> BRUSH;
     public static final RegistryEntry<BombDisposalModifier> BOMB_DISPOSAL;
     public static final RegistryEntry<ProjectileDodgeModifier> PROJECTILE_DODGE;
@@ -127,6 +127,15 @@ public class MGDPModifiers {
     public static final RegistryEntry<WitchModifier> WITCH;
 
     static {
+
+        CREATIVE_SLOT = reg("creative_slot", () -> new LeveledAddSlotModifier(999, 1),
+                "Creative +1 Slot",
+                "Add 1 upgrade slot. Creative only.");
+
+        CREATIVE_SLOT_100 = reg("creative_slot_100", () -> new LeveledAddSlotModifier(999, 100),
+                "Creative +100 Slots",
+                "Add 100 upgrade slots. Creative only.");
+
         HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
                 "Auto harvest and replant crops within %s block(s) per Pickup level. Requires Pickup upgrade to work.");
 
@@ -329,14 +338,6 @@ public class MGDPModifiers {
 
         MIND_CONTROL = reg("mind_control", MindControlModifier::new,
                 "On hit, may redirect the target to attack your current target instead.");
-
-        CREATIVE_SLOT = reg("creative_slot", () -> new src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier(999, 1),
-                "Creative +1 Slot",
-                "Add 1 upgrade slot. Creative only.");
-
-        CREATIVE_SLOT_100 = reg("creative_slot_100", () -> new src.toi_et_moi.mgdp.modifier.MGDPAddSlotModifier(999, 100),
-                "Creative +100 Slots",
-                "Add 100 upgrade slots. Creative only.");
 
         BRUSH = reg("brush", BrushModifier::new,
                 "Archaeology",

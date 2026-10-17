@@ -1,4 +1,4 @@
-package src.toi_et_moi.mgdp.modifier;
+package dev.toi_et_moi.mgdp.content.modifier.base;
 
 import dev.xkmc.modulargolems.content.item.upgrade.IUpgradeItem;
 import dev.xkmc.modulargolems.content.modifier.common.AddSlotModifier;
@@ -8,11 +8,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class MGDPAddSlotModifier extends AddSlotModifier {
+public class LeveledAddSlotModifier extends AddSlotModifier {
 
     private final int slots;
 
-    public MGDPAddSlotModifier(int maxLevel, int slots) {
+    public LeveledAddSlotModifier(int maxLevel, int slots) {
         super(maxLevel);
         this.slots = slots;
     }

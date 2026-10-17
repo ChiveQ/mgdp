@@ -94,10 +94,13 @@ public class MGDPItems {
             SIMPLE_DIAMOND_GOLEM_SPEAR = regSpear("simple_diamond_golem_spear", 8, 0.4, 4.0F, 2.0F, Rarity.COMMON, false).register();
             SIMPLE_NETHERITE_GOLEM_SPEAR = regSpear("simple_netherite_golem_spear", 10, 0.5, 4.0F, 2.0F, Rarity.COMMON, true).register();
         }
-        // 扩充模板
-        CompatManager.registerSlotTemplates();
         // 召唤器
         CompatManager.registerSummoners();
+        // 擴充阩級
+        CREATIVE_SLOT = regUpgrade("creative_slot", () -> MGDPModifiers.CREATIVE_SLOT,Rarity.EPIC).lang("Creative +1 Slot").register();
+        CREATIVE_SLOT_100 = regUpgrade("creative_slot_100", () -> MGDPModifiers.CREATIVE_SLOT_100,Rarity.EPIC).lang("Creative +100 Slots").register();
+        // 扩充模板
+        CompatManager.registerSlotTemplates();
         // 升级
         {
             HARVEST_CROP = regUpgrade("harvest_crop", () -> MGDPModifiers.HARVEST_CROP).register();
@@ -163,8 +166,6 @@ public class MGDPItems {
             DEATH_KNELL = regUpgrade("death_knell", () -> MGDPModifiers.DEATH_KNELL, Rarity.EPIC).register();
             ECHO_TRIO = regUpgrade("echo_trio", () -> MGDPModifiers.ECHO_TRIO, Rarity.EPIC).register();
             MIND_CONTROL = regUpgrade("mind_control", () -> MGDPModifiers.MIND_CONTROL, 1,false,Rarity.EPIC).register();
-            CREATIVE_SLOT = regUpgrade("creative_slot", () -> MGDPModifiers.CREATIVE_SLOT).lang("Creative +1 Slot").register();
-            CREATIVE_SLOT_100 = regUpgrade("creative_slot_100", () -> MGDPModifiers.CREATIVE_SLOT_100).lang("Creative +100 Slots").register();
             BRUSH = regUpgrade("brush", () -> MGDPModifiers.BRUSH).lang("Archaeology Upgrade").register();
             BOMB_DISPOSAL = regUpgrade("bomb_disposal", () -> MGDPModifiers.BOMB_DISPOSAL).lang("Bomb Disposal Expert Upgrade").register();
             PROJECTILE_DODGE = regUpgrade("projectile_dodge", () -> MGDPModifiers.PROJECTILE_DODGE, 1, true)
