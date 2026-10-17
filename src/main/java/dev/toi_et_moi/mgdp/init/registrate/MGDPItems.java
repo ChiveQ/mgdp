@@ -2,6 +2,7 @@ package dev.toi_et_moi.mgdp.init.registrate;
 
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.providers.ProviderType;
+import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.toi_et_moi.mgdp.compat.CompatManager;
@@ -253,6 +254,7 @@ public class MGDPItems {
                                 .texture("layer0", ResourceLocation.fromNamespaceAndPath(modid,"item/upgrades/" + id))
                                 .texture("layer1", ModularGolems.loc("item/blue_arrow")))
                         .end())
+                .lang(RegistrateLangProvider.toEnglishName(id) + " Upgrade") // 此処異MG
                 .removeTab(GolemItems.ITEMS.getKey())
                 .tab(GolemItems.UPGRADES.getKey())
                 .tab(MGDP_TAB.getKey());
