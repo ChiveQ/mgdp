@@ -2,6 +2,7 @@ package dev.toi_et_moi.mgdp.content.modifier.base;
 
 import dev.xkmc.modulargolems.content.item.upgrade.IUpgradeItem;
 import dev.xkmc.modulargolems.content.modifier.common.AddSlotModifier;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import org.jetbrains.annotations.NotNull;
@@ -23,8 +24,8 @@ public class LeveledAddSlotModifier extends AddSlotModifier {
     }
 
     @Override
-    public @NotNull List<MutableComponent> getDetail(int v) {
-        return List.of(Component.translatable(getDescriptionId() + ".desc", slots * v)
-                .withStyle(net.minecraft.ChatFormatting.GREEN));
+    public @NotNull Component getTooltip(int v) {
+        return Component.translatable(getDescriptionId(),slots * v).withStyle(ChatFormatting.LIGHT_PURPLE);
     }
+
 }
