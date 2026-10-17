@@ -129,12 +129,12 @@ public class MGDPModifiers {
     static {
 
         CREATIVE_SLOT = reg("creative_slot", () -> new LeveledAddSlotModifier(999, 1),
-                "Creative +1 Slot",
-                "Add 1 upgrade slot. Creative only.");
+                "Creative +%s Slot",
+                "Adds 1 upgrade slot per level. Creative only.");
 
         CREATIVE_SLOT_100 = reg("creative_slot_100", () -> new LeveledAddSlotModifier(999, 100),
-                "Creative +100 Slots",
-                "Add 100 upgrade slots. Creative only.");
+                "Creative +%s Slot",
+                "Adds 100 upgrade slot per level. Creative only.");
 
         HARVEST_CROP = reg("harvest_crop", HarvestCropModifier::new,
                 "Auto harvest and replant crops within %s block(s) per Pickup level. Requires Pickup upgrade to work.");

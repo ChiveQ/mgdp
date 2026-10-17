@@ -97,8 +97,8 @@ public class MGDPItems {
         // 召唤器
         CompatManager.registerSummoners();
         // 擴充阩級
-        CREATIVE_SLOT = regUpgrade("creative_slot", () -> MGDPModifiers.CREATIVE_SLOT,Rarity.EPIC).lang("Creative +1 Slot").register();
-        CREATIVE_SLOT_100 = regUpgrade("creative_slot_100", () -> MGDPModifiers.CREATIVE_SLOT_100,Rarity.EPIC).lang("Creative +100 Slots").register();
+        CREATIVE_SLOT = regUpgrade("creative_slot", () -> MGDPModifiers.CREATIVE_SLOT,1,false,Rarity.EPIC).lang("Creative +1 Slot").register();
+        CREATIVE_SLOT_100 = regUpgrade("creative_slot_100", () -> MGDPModifiers.CREATIVE_SLOT_100,1,false,Rarity.EPIC).lang("Creative +100 Slots").register();
         // 扩充模板
         CompatManager.registerSlotTemplates();
         // 升级
