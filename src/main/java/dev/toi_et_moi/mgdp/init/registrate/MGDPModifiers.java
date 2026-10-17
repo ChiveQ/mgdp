@@ -54,6 +54,7 @@ public class MGDPModifiers {
     public static final RegistryEntry<NetheriteGoldModifier> NETHERITE_GOLD;
     public static final RegistryEntry<EnchantedNetheriteGoldModifier> ENCHANTED_NETHERITE_GOLD;
     public static final RegistryEntry<BellOfAviciModifier> BELL_OF_AVICI;
+    public static final RegistryEntry<AttributeGolemModifier> IRON_UPGRADE;
     public static final RegistryEntry<AttributeOperationModifier> DIAMOND_ATTACK;
     public static final RegistryEntry<AttributeOperationModifier> ENCHANTED_DIAMOND_ATTACK;
     public static final RegistryEntry<AttributeOperationModifier> CRIMSON_ATTACK;
@@ -96,7 +97,6 @@ public class MGDPModifiers {
     public static final RegistryEntry<AnglerModifier> ANGLER;
     public static final RegistryEntry<AnvilSlamModifier> ANVIL_SLAM;
     public static final RegistryEntry<TridentFestivalModifier> TRIDENT_FESTIVAL;
-    public static final RegistryEntry<AttributeGolemModifier> IRON_UPGRADE;
     public static final RegistryEntry<DisarmModifier> DISARM;
     public static final RegistryEntry<RiptideModifier> RIPTIDE;
     public static final RegistryEntry<EndVoidModifier> END_VOID;
@@ -171,6 +171,12 @@ public class MGDPModifiers {
 
         BELL_OF_AVICI = reg("bell_of_avici", BellOfAviciModifier::new,
                 "Enhanced Bell: 64-block radius, enemies that target the golem are teleported nearby every 2s.");
+
+        IRON_UPGRADE = reg("iron_upgrade", () -> new AttributeGolemModifier(2,
+                new AttributeGolemModifier.AttrEntry(GolemTypes.STAT_ARMOR, () -> 5.0),
+                new AttributeGolemModifier.AttrEntry(GolemTypes.STAT_ATTACK, () -> 2.0),
+                new AttributeGolemModifier.AttrEntry(GolemTypes.STAT_RANGE, () -> 0.5),
+                new AttributeGolemModifier.AttrEntry(GolemTypes.STAT_SWEEP, () -> 0.5)));
 
         DIAMOND_ATTACK = reg("diamond_attack", () -> new AttributeOperationModifier(
                 new AttributeOperationModifier.AttrEntry(() -> Attributes.ATTACK_DAMAGE, "diamond_attack",
@@ -310,12 +316,6 @@ public class MGDPModifiers {
 
         TRIDENT_FESTIVAL = reg("trident_festival", TridentFestivalModifier::new,
                 "Golem summons tridents that explode and strike lightning on impact.");
-
-        IRON_UPGRADE = reg("iron_upgrade", () -> new AttributeGolemModifier(2,
-                        new AttributeGolemModifier.AttrEntry(GolemTypes.STAT_ARMOR, () -> 5.0),
-                        new AttributeGolemModifier.AttrEntry(GolemTypes.STAT_ATTACK, () -> 2.0),
-                        new AttributeGolemModifier.AttrEntry(GolemTypes.STAT_RANGE, () -> 0.5),
-                        new AttributeGolemModifier.AttrEntry(GolemTypes.STAT_SWEEP, () -> 0.5)));
 
         DISARM = reg("disarm", DisarmModifier::new,
                 "Golem strips random equipment from targets on hit. Level = items per hit.");

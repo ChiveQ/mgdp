@@ -113,6 +113,7 @@ public class MGDPItems {
             NETHERITE_GOLD = regUpgrade("netherite_gold", () -> MGDPModifiers.NETHERITE_GOLD).lang("Netherite Gold Apple Upgrade").register();
             ENCHANTED_NETHERITE_GOLD = regUpgrade("enchanted_netherite_gold", () -> MGDPModifiers.ENCHANTED_NETHERITE_GOLD, 1, true).lang("Enchanted Netherite Gold Apple Upgrade").register();
             BELL_OF_AVICI = regUpgrade("bell_of_avici", () -> MGDPModifiers.BELL_OF_AVICI, Rarity.UNCOMMON).lang("Bell of Avici Upgrade").register();
+            IRON_UPGRADE = regUpgrade("iron_upgrade", () -> MGDPModifiers.IRON_UPGRADE).register();
             DIAMOND_ATTACK = regUpgrade("diamond_attack", () -> MGDPModifiers.DIAMOND_ATTACK).register();
             ENCHANTED_DIAMOND_ATTACK = regUpgrade("enchanted_diamond_attack", () -> MGDPModifiers.ENCHANTED_DIAMOND_ATTACK, 1, true).register();
             CRIMSON_ATTACK = regUpgrade("crimson_attack", () -> MGDPModifiers.CRIMSON_ATTACK).register();
@@ -158,7 +159,6 @@ public class MGDPItems {
             ANGLER = regUpgrade("angler", () -> MGDPModifiers.ANGLER).register();
             ANVIL_SLAM = regUpgrade("anvil_slam", () -> MGDPModifiers.ANVIL_SLAM).register();
             TRIDENT_FESTIVAL = regUpgrade("trident_festival", () -> MGDPModifiers.TRIDENT_FESTIVAL, Rarity.EPIC).register();
-            IRON_UPGRADE = regUpgrade("iron_upgrade", () -> MGDPModifiers.IRON_UPGRADE).lang("Iron Upgrade").register();
             DISARM = regUpgrade("disarm", () -> MGDPModifiers.DISARM).register();
             RIPTIDE = regUpgrade("riptide", () -> MGDPModifiers.RIPTIDE).register();
             END_VOID = regUpgrade("end_void", () -> MGDPModifiers.END_VOID).register();
